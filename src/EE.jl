@@ -85,9 +85,9 @@ module EE
         xend=real(origin+c)/ref
         yend=imag(origin+c)/ref
         # Real part of phasor
-        drx=real(c)
+        drx=real(c)/ref
         # Imag part of phasor
-        dry=imag(c)
+        dry=imag(c)/ref
         # Length of phasor
         dr=sqrt(drx^2+dry^2)
         # Angle of phasor in degrees
