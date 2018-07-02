@@ -7,4 +7,4 @@ module EE
         return x^2
     end
 
-end EE
+end
