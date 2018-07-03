@@ -24,7 +24,10 @@ module EE
     Each phasor c is plotted as a relative quanitity, i.e., c/ref is actually
     shown the plot figure. This concept of plotting a per unit phasor is used to
     be able to plot phasor with different quantities, e.g., voltage and current
-    phasors
+    phasors.
+
+    Function phasor arguments may be column vectors in order plot different
+    phasors by one function call.
 
     # Variables
 
@@ -80,11 +83,25 @@ module EE
 
     `headwidth` width of arrow head; default value = 5
     """
-    function phasor(c;origin=0.0+0.0im,ref=1,par=0,
-        rlabel=0.5,tlabel=0.25,label="",ha="center",va="center",
-        relrot=false,relangle=0,
-        color="black",width=0.2,headlength=10,headwidth=5)
+    function phasor(c;origin=fill(0.0+0.0im,length(c)),
+        ref=fill(1,length(c)),par=fill(0,length(c)),
+        rlabel=fill(0.5,length(c)),tlabel=fill(0.25,length(c)),
+        label=fill("",length(c)),
+        ha=fill("center",length(c)),va=fill("center",length(c)),
+        relrot=fill(false,length(c)),relangle=fill(0,length(c)),
+        color=fill("black",length(c)),width=fill(0.2,length(c)),
+        headlength=fill(10,length(c)),headwidth=fill(5,length(c)))
 
+        # Check validity of arguments
+        if size(c)!=size(origin) || size(c)!=size(ref) || size(c)!=par
+            || size(c)!=size(rlabel) || size(c)!=size(tlabel)
+            || size(c)!=size(label) || size(c)!=ha || size(c)!=va
+            || size(c)!=size(relrot) || size(c)!=size(relangle)
+            || size(c)!=size(color) || size(c)!=size(width)
+            || size(c)!=size(headlength) || size(c)!=size(headwidrh)
+            error("module EE: function phasor: Argument size mismatch\n    All arguments must have the same size")
+        end
+        
         # Starting point (origin) of phase
         xorigin=real(origin)./ref
         yorigin=imag(origin)./ref
@@ -96,7 +113,7 @@ module EE
         # Imag part of phasor
         dry=imag(c)./ref
         # Length of phasor
-        dr=sqrt.(drx.^2+.dry^2)
+        dr=sqrt.(drx.^2+dry.^2)
         # Angle of phasor in degrees
         absangle=atan2.(dry,drx)*180/pi
         # Orientation tangential to phasor (lagging by 90°)
@@ -109,24 +126,29 @@ module EE
         # Imag part of parallel shift of phasor
         dpy=par.*dty
 
-        # Draw arrow
-        annotate("",xy=(xend+dpx,yend+dpy),xytext=(xorigin+dpx,yorigin+dpy),
-            xycoords="data",
-            arrowprops=Dict("edgecolor"=>color,"facecolor"=>color,"width"=>width,
-                            "headlength"=>headlength,"headwidth"=>headwidth),
-                            annotation_clip=false)
-        # Plot label
-        # if relrot==false
-        #     # Without relative roation of label
-        #     text(xorigin+drx*rlabel+dtx*tlabel+dpx,
-        #         yorigin+dry*rlabel+dty*tlabel+dpy,
-        #         label,ha=ha,va=va)
-        # else
-        #     # Applying relative rotation of label
-        #     text(xorigin+drx*rlabel+dtx*tlabel+dpx,
-        #         yorigin+dry*rlabel+dty*tlabel+dpy,
-        #         label,ha=ha,va=va,rotation=absangle+relangle)
-        # end
+        # Cycle in phasor is in loop, if c is a column vector
+        for k in 1:length(c)
+            # Draw arrow
+            annotate("",xy=(xend[k]+dpx[k],yend[k]+dpy[k]),
+                xytext=(xorigin[k]+dpx[k],yorigin[k]+dpy[k]),xycoords="data",
+                arrowprops=Dict("edgecolor"=>color[k],"facecolor"=>color[k],
+                    "width"=>width[k],"headlength"=>headlength[k],"
+                    headwidth"=>headwidth[k]),
+                annotation_clip=false)
+
+            # Plot label
+            if relrot[k]==false
+                # Without relative roation of label
+                text(xorigin[k]+drx[k]*rlabel[k]+dtx[k]*tlabel[k]+dpx[k],
+                    yorigin[k]+dry[k]*rlabel[k]+dty[k]*tlabel[k]+dpy[k],
+                    label[k],ha=ha[k],va=va[k],rotation=relangle[k])
+            else
+                # Applying relative rotation of label
+                text(xorigin[k]+drx[k]*rlabel[k]+dtx[k]*tlabel[k]+dpx[k],
+                    yorigin[k]+dry[k]*rlabel[k]+dty[k]*tlabel[k]+dpy[k],
+                    label[k],ha=ha[k],va=va[k],rotation=absangle[k]+relangle[k])
+            end
+        end
     end
 
 end
