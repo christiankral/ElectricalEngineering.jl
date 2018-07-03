@@ -6,10 +6,13 @@ module EE
     # - Unitful             Handling of quantity units
     using PyPlot, Unitful
 
-    export j,phasor
+    export j,phasor,polar
     include("phasor.jl")
 
     export ∥
     include("circuit.jl")
+
+    export printuln
+    include("io.jl")
 
 end
