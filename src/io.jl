@@ -137,8 +137,10 @@ installation of the following software
 
 # Examples
 
+```julia
 >julia save3fig("phasordiagram")
 >julia save3fig("phasordiagram_crop",crop=true)
+```
 """
 function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
     # Store PNG file
