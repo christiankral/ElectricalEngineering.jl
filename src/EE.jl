@@ -27,9 +27,6 @@ module EE
     phasors. It is important that the variables `c`, `origin` and `ref` have the
     same units (defined through Unitful).
 
-    Function phasor arguments may be column vectors in order plot different
-    phasors by one function call.
-
     # Variables
 
     `c` Complex phasor, drawn relative relative to `origin`
@@ -86,38 +83,27 @@ module EE
 
     `headwidth` width of arrow head; default value = 5
     """
-    function phasor(c;origin=fill(0.0+0.0im,size(c)).*c./ustrip(c),
-        ref=abs.(c./ustrip(c)),par=fill(0.0,size(c)),
-        rlabel=fill(0.5,size(c)),tlabel=fill(0.25,size(c)),
-        label=fill("",size(c)),
-        ha=fill("center",size(c)),va=fill("center",size(c)),
-        relrot=fill(false,size(c)),relangle=fill(0,size(c)),
-        color=fill("black",size(c)),width=fill(0.2,size(c)),
-        headlength=fill(10,size(c)),headwidth=fill(5,size(c)))
-
-        if size(c)!=size(origin) || size(c)!=size(ref) || size(c)!=size(par) ||
-            size(c)!=size(rlabel) || size(c)!=size(tlabel) ||
-            size(c)!=size(label) || size(c)!=size(ha) || size(c)!=size(va) ||
-            size(c)!=size(relrot) || size(c)!=size(relangle) ||
-            size(c)!=size(color) || size(c)!=size(width) ||
-            size(c)!=size(headlength) || size(c)!=size(headwidth)
-            error("module EE: function phasor: Argument size mismatch\n    All arguments must have the same size")
-        end
+    function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
+        ref=abs(c./ustrip(c)),par=0.0,
+        rlabel=0.5,tlabel=0.25,
+        label="",
+        ha="center",va="center",
+        relrot=false,relangle=0.0,
+        color="black",width=0.2,
+        headlength=10.0,headwidth=5.0)
 
         # Check if units of c, origin and ref are compatible
         # Starting point (origin) of phase
-        xorigin=fill(0.0,size(c))
-        yorigin=fill(0.0,size(c))
-        xend=fill(0.0,size(c))
-        yend=fill(0.0,size(c))
+        xorigin=0.0
+        yorigin=0.0
+        xend=0.0
+        yend=0.0
         try
-            for k in 1:length(c)
-                xorigin[k]=uconvert(Unitful.NoUnits,real(origin[k])./ref[k])
-                yorigin[k]=uconvert(Unitful.NoUnits,imag(origin[k])./ref[k])
-                # End point of phasor
-                xend[k]=uconvert(Unitful.NoUnits,real(origin[k]+c[k])./ref[k])
-                yend[k]=uconvert(Unitful.NoUnits,imag(origin[k]+c[k])./ref[k])
-            end
+            xorigin=uconvert(Unitful.NoUnits,real(origin)./ref)
+            yorigin=uconvert(Unitful.NoUnits,imag(origin)./ref)
+            # End point of phasor
+            xend=uconvert(Unitful.NoUnits,real(origin+c)./ref)
+            yend=uconvert(Unitful.NoUnits,imag(origin+c)./ref)
         catch err
             error("module EE: function phasor: Dimension mismatch of arguments `c`, `origin` and `ref`\n    The arguments `c`, `origin` and `ref` must have the same dimension (koherent SI unit)")
         end
@@ -127,40 +113,37 @@ module EE
         # Imag part of phasor
         dry=yend-yorigin # = imag(c)./ref
         # Length of phasor
-        dr=sqrt.(drx.^2+dry.^2)
+        dr=sqrt(drx^2+dry^2)
         # Angle of phasor in degrees
-        absangle=atan2.(dry,drx)*180/pi
+        absangle=atan2(dry,drx)*180/pi
         # Orientation tangential to phasor (lagging by 90°)
         # Real part of tangential component with repsect to length
-        dtx=+dry./dr
+        dtx=+dry/dr
         # Imag part of tangential component with repsect to length
-        dty=-drx./dr
+        dty=-drx/dr
         # Real part of parallel shift of phasor
-        dpx=par.*dtx
+        dpx=par*dtx
         # Imag part of parallel shift of phasor
-        dpy=par.*dty
-        # Cycle in phasor is in loop, if c is a column vector
-        for k in 1:length(c)
-            # Draw arrow
-            annotate("",xy=(xend[k]+dpx[k],yend[k]+dpy[k]),
-                xytext=(xorigin[k]+dpx[k],yorigin[k]+dpy[k]),xycoords="data",
-                arrowprops=Dict("edgecolor"=>color[k],"facecolor"=>color[k],
-                    "width"=>width[k],"headlength"=>headlength[k],
-                    "headwidth"=>headwidth[k]),
-                annotation_clip=false)
+        dpy=par*dty
+        # Draw arrow
+        annotate("",xy=(xend+dpx,yend+dpy),
+            xytext=(xorigin+dpx,yorigin+dpy),xycoords="data",
+            arrowprops=Dict("edgecolor"=>color,"facecolor"=>color,
+                "width"=>width,"headlength"=>headlength,
+                "headwidth"=>headwidth),
+            annotation_clip=false)
 
-            # Plot label
-            if relrot[k]==false
-                # Without relative roation of label
-                text(xorigin[k]+drx[k]*rlabel[k]+dtx[k]*tlabel[k]+dpx[k],
-                    yorigin[k]+dry[k]*rlabel[k]+dty[k]*tlabel[k]+dpy[k],
-                    label[k],ha=ha[k],va=va[k],rotation=relangle[k])
-            else
-                # Applying relative rotation of label
-                text(xorigin[k]+drx[k]*rlabel[k]+dtx[k]*tlabel[k]+dpx[k],
-                    yorigin[k]+dry[k]*rlabel[k]+dty[k]*tlabel[k]+dpy[k],
-                    label[k],ha=ha[k],va=va[k],rotation=absangle[k]+relangle[k])
-            end
+        # Plot label
+        if relrot==false
+            # Without relative roation of label
+            text(xorigin+drx*rlabel+dtx*tlabel+dpx,
+                yorigin+dry*rlabel+dty*tlabel+dpy,
+                label,ha=ha,va=va,rotation=relangle)
+        else
+            # Applying relative rotation of label
+            text(xorigin+drx*rlabel+dtx*tlabel+dpx,
+                yorigin+dry*rlabel+dty*tlabel+dpy,
+                label,ha=ha,va=va,rotation=absangle+relangle)
         end
     end
 
