@@ -24,6 +24,8 @@ the module can be reloaded without exiting the session by `reload("EE")`.
 
 - Plot publication ready phasor diagrams including LaTeX labeling  
 
+![Phasor diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordiagram.png?raw=true)
+
 ## Planned Features
 
 - Print complex variables (including) units in rectangular and polar form
