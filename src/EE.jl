@@ -44,7 +44,7 @@ module EE
     variable needs to have the same unit as `c`
 
     `par` In order to be able to plot parallel phasors, par is used to specify
-    the per uint tangential shift (offset) of a phasor, with respect to `ref`;
+    the per unit tangential shift (offset) of a phasor, with respect to `ref`;
     so typlically `ref` will be selected to be around 0.05 to 0.1;
     default value = 0 (no shift of phasor)
 
@@ -53,7 +53,7 @@ module EE
     the arrow hear of the phasor; default value = 0.5, i.e., the radial center
     of the phasor
 
-    `tlabel` tangential  per unit location of label: `tlabel = 0` means that the
+    `tlabel` tangential per unit location of label: `tlabel = 0` means that the
     label is plotted onto the phasor; `tlabel = -0.25` plots the label on top of
     the phasor applying a displacement of 25% with respect to `ref`;
     `tlabel = 0.2` plots the label below the
