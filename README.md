@@ -15,7 +15,7 @@ In order to update to the actual version of GitHub use:
 Pkg.update("EE")
 ```
 
-The module EE.jl has be loaded by `using EE`. In order to use all the features of EE.jl, modules Unitful and PyPlot have to be loaded as well. It is thus recommended to appy:
+The module EE.jl has to be loaded by `using EE`. In order to use all the features of EE.jl, modules Unitful and PyPlot have to be loaded as well. It is thus recommended to appy:
 
 ```julia
 using Unitful,Unitful.DefaultSymbols,PyPlot,EE
