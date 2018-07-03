@@ -13,6 +13,19 @@ calculation can be performed using units from the module Unitiful.
 # Variables
 
 `z` Vector of impedances
+
+# Examples
+
+```julia
+julia> ∥(4,6)
+2.4
+julia> ∥(4Ω,6Ω)
+2.4 Ω
+julia> 4Ω∥6Ω
+2.4 Ω
+julia> 2.4Ω∥(4Ω∥6Ω)
+1.2 Ω
+```
 """
 function ∥(z...)
     ypar = 0/unit(z[1])
