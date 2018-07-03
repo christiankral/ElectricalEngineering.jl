@@ -44,18 +44,18 @@ module EE
     variable needs to have the same unit as `c`
 
     `par` In order to be able to plot parallel phasors, par is used to specify
-    the tangential shift (offset) of a phasor, with respect to `ref`; so
-    typlically `ref` will be selected to be around 0.05 to 0.1;
+    the per uint tangential shift (offset) of a phasor, with respect to `ref`;
+    so typlically `ref` will be selected to be around 0.05 to 0.1;
     default value = 0 (no shift of phasor)
 
-    `rlabel` radial location of label (in direction of the phasor):
+    `rlabel` radial per unit location of label (in direction of the phasor):
     `rlabel = 0` represents the shaft of the phasor and `rlabel = 1` represents
     the arrow hear of the phasor; default value = 0.5, i.e., the radial center
     of the phasor
 
-    `tlabel` tangential location of label: `tlabel = 0` means that the label is
-    plotted onto the phasor; `tlabel = -0.25` plots the label on top of the
-    phasor applying a displacement of 25% with respect to `ref`;
+    `tlabel` tangential  per unit location of label: `tlabel = 0` means that the
+    label is plotted onto the phasor; `tlabel = -0.25` plots the label on top of
+    the phasor applying a displacement of 25% with respect to `ref`;
     `tlabel = 0.2` plots the label below the
     phasor applying a displacement of 20% with respect to `ref`; default value
     = 0.25
@@ -72,10 +72,10 @@ module EE
     otherwise the label is rotated relative to the phasor by the angle
     `relangle` (indicated in degrees)
 
-    `relangle` relative angle of label with respect to phasor orientient; this
-    angle is only appplied, it `relrot == true`; this angle the indicates the
-    relative orientation of the label with respect to the orientation of the
-    phasor; default value = 0
+    `relangle` relative angle of label in degree with respect to phasor
+    orientient; this angle is only appplied, it `relrot == true`; this angle the
+    indicates the relative orientation of the label with respect to the
+    orientation of the phasor; default value = 0
 
     `color` color of the phasor; i.e., shaft and arrow head color; default
     value = "black"
@@ -104,7 +104,7 @@ module EE
             error("module EE: function phasor: Argument size mismatch\n    All arguments must have the same size")
         end
 
-        # Check if units if c, origin and ref are compatible
+        # Check if units of c, origin and ref are compatible
         # Starting point (origin) of phase
         try
             xorigin=fill(0.0,size(c))
@@ -121,6 +121,7 @@ module EE
         catch err
             error("module EE: function phasor: Dimension mismatch of arguments `c`, `origin` and `ref`\n    The arguments `c`, `origin` and `ref` must have the same dimension (koherent SI unit)")
         end
+
         # Real part of phasor
         drx=xend-xorigin # = real(c)./ref
         # Imag part of phasor
