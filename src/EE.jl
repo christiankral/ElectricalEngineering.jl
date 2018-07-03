@@ -1,8 +1,10 @@
-# isdefined(Base, :__precompile__) && __precompile__()
+__precompile__(true)
 module EE
 
-    # Implementation of EE is based on PyPlot
-    using PyPlot
+    # Implementation of EE is based on
+    # - PyPlot              Plotting phasors
+    # - Unitful             Handling of quantity units
+    using PyPlot, Unitful
 
     export phasor
 
