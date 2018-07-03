@@ -1,4 +1,4 @@
-__precompile__(true)
+sizesizesize__precompile__(true)
 module EE
 
     # Implementation of EE is based on
@@ -21,10 +21,11 @@ module EE
     This function draws a phasor from a starting point `origin` and end point
     `origin`+`c`. The phasor consists of a shaft and an arrow head.
 
-    Each phasor c is plotted as a relative quanitity, i.e., c/ref is actually
+    Each phasor c is plotted as a relative quanitity, i.e., `c/ref` is actually
     shown the plot figure. This concept of plotting a per unit phasor is used to
     be able to plot phasor with different quantities, e.g., voltage and current
-    phasors.
+    phasors. It is important that the variables `c`, `origin` and `ref` have the
+    same units (defined through Unitful).
 
     Function phasor arguments may be column vectors in order plot different
     phasors by one function call.
@@ -33,12 +34,14 @@ module EE
 
     `c` Complex phasor, drawn relative relative to `origin`
 
-    `origin` Complex number representing the origin of the phasor
+    `origin` Complex number representing the origin of the phasor; this variable
+    needs to have the same unit as `c`
 
     `ref` Reference length of scaling; this is required as in a pahasor diagram
     voltages and currents may be included; in order to account for the different
     voltage and current scales, one (constant)  `ref` is used for voltage
-    phasors and another (constant) `ref` is used for current phasors
+    phasors and another (constant) `ref` is used for current phasors; this
+    variable needs to have the same unit as `c`
 
     `par` In order to be able to plot parallel phasors, par is used to specify
     the tangential shift (offset) of a phasor, with respect to `ref`; so
@@ -83,35 +86,45 @@ module EE
 
     `headwidth` width of arrow head; default value = 5
     """
-    function phasor(c;origin=fill(0.0+0.0im,length(c)),
-        ref=fill(1,length(c)),par=fill(0,length(c)),
-        rlabel=fill(0.5,length(c)),tlabel=fill(0.25,length(c)),
-        label=fill("",length(c)),
-        ha=fill("center",length(c)),va=fill("center",length(c)),
-        relrot=fill(false,length(c)),relangle=fill(0,length(c)),
-        color=fill("black",length(c)),width=fill(0.2,length(c)),
-        headlength=fill(10,length(c)),headwidth=fill(5,length(c)))
+    function phasor(c;origin=fill(0.0+0.0im,size(c)).*c./ustrip(c),
+        ref=abs.(c./ustrip(c)),par=fill(0.0,size(c)),
+        rlabel=fill(0.5,size(c)),tlabel=fill(0.25,size(c)),
+        label=fill("",size(c)),
+        ha=fill("center",size(c)),va=fill("center",size(c)),
+        relrot=fill(false,size(c)),relangle=fill(0,size(c)),
+        color=fill("black",size(c)),width=fill(0.2,size(c)),
+        headlength=fill(10,size(c)),headwidth=fill(5,size(c)))
 
-        # Check validity of arguments
-        if size(c)!=size(origin) || size(c)!=size(ref) || size(c)!=par
-            || size(c)!=size(rlabel) || size(c)!=size(tlabel)
-            || size(c)!=size(label) || size(c)!=ha || size(c)!=va
-            || size(c)!=size(relrot) || size(c)!=size(relangle)
-            || size(c)!=size(color) || size(c)!=size(width)
-            || size(c)!=size(headlength) || size(c)!=size(headwidrh)
+        if size(c)!=size(origin) || size(c)!=size(ref) || size(c)!=size(par) ||
+            size(c)!=size(rlabel) || size(c)!=size(tlabel) ||
+            size(c)!=size(label) || size(c)!=size(ha) || size(c)!=size(va) ||
+            size(c)!=size(relrot) || size(c)!=size(relangle) ||
+            size(c)!=size(color) || size(c)!=size(width) ||
+            size(c)!=size(headlength) || size(c)!=size(headwidth)
             error("module EE: function phasor: Argument size mismatch\n    All arguments must have the same size")
         end
-        
+
+        # Check if units if c, origin and ref are compatible
         # Starting point (origin) of phase
-        xorigin=real(origin)./ref
-        yorigin=imag(origin)./ref
-        # End point of phasor
-        xend=real(origin+c)./ref
-        yend=imag(origin+c)./ref
+        try
+            xorigin=fill(0.0,size(c))
+            yorigin=fill(0.0,size(c))
+            xend=fill(0.0,size(c))
+            yend=fill(0.0,size(c))
+            for k in 1:length(c)
+                xorigin[k]=uconvert(Unitful.NoUnits,real(origin[k])./ref[k])
+                yorigin[k]=uconvert(Unitful.NoUnits,imag(origin[k])./ref[k])
+                # End point of phasor
+                xend[k]=uconvert(Unitful.NoUnits,real(origin[k]+c[k])./ref[k])
+                yend[k]=uconvert(Unitful.NoUnits,imag(origin[k]+c[k])./ref[k])
+            end
+        catch err
+            error("module EE: function phasor: Dimension mismatch of arguments `c`, `origin` and `ref`\n    The arguments `c`, `origin` and `ref` must have the same dimension (koherent SI unit)")
+        end
         # Real part of phasor
-        drx=real(c)./ref
+        drx=xend-xorigin # = real(c)./ref
         # Imag part of phasor
-        dry=imag(c)./ref
+        dry=yend-yorigin # = imag(c)./ref
         # Length of phasor
         dr=sqrt.(drx.^2+dry.^2)
         # Angle of phasor in degrees
@@ -132,8 +145,8 @@ module EE
             annotate("",xy=(xend[k]+dpx[k],yend[k]+dpy[k]),
                 xytext=(xorigin[k]+dpx[k],yorigin[k]+dpy[k]),xycoords="data",
                 arrowprops=Dict("edgecolor"=>color[k],"facecolor"=>color[k],
-                    "width"=>width[k],"headlength"=>headlength[k],"
-                    headwidth"=>headwidth[k]),
+                    "width"=>width[k],"headlength"=>headlength[k],
+                    "headwidth"=>headwidth[k]),
                 annotation_clip=false)
 
             # Plot label
