@@ -14,21 +14,27 @@ maximum of 16 characters is allowes, in case the optional variable `label` is
 NOT specified; in  case of specifying the variable `label`, the maximum length
 of `r[1]` may not exceed 12 characters
 
+`r[2]` Variable to be printed; the variable may be real or complex, units
+assigned from the module Unitful are allowed; vectors of variables are also
+allowed
+
+`r[3]` Optional target unit of `r[2]` to be displayed
+
+`label` Optional four character label structuring the output of variables, e.g.,
+`label = "(a)"`
+
 # Examples
 
 ```julia
 julia> using Unitful,Unitful.DefaultSymbols,EE
-julia> ∥(4,6)
-2.4
-julia> ∥(4Ω,6Ω)
-2.4 Ω
-julia> 4Ω∥6Ω
-2.4 Ω
-julia> 2.4Ω∥(4Ω∥6Ω)
-1.2 Ω
+julia> U1=300V+j*400V
+julia> printuln("U1",U1,kV)
+              U1 = 0.3 kV + j 0.4 kV
+                 = 0.5 kV ∠ 53.1301°
+julia> printuln("U1",U1,label="(a)")
+(a)           U1 = 300 V + j 400 V
+                 = 500 V ∠ 53.1301°
 ```
-
-Type `\Omega` and hit the `tab` key to autocomplete the parallel symbol Ω
 """
 function printuln(r...;label="")
     # r[1] = 1st argument = string to be printed

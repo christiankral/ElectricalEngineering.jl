@@ -1,4 +1,9 @@
 """
+`j = 1im` equals the imaginary unit
+"""
+const j=1im
+
+"""
 # Function call
 
 `phasor(c;origin=0.0+0.0im,ref=1,par=0,

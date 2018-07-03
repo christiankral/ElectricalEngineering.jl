@@ -6,14 +6,7 @@ module EE
     # - Unitful             Handling of quantity units
     using PyPlot, Unitful
 
-    export j
-
-    """
-    `j = 1im` equals the imaginary unit
-    """
-    const j=1im
-
-    export phasor
+    export j,phasor
     include("phasor.jl")
 
     export ∥
