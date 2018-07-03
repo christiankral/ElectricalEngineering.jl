@@ -12,7 +12,7 @@ module EE
     export ∥
     include("circuit.jl")
 
-    export printuln
+    export printuln,save3fig
     include("io.jl")
 
 end
