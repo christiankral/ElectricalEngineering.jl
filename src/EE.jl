@@ -1,4 +1,4 @@
-sizesizesize__precompile__(true)
+__precompile__(true)
 module EE
 
     # Implementation of EE is based on
