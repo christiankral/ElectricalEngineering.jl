@@ -12,7 +12,7 @@ module EE
     # Function call
 
     `phasor(c;origin=0.0+0.0im,ref=1,par=0,
-        rlabel=0.5,tlabel=0.25,label="",ha="center",va="center",
+        rlabel=0.5,tlabel=0.1,label="",ha="center",va="center",
         relrot=false,relangle=0,
         color="black",width=0.2,headlength=10,headwidth=5)`
 
@@ -85,7 +85,7 @@ module EE
     """
     function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
         ref=abs(c./ustrip(c)),par=0.0,
-        rlabel=0.5,tlabel=0.25,
+        rlabel=0.5,tlabel=0.1,
         label="",
         ha="center",va="center",
         relrot=false,relangle=0.0,
