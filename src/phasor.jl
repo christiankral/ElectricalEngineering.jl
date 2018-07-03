@@ -25,9 +25,9 @@ specified in degrees, by using unit `°`
 ```julia
 julia> using Unitful,Unitful.DefaultSymbols,EE
 julia> U1=polar(2V,pi)
-julia> -2 + 0im V
+-2 + 0im V
 julia> U2=polar(sqrt(2)*1V,45°)
-julia> 1 + 1im V
+1 + 1im V
 ```
 """
 function polar(r,phi)
