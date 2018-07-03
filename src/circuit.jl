@@ -3,7 +3,7 @@
 
 `∥(z...)`
 
-Type `\parallel` and hit the `tab` key to autocomplete the parallel symbol
+Type `\parallel` and hit the `tab` key to autocomplete the parallel symbol ∥
 
 # Description
 
@@ -17,6 +17,7 @@ calculation can be performed using units from the module Unitiful.
 # Examples
 
 ```julia
+julia> using Unitful,Unitful.DefaultSymbols,EE
 julia> ∥(4,6)
 2.4
 julia> ∥(4Ω,6Ω)
@@ -26,6 +27,8 @@ julia> 4Ω∥6Ω
 julia> 2.4Ω∥(4Ω∥6Ω)
 1.2 Ω
 ```
+
+Type `\Omega` and hit the `tab` key to autocomplete the parallel symbol Ω
 """
 function ∥(z...)
     ypar = 0/unit(z[1])
