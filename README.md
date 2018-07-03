@@ -35,6 +35,8 @@ After updating to a newer version of EE.jl, the module can be reloaded without e
 
 ![Phasor diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordiagram.png?raw=true)
 
+- Function `polar` to generate a complex quantitiy based on the length and the angle
+
 ### Circuits
 
 - Constant `j` represeting the imaginary unit equvalent to `1im`
@@ -42,6 +44,8 @@ After updating to a newer version of EE.jl, the module can be reloaded without e
     - Calculate parallel connections of impedances
     - Calculate parallel impedance with or without units
   
-## Planned Features
+### Input and Output
 
-- Print complex variables (including) units in rectangular and polar form
+- Function `printuln`
+    - Print complex variables (including) units in rectangular and polar form
+    - Convert printed quantitiy optionally into a target unit
