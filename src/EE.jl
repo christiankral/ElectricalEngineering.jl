@@ -21,9 +21,14 @@ module EE
     This function draws a phasor from a starting point `origin` and end point
     `origin`+`c`. The phasor consists of a shaft and an arrow head.
 
+    Each phasor c is plotted as a relative quanitity, i.e., c/ref is actually
+    shown the plot figure. This concept of plotting a per unit phasor is used to
+    be able to plot phasor with different quantities, e.g., voltage and current
+    phasors
+
     # Variables
 
-    `c` Complex phasor, drawn relative relative to `B`
+    `c` Complex phasor, drawn relative relative to `origin`
 
     `origin` Complex number representing the origin of the phasor
 
