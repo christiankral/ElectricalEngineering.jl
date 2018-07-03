@@ -106,11 +106,11 @@ module EE
 
         # Check if units of c, origin and ref are compatible
         # Starting point (origin) of phase
+        xorigin=fill(0.0,size(c))
+        yorigin=fill(0.0,size(c))
+        xend=fill(0.0,size(c))
+        yend=fill(0.0,size(c))
         try
-            xorigin=fill(0.0,size(c))
-            yorigin=fill(0.0,size(c))
-            xend=fill(0.0,size(c))
-            yend=fill(0.0,size(c))
             for k in 1:length(c)
                 xorigin[k]=uconvert(Unitful.NoUnits,real(origin[k])./ref[k])
                 yorigin[k]=uconvert(Unitful.NoUnits,imag(origin[k])./ref[k])
@@ -139,7 +139,6 @@ module EE
         dpx=par.*dtx
         # Imag part of parallel shift of phasor
         dpy=par.*dty
-
         # Cycle in phasor is in loop, if c is a column vector
         for k in 1:length(c)
             # Draw arrow
