@@ -46,6 +46,7 @@ After updating to a newer version of EE.jl, the module can be reloaded without e
 
 - Function `printuln`
     - Print complex variables (including) units in rectangular and polar form
+    - Limit output to six significant digits
     - Convert printed quantitiy optionally into a target unit
     - Works with scalars and vectors of real or complex quantities
 - Function `save3fig`
