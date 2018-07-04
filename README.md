@@ -47,6 +47,7 @@ After updating to a newer version of EE.jl, the module can be reloaded without e
 - Function `printuln`
     - Print complex variables (including) units in rectangular and polar form
     - Convert printed quantitiy optionally into a target unit
+    - Works with scalars and vectors of real or complex quantities
 - Function `save3fig`
     - Save one figure in the three file formats `png`, `eps` and `pdf`
     - Optionally crop figures
