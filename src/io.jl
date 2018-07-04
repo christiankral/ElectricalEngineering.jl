@@ -143,6 +143,7 @@ installation of the following software
 ```
 """
 function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
+    println("CHECK")
     # Store PNG file
     mkpath(subDir*"/png")
     if tight==false
