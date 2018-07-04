@@ -143,7 +143,6 @@ installation of the following software
 ```
 """
 function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
-    println("CHECK")
     # Store PNG file
     mkpath(subDir*"/png")
     if tight==false
@@ -154,8 +153,7 @@ function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
     if crop==true
         try
             arg=`$subDir/png/$fileName.png`
-            println(`convert $arg -trim $arg`)
-            run(`convert $arg -trim $arg`)
+            status=readstring(`convert $arg -trim $arg`);
         catch err
             error("module EE: function save3fig: Binary file not found: convert
     The software convert (imagemagick) may not be installed or the path may not
@@ -176,7 +174,7 @@ function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
         try
             arg=`$subDir/eps/$fileName.eps`
             argtemp=`$subDir/eps/$fileName.eps.temp`
-            status=readstring(`epstool --copy --bbox $arg $argtemp`)
+            status=readstring(`epstool --copy --bbox $arg $argtemp`);
             mv(subDir*"/eps/"*fileName*".eps.temp",subDir*"/eps/"*fileName*".eps",
                 remove_destination=true)
         catch err
@@ -198,7 +196,7 @@ function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
     if crop==true
         try
             arg=`$subDir/pdf/$fileName.pdf`
-            status=readstring(`pdfcrop $arg $arg`)
+            status=readstring(`pdfcrop $arg $arg`);
         catch err
             error("module EE: function save3fig: Binary file not found: dpfcrop
     The software pdfcrop may not be installed or the path may not be specified
