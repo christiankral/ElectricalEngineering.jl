@@ -153,6 +153,7 @@ function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
     if crop==true
         try
             arg=`$subDir/png/$fileName.png`
+            println(`convert $arg -trim $arg`)
             run(`convert $arg -trim $arg`)
         catch err
             error("module EE: function save3fig: Binary file not found: convert
