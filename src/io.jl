@@ -153,7 +153,7 @@ function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
     if crop==true
         try
             arg=`$subDir/png/$fileName.png`
-            status=readstring(`convert $arg -trim $arg`)
+            run(`convert $arg -trim $arg`)
         catch err
             error("module EE: function save3fig: Binary file not found: convert
     The software convert (imagemagick) may not be installed or the path may not
