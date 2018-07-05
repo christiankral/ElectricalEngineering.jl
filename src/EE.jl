@@ -6,13 +6,16 @@ module EE
     # - Unitful             Handling of quantity units
     using PyPlot, Unitful
 
-    export j,phasor,polar
+    # Complex phasor calulcation and plotting
     include("phasor.jl")
 
-    export ∥
+    # Calculations in EE circuits
     include("circuit.jl")
 
-    export printuln,save3fig
+    # Input and output functions to print phasors, figures, etc.
     include("io.jl")
+
+    # Default colors for plotting (with PyPlot)
+    include("plot.jl")
 
 end

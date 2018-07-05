@@ -1,3 +1,5 @@
+export printuln,save3fig
+
 """
 # Function call
 
