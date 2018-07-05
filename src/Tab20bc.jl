@@ -1,6 +1,7 @@
-module PlotColorTab20
+module Tab20bc
+  using EE
 
-  # Assign colors to quanities based on 
+  # Assign colors to quanities based on
   # color schemes tab20c and tab20b taken from
   # https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf
 

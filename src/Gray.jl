@@ -1,6 +1,6 @@
-module PlotColorGray
-
-  # Assign colors to quanities  based on 
+module Gray
+  using EE
+  # Assign colors to quanities  based on
   # gray scales colorBlack1..4
 
   const colorVoltage1 = colorBlack1
