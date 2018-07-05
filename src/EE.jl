@@ -17,5 +17,6 @@ module EE
 
     # Default colors for plotting (with PyPlot)
     include("plot.jl")
-
+    include("Tab20bc")
+    include("Gray")
 end
