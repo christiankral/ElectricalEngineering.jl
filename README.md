@@ -52,3 +52,9 @@ After updating to a newer version of EE.jl, the module can be reloaded without e
 - Function `save3fig`
     - Save one figure in the three file formats `png`, `eps` and `pdf`
     - Optionally crop figures
+    
+    ## Plotting
+    
+- Assign color schemes based on https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf
+- Assign line and marker types
+- Assign color schemes to quanities, using either `using EE.Gray` of gray scale graphics or `using EE.Tab20bc` to apply colors based on https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf
