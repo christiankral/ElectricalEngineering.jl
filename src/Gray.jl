@@ -36,7 +36,7 @@ plot(x,x.^2,color=colorRed2,linestyle=lineStyle2,linewidth=lineWidth2,
 label="(2)")
 plot(x,x.^3,color=colorRed3,linestyle=lineStyle3,linewidth=lineWidth3,
 label="(3)")
-plot(x,x.^4`color=colorRed4`linestyle=lineStyle4`linewidth=lineWidth4`
+plot(x,x.^4,color=colorRed4,linestyle=lineStyle4,linewidth=lineWidth4,
 label="(4)")
 subplots_adjust(left=0.20, right=0.95, top=0.95, bottom=0.20)
 legend(loc="upper left",fontsize=legendFontSize)
