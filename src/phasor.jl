@@ -116,7 +116,7 @@ value = "black"
 Copy and paste code:
 
 ```julia
-using PyPlot,EE,Unitful,Unitful.DefaultSymbols
+using Unitful,Unitful.DefaultSymbols,PyPlot,EE
 
 figure(figsize=(3.3,2.5))
 rc("text",usetex=true);
@@ -134,6 +134,7 @@ phasor(Ux,origin=Ur,label=L"$\underline{U}_x$",tlabel=0.15,ref=refU,relrot=true)
 phasor(I,label=L"$\underline{I}$",tlabel=0.15,rlabel=0.7,ref=refI,relrot=true,par=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 ax=gca(); ax[:set_axis_off](); # Remove axis
+# save3fig("phasordiagram",crop=true);
 ```
 
 """
