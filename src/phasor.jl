@@ -110,6 +110,32 @@ value = "black"
 `headlength` lenght of arrow head; default value = 10
 
 `headwidth` width of arrow head; default value = 5
+
+# Example
+
+Copy and paste code:
+
+```julia
+using PyPlot,EE,Unitful,Unitful.DefaultSymbols
+
+figure(figsize=(3.3,2.5))
+rc("text",usetex=true);
+rc("font", family="serif")
+
+U = 100V+j*0V
+Z = 30Ω+j*40Ω
+I = U/Z
+Ur = real(Z)*I
+Ux = U-Ur
+refU = 100V; refI=abs(I)*0.8
+phasor(U,label=L"$\underline{U}$",tlabel=-0.1,ref=refU,relrot=true)
+phasor(Ur,label=L"$\underline{U}_r$",tlabel=-0.1,ref=refU,relrot=true)
+phasor(Ux,origin=Ur,label=L"$\underline{U}_x$",tlabel=0.15,ref=refU,relrot=true)
+phasor(I,label=L"$\underline{I}$",tlabel=0.15,rlabel=0.7,ref=refI,relrot=true,par=0.05)
+axis("square"); xlim(-1,1); ylim(-1,1)
+ax=gca(); ax[:set_axis_off](); # Remove axis
+```
+
 """
 function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
     ref=abs(c./ustrip(c)),par=0.0,
