@@ -1,67 +1,59 @@
 module Gray
   using EE
-  # Assign colors to quanities  based on
-  # gray scales colorBlack1..4
 
-  const colorVoltage1 = colorBlack1
-  const colorVoltage2 = colorBlack2
-  const colorVoltage3 = colorBlack3
-  const colorVoltage4 = colorBlack4
+    export colorBrown1,colorBrown2,colorBrown3,colorBrown4,
+        colorBlue1,colorBlue2,colorBlue3,colorBlue4,
+        colorRed1,colorRed2,colorRed3,colorRed4,
+        colorOrange1,colorOrange2,colorOrange3,colorOrange4,
+        colorGreen1,colorGreen2,colorGreen3,colorGreen4,
+        colorPurple1,colorPurple2,colorPurple3,colorPurple4,
+        colorDarkPurple1,colorDarkPurple2,colorDarkPurple3,colorDarkPurple4,
+        colorMagenta1,colorMagenta2,colorMagenta3,colorMagenta4,
+        colorGray1,colorGray2,colorGray3,colorGray4
 
-  const colorCurrent1 = colorBlack1
-  const colorCurrent2 = colorBlack2
-  const colorCurrent3 = colorBlack3
-  const colorCurrent4 = colorBlack4
+    # Color scheme is only based on colorBlack1..4
+    const colorBrown1=colorBlack1
+    const colorBrown2=colorBlack2
+    const colorBrown3=colorBlack3
+    const colorBrown4=colorBlack4
 
-  const colorPower1 = colorBlack1
-  const colorPower2 = colorBlack2
-  const colorPower3 = colorBlack3
-  const colorPower4 = colorBlack4
+    const colorBlue1=colorBlack1
+    const colorBlue2=colorBlack2
+    const colorBlue3=colorBlack3
+    const colorBlue4=colorBlack4
 
-  const colorTorque1 = colorBlack1
-  const colorTorque2 = colorBlack2
-  const colorTorque3 = colorBlack3
-  const colorTorque4 = colorBlack4
+    const colorRed1=colorBlack1
+    const colorRed2=colorBlack2
+    const colorRed3=colorBlack3
+    const colorRed4=colorBlack4
 
-  const colorSpeed1 = colorBlack1
-  const colorSpeed2 = colorBlack2
-  const colorSpeed3 = colorBlack3
-  const colorSpeed4 = colorBlack4
+    const colorOrange1=colorBlack1
+    const colorOrange2=colorBlack2
+    const colorOrange3=colorBlack3
+    const colorOrange4=colorBlack4
 
-  const colorSignal1 = colorBlack1
-  const colorSignal2 = colorBlack2
-  const colorSignal3 = colorBlack3
-  const colorSignal4 = colorBlack4
+    const colorGreen1=colorBlack1
+    const colorGreen2=colorBlack2
+    const colorGreen3=colorBlack3
+    const colorGreen4=colorBlack4
 
-  const colorBoolean1 = colorBlack1
-  const colorBoolean2 = colorBlack2
-  const colorBoolean3 = colorBlack3
-  const colorBoolean4 = colorBlack4
+    const colorPurple1=colorBlack1
+    const colorPurple2=colorBlack2
+    const colorPurple3=colorBlack3
+    const colorPurple4=colorBlack4
 
-  const colorMagneticVoltage1 = colorBlack1
-  const colorMagneticVoltage2 = colorBlack2
-  const colorMagneticVoltage3 = colorBlack3
-  const colorMagneticVoltage4 = colorBlack4
+    const colorDarkPurple1=colorBlack1
+    const colorDarkPurple2=colorBlack2
+    const colorDarkPurple3=colorBlack3
+    const colorDarkPurple4=colorBlack4
 
-  const colorFlux1 = colorBlack1
-  const colorFlux2 = colorBlack2
-  const colorFlux3 = colorBlack3
-  const colorFlux4 = colorBlack4
+    const colorMagenta1=colorBlack1
+    const colorMagenta2=colorBlack2
+    const colorMagenta3=colorBlack3
+    const colorMagenta4=colorBlack4
 
-  const colorTemperature1 = colorBlack1
-  const colorTemperature2 = colorBlack2
-  const colorTemperature3 = colorBlack3
-  const colorTemperature4 = colorBlack4
-
-
-  export colorVoltage1,colorVoltage2,colorVoltage3,colorVoltage4,
-         colorCurrent1,colorCurrent2,colorCurrent3,colorCurrent4,
-         colorPower1,colorPower2,colorPower3,colorPower4,
-         colorTorque1,colorTorque2,colorTorque3,colorTorque4,
-         colorSpeed1,colorSpeed2,colorSpeed3,colorSpeed4,
-         colorSignal1,colorSignal2,colorSignal3,colorSignal4,
-         colorBoolean1,colorBoolean2,colorBoolean3,colorBoolean4,
-         colorMagneticVoltage1,colorMagneticVoltage2,colorMagneticVoltage3,colorMagneticVoltage4,
-         colorFlux1,colorFlux2,colorFlux3,colorFlux4,
-         colorTemperature1,colorTemperature2,colorTemperature3,colorTemperature4
+    const colorGray1=colorBlack1
+    const colorGray2=colorBlack2
+    const colorGray3=colorBlack3
+    const colorGray4=colorBlack4
 end

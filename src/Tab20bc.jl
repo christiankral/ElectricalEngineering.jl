@@ -1,69 +1,60 @@
 module Tab20bc
   using EE
 
-  # Assign colors to quanities based on
-  # color schemes tab20c and tab20b taken from
-  # https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf
+    export colorBrown1,colorBrown2,colorBrown3,colorBrown4,
+        colorBlue1,colorBlue2,colorBlue3,colorBlue4,
+        colorRed1,colorRed2,colorRed3,colorRed4,
+        colorOrange1,colorOrange2,colorOrange3,colorOrange4,
+        colorGreen1,colorGreen2,colorGreen3,colorGreen4,
+        colorPurple1,colorPurple2,colorPurple3,colorPurple4,
+        colorDarkPurple1,colorDarkPurple2,colorDarkPurple3,colorDarkPurple4,
+        colorMagenta1,colorMagenta2,colorMagenta3,colorMagenta4,
+        colorGray1,colorGray2,colorGray3,colorGray4
 
-  const colorVoltage1 = colorBlue1
-  const colorVoltage2 = colorBlue2
-  const colorVoltage3 = colorBlue3
-  const colorVoltage4 = colorBlue4
+    # Color schemes tab20c and tab20b are taken from
+    # https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf
+    const colorBrown1="#8C6D31"
+    const colorBrown2="#BD9E39"
+    const colorBrown3="#E7BA52"
+    const colorBrown4="#E7CB94"
 
-  const colorCurrent1 = colorRed1
-  const colorCurrent2 = colorRed2
-  const colorCurrent3 = colorRed3
-  const colorCurrent4 = colorRed4
+    const colorBlue1="#3182BD"
+    const colorBlue2="#6BAED6"
+    const colorBlue3="#9ECAE1"
+    const colorBlue4="#C6DBEF"
 
-  const colorPower1 = colorPurple1
-  const colorPower2 = colorPurple2
-  const colorPower3 = colorPurple3
-  const colorPower4 = colorPurple4
+    const colorRed1="#843C39"
+    const colorRed2="#AD494A"
+    const colorRed3="#D6616B"
+    const colorRed4="#E7969C"
 
-  const colorTorque1 = colorBrown1
-  const colorTorque2 = colorBrown2
-  const colorTorque3 = colorBrown3
-  const colorTorque4 = colorBrown4
+    const colorOrange1="#E6550D"
+    const colorOrange2="#FD8D3C"
+    const colorOrange3="#FDAE6B"
+    const colorOrange4="#FDD0A2"
 
-  const colorSpeed1 = colorMagenta1
-  const colorSpeed2 = colorMagenta2
-  const colorSpeed3 = colorMagenta3
-  const colorSpeed4 = colorMagenta4
+    const colorGreen1="#31A354"
+    const colorGreen2="#8CA252"
+    const colorGreen3="#B5CF6B"
+    const colorGreen4="#C7E9C0"
 
-  const colorSignal1 = colorDarkPurple1
-  const colorSignal2 = colorDarkPurple2
-  const colorSignal3 = colorDarkPurple3
-  const colorSignal4 = colorDarkPurple4
+    const colorPurple1="#756BB1"
+    const colorPurple2="#9E9AC8"
+    const colorPurple3="#BCBDDC"
+    const colorPurple4="#DADAEB"
 
-  const colorBoolean1 = colorMagenta1
-  const colorBoolean2 = colorMagenta2
-  const colorBoolean3 = colorMagenta3
-  const colorBoolean4 = colorMagenta4
+    const colorDarkPurple1="#393B79"
+    const colorDarkPurple2="#5254A3"
+    const colorDarkPurple3="#6B6ECF"
+    const colorDarkPurple4="#9C9EDE"
 
-  const colorMagneticVoltage1 = colorOrange1
-  const colorMagneticVoltage2 = colorOrange2
-  const colorMagneticVoltage3 = colorOrange3
-  const colorMagneticVoltage4 = colorOrange4
+    const colorMagenta1="#7B4173"
+    const colorMagenta2="#A55194"
+    const colorMagenta3="#CE6DBD"
+    const colorMagenta4="#DE9ED6"
 
-  const colorFlux1 = colorGreen1
-  const colorFlux2 = colorGreen2
-  const colorFlux3 = colorGreen3
-  const colorFlux4 = colorGreen4
-
-  const colorTemperature1 = colorRed1
-  const colorTemperature2 = colorRed2
-  const colorTemperature3 = colorRed3
-  const colorTemperature4 = colorRed4
-
-
-  export colorVoltage1,colorVoltage2,colorVoltage3,colorVoltage4,
-         colorCurrent1,colorCurrent2,colorCurrent3,colorCurrent4,
-         colorPower1,colorPower2,colorPower3,colorPower4,
-         colorTorque1,colorTorque2,colorTorque3,colorTorque4,
-         colorSpeed1,colorSpeed2,colorSpeed3,colorSpeed4,
-         colorSignal1,colorSignal2,colorSignal3,colorSignal4,
-         colorBoolean1,colorBoolean2,colorBoolean3,colorBoolean4,
-         colorMagneticVoltage1,colorMagneticVoltage2,colorMagneticVoltage3,colorMagneticVoltage4,
-         colorFlux1,colorFlux2,colorFlux3,colorFlux4,
-         colorTemperature1,colorTemperature2,colorTemperature3,colorTemperature4
+    const colorGray1="#636363"
+    const colorGray2="#969696"
+    const colorGray3="#BDBDBD"
+    const colorGray4="#D9D9D9"
 end
