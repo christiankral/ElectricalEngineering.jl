@@ -1,23 +1,46 @@
 """
 # EE.Gray
 
-Defines the following colors based on the four base types of gray `colorBlack1`,
-`colorBlack2`, `colorBlack3` and `colorBlack4`. So independent of the picked color
-everything will always appear in gray scale. Instead of `EE.Gray` the color scheme
-`EE.Tab20bc` is implemented: either one can be loaded.
+Defines colors based on the four base types of gray `colorBlack1`,
+`colorBlack2`, `colorBlack3` and `colorBlack4`. So independent of the picked
+color everything will always appear in gray scale. This way a gray scale and a
+color plot can alternatively be created. So either `EE.Gray` or `EE.Tab20bc` can
+be loaded (at a time) and be used.
+
+# Colors
+
+The following colors are substitued by `colorBlack1`,
+`colorBlack2`, `colorBlack3` and `colorBlack4`:
+
+- colorBrown1`, `colorBrown2`, `colorBrown3`, `colorBrown4`
+- colorBlue1`, `colorBlue2`, `colorBlue3`, `colorBlue4`
+- colorRed1`, `colorRed2`, `colorRed3`, `colorRed4`
+- colorOrange1`, `colorOrange2`, `colorOrange3`, `colorOrange4`
+- colorGreen1`, `colorGreen2`, `colorGreen3`, `colorGreen4`
+- colorPurple1`, `colorPurple2`, `colorPurple3`, `colorPurple4`
+- colorDarkPurple1`, `colorDarkPurple2`, `colorDarkPurple3`, `colorDarkPurple4`
+- colorMagenta1`, `colorMagenta2`, `colorMagenta3`, `colorMagenta4`
+- colorGray1`, `colorGray2`, `colorGray3`, `colorGray4`
 
 # Example
+
+Copy and paste code:
 
 ```julia
 using PyPlot,EE,EE.Gray
 x=collect(0:0.01:1);
 figure(figsize=(3.3,2.5))
-plot(x,x,color=colorRed1,linestyle=lineStyle1,linewidth=lineWidth1,label="(1)")
-plot(x,x.^2,color=colorRed2,linestyle=lineStyle2,linewidth=lineWidth2,label="(2)")
-plot(x,x.^3,color=colorRed3,linestyle=lineStyle3,linewidth=lineWidth3,label="(3)")
-plot(x,x.^4,color=colorRed4,linestyle=lineStyle4,linewidth=lineWidth4,label="(4)")
+plot(x,x,color=colorRed1,linestyle=lineStyle1,linewidth=lineWidth1,
+label="(1)")
+plot(x,x.^2,color=colorRed2,linestyle=lineStyle2,linewidth=lineWidth2,
+label="(2)")
+plot(x,x.^3,color=colorRed3,linestyle=lineStyle3,linewidth=lineWidth3,
+label="(3)")
+plot(x,x.^4`color=colorRed4`linestyle=lineStyle4`linewidth=lineWidth4`
+label="(4)")
 subplots_adjust(left=0.20, right=0.95, top=0.95, bottom=0.20)
 legend(loc="upper left",fontsize=legendFontSize)
+```
 """
 module Gray
     using EE
