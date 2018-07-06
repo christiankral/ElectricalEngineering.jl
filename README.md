@@ -55,15 +55,16 @@ After updating to a newer version of EE.jl, the module can be reloaded without e
     
     ## Plotting
     
-- Assign two different color scheme (may be loaded alternatively) 
+- Assign two different color schemes (may be loaded alternatively) 
     - Color scheme `EE.Tab20bc` based on https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf
      - Gray scale scheme `EE.Gray` based on four gray shades
      `colorBlack1`, `colorBlack2`, `colorBlack3`, `colorBlack4` 
-- Assign line and marker types
+- Additional light background color `colorBlack5`
+- Different line and marker types
     - `lineStyle1`, `lineStyle2`, `lineStyle3`,` lineStyle4`
     - `lineWidth1`, `lineWidth2`, `lineWidth3`, `lineWidth4`,
     - `marker1`, `marker2` ,`marker3`, `marker4`
     - `markerSize1`, `markerSize2` ,`markerSize3` ,`markerSize4`
     - `legendFontSize` 
-    - Type `?EE.Gray` or `?EE.Tab20bc` to see applicawtion examples
+    - Type `?EE.Gray` or `?EE.Tab20bc` to see application examples
 - Assign color schemes to quanities, using either `using EE.Gray` of gray scale graphics or `using EE.Tab20bc`
