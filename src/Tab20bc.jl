@@ -1,3 +1,50 @@
+"""
+# EE.Tab20bc
+
+Defines colors based on
+https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf. As an
+alternative `EE.Gray` can be used instead of `EE.Tab20bc` in order to create a
+gray scale plot instead of a color plot.
+
+# Colors
+
+The following colors are defined:
+
+- colorBrown1`, `colorBrown2`, `colorBrown3`, `colorBrown4`
+- colorBlue1`, `colorBlue2`, `colorBlue3`, `colorBlue4`
+- colorRed1`, `colorRed2`, `colorRed3`, `colorRed4`
+- colorOrange1`, `colorOrange2`, `colorOrange3`, `colorOrange4`
+- colorGreen1`, `colorGreen2`, `colorGreen3`, `colorGreen4`
+- colorPurple1`, `colorPurple2`, `colorPurple3`, `colorPurple4`
+- colorDarkPurple1`, `colorDarkPurple2`, `colorDarkPurple3`, `colorDarkPurple4`
+- colorMagenta1`, `colorMagenta2`, `colorMagenta3`, `colorMagenta4`
+- colorGray1`, `colorGray2`, `colorGray3`, `colorGray4`
+
+# Example
+
+Copy and paste code:
+
+```julia
+using PyPlot,EE,EE.Tab20bc
+x=collect(0:0.01:1);
+figure(figsize=(3.3,2.5))
+plot(x,x,color=colorRed1,linestyle=lineStyle1,linewidth=lineWidth1,
+label="(1)")
+plot(x,x.^2,color=colorRed2,linestyle=lineStyle2,linewidth=lineWidth2,
+label="(2)")
+plot(x,x.^3,color=colorRed3,linestyle=lineStyle3,linewidth=lineWidth3,
+label="(3)")
+plot(x,x.^4,color=colorRed4,linestyle=lineStyle4,linewidth=lineWidth4,
+label="(4)")
+subplots_adjust(left=0.20, right=0.95, top=0.95, bottom=0.20)
+legend(loc="upper left",fontsize=legendFontSize)
+```
+
+# See also
+
+`EE.Gray`
+
+"""
 module Tab20bc
   using EE
 

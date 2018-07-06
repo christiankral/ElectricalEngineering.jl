@@ -41,6 +41,11 @@ label="(4)")
 subplots_adjust(left=0.20, right=0.95, top=0.95, bottom=0.20)
 legend(loc="upper left",fontsize=legendFontSize)
 ```
+
+# See also
+
+`EE.Tab20bc`
+
 """
 module Gray
     using EE
