@@ -1,6 +1,26 @@
-module Gray
-  using EE
+"""
+# EE.Gray
 
+Defines the following colors based on the four base types of gray `colorBlack1`,
+`colorBlack2`, `colorBlack3` and `colorBlack4`. So independent of the picked color
+everything will always appear in gray scale. Instead of `EE.Gray` the color scheme
+`EE.Tab20bc` is implemented: either one can be loaded.
+
+# Example
+
+```julia
+using PyPlot,EE,EE.Gray
+x=collect(0:0.01:1);
+figure(figsize=(3.3,2.5))
+plot(x,x,color=colorRed1,linestyle=lineStyle1,linewidth=lineWidth1,label="(1)")
+plot(x,x.^2,color=colorRed2,linestyle=lineStyle2,linewidth=lineWidth2,label="(2)")
+plot(x,x.^3,color=colorRed3,linestyle=lineStyle3,linewidth=lineWidth3,label="(3)")
+plot(x,x.^4,color=colorRed4,linestyle=lineStyle4,linewidth=lineWidth4,label="(4)")
+subplots_adjust(left=0.20, right=0.95, top=0.95, bottom=0.20)
+legend(loc="upper left",fontsize=legendFontSize)
+"""
+module Gray
+    using EE
     export colorBrown1,colorBrown2,colorBrown3,colorBrown4,
         colorBlue1,colorBlue2,colorBlue3,colorBlue4,
         colorRed1,colorRed2,colorRed3,colorRed4,
