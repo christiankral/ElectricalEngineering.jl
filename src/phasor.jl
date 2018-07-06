@@ -1,11 +1,11 @@
 export j,phasor,polar
 
-"""
+doc"""
 `j = 1im` equals the imaginary unit
 """
 const j=1im
 
-"""
+doc"""
 # Function call
 
 `polar(r,phi)`
@@ -36,7 +36,7 @@ function polar(r,phi)
   return r*cos(phi)+1im*r*sin(phi)
 end
 
-"""
+doc"""
 # Function call
 
 `phasor(c;origin=0.0+0.0im,ref=1,par=0,

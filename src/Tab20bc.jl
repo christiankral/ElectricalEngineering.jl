@@ -1,4 +1,4 @@
-"""
+doc"""
 # EE.Tab20bc
 
 Defines colors based on

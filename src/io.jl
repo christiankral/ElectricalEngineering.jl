@@ -1,6 +1,6 @@
 export printuln,save3fig
 
-"""
+doc"""
 # Function call
 
 `printuln(r...;label="")`
@@ -98,7 +98,7 @@ function printuln(r...;label="")
     end
 end
 
-"""
+doc"""
 # Function call
 
 `save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)`
