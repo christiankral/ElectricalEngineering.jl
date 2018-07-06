@@ -10,15 +10,15 @@ gray scale plot instead of a color plot.
 
 The following colors are defined:
 
-- colorBrown1`, `colorBrown2`, `colorBrown3`, `colorBrown4`
-- colorBlue1`, `colorBlue2`, `colorBlue3`, `colorBlue4`
-- colorRed1`, `colorRed2`, `colorRed3`, `colorRed4`
-- colorOrange1`, `colorOrange2`, `colorOrange3`, `colorOrange4`
-- colorGreen1`, `colorGreen2`, `colorGreen3`, `colorGreen4`
-- colorPurple1`, `colorPurple2`, `colorPurple3`, `colorPurple4`
-- colorDarkPurple1`, `colorDarkPurple2`, `colorDarkPurple3`, `colorDarkPurple4`
-- colorMagenta1`, `colorMagenta2`, `colorMagenta3`, `colorMagenta4`
-- colorGray1`, `colorGray2`, `colorGray3`, `colorGray4`
+- `colorBrown1`, `colorBrown2`, `colorBrown3`, `colorBrown4`
+- `colorBlue1`, `colorBlue2`, `colorBlue3`, `colorBlue4`
+- `colorRed1`, `colorRed2`, `colorRed3`, `colorRed4`
+- `colorOrange1`, `colorOrange2`, `colorOrange3`, `colorOrange4`
+- `colorGreen1`, `colorGreen2`, `colorGreen3`, `colorGreen4`
+- `colorPurple1`, `colorPurple2`, `colorPurple3`, `colorPurple4`
+- `colorDarkPurple1`, `colorDarkPurple2`, `colorDarkPurple3`, `colorDarkPurple4`
+- `colorMagenta1`, `colorMagenta2`, `colorMagenta3`, `colorMagenta4`
+- `colorGray1`, `colorGray2`, `colorGray3`, `colorGray4`
 
 # Example
 
