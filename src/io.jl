@@ -12,7 +12,7 @@ This function prints a real or complex variable in an optionally specified unit
 # Variables
 
 `r[1]` Text string to printed, indicating the variable name or description; a
-maximum of 16 characters is allowes, in case the optional variable `label` is
+maximum of 16 characters is allowed, in case the optional variable `label` is
 NOT specified; in  case of specifying the variable `label`, the maximum length
 of `r[1]` may not exceed 12 characters
 
@@ -43,7 +43,7 @@ function printuln(r...;label="")
     # r[2] = 2nd argument = quantity to shown
     # r[3] = 3rd argument = optional output unit
     # If unit is specified as preferred 3rd argument, then convert number
-    # to thís argument
+    # to this argument
     for k in collect(1:size(r[2],1))
         if length(r)>=3
             # Convert numerical value to specified units

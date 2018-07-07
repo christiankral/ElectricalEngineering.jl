@@ -49,7 +49,7 @@ doc"""
 This function draws a phasor from a starting point `origin` and end point
 `origin`+`c`. The phasor consists of a shaft and an arrow head.
 
-Each phasor c is plotted as a relative quanitity, i.e., `c/ref` is actually
+Each phasor c is plotted as a relative quantity, i.e., `c/ref` is actually
 shown the plot figure. This concept of plotting a per unit phasor is used to
 be able to plot phasor with different quantities, e.g., voltage and current
 phasors. It is important that the variables `c`, `origin` and `ref` have the
@@ -62,7 +62,7 @@ same units (defined through Unitful).
 `origin` Complex number representing the origin of the phasor; this variable
 needs to have the same unit as `c`
 
-`ref` Reference length of scaling; this is required as in a pahasor diagram
+`ref` Reference length of scaling; this is required as in a phasor diagram
 voltages and currents may be included; in order to account for the different
 voltage and current scales, one (constant)  `ref` is used for voltage
 phasors and another (constant) `ref` is used for current phasors; this
@@ -70,7 +70,7 @@ variable needs to have the same unit as `c`
 
 `par` In order to be able to plot parallel phasors, par is used to specify
 the per unit tangential shift (offset) of a phasor, with respect to `ref`;
-so typlically `ref` will be selected to be around 0.05 to 0.1;
+so typically `ref` will be selected to be around 0.05 to 0.1;
 default value = 0 (no shift of phasor)
 
 `rlabel` radial per unit location of label (in direction of the phasor):
@@ -98,7 +98,7 @@ otherwise the label is rotated relative to the phasor by the angle
 `relangle` (indicated in degrees)
 
 `relangle` relative angle of label in degree with respect to phasor
-orientient; this angle is only appplied, it `relrot == true`; this angle the
+orientation; this angle is only applied, it `relrot == true`; this angle the
 indicates the relative orientation of the label with respect to the
 orientation of the phasor; default value = 0
 
@@ -107,7 +107,7 @@ value = "black"
 
 `width` line width of the shaft line; default value = 0.2
 
-`headlength` lenght of arrow head; default value = 10
+`headlength` length of arrow head; default value = 10
 
 `headwidth` width of arrow head; default value = 5
 

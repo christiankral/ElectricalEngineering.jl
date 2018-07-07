@@ -6,7 +6,7 @@ module EE
     # - Unitful             Handling of quantity units
     using PyPlot, Unitful
 
-    # Complex phasor calulcation and plotting
+    # Complex phasor calculation and plotting
     include("phasor.jl")
 
     # Calculations in EE circuits
