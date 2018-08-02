@@ -33,8 +33,14 @@ using Unitful,Unitful.DefaultSymbols,PyPlot,EE
 
 ![Phasor diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordiagram.png?raw=true) ![Circuit diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/RLcircuit.png?raw=true)
 
-- Function `polar` to generate a complex quantitiy based on the length and the angle
-- Constant `j` represeting the imaginary unit equvalent to `1im`
+- Function `pol` to generate a complex quantity based on the length and the angle (polar representation)
+```julia
+julia> U1=pol(2V,pi)
+-2 + 0im V
+julia> U2=pol(sqrt(2)*1V,45°)
+1 + 1im V
+```
+- Constant `j` representing the imaginary unit equivalent to `1im`
 
 ## Circuits and Physics
 
@@ -53,7 +59,7 @@ julia> 4Ω∥(j*4Ω)
 - Function `printuln`
     - Print complex variables (including) units in rectangular and polar form
     - Limit output to six significant digits
-    - Convert printed quantitiy optionally into a target unit
+    - Convert printed quantity optionally into a target unit
     - Works with scalars and vectors of real or complex quantities
 ```julia
 julia> I1=200A+j*500A
@@ -84,4 +90,4 @@ julia> printuln("I1",I1,kA)
     - `markerSize1`, `markerSize2` ,`markerSize3` ,`markerSize4`
     - `legendFontSize`
     - Type `?EE.Gray` or `?EE.Tab20bc` to see application examples
-- Assign color schemes to quanities, using either `using EE.Gray` of gray scale graphics or `using EE.Tab20bc`
+- Assign color schemes to quantities, using either `using EE.Gray` of gray scale graphics or `using EE.Tab20bc`

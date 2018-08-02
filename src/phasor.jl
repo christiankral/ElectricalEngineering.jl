@@ -8,11 +8,11 @@ const j=1im
 doc"""
 # Function call
 
-`polar(r,phi)`
+`pol(r,phi)`
 
 # Description
 
-Creates a complex quantity with length r and angle phi
+Creates a complex quantity with length `r` and angle `phi`
 
 # Variables
 
@@ -26,13 +26,13 @@ specified in degrees, by using unit `°`
 
 ```julia
 julia> using Unitful,Unitful.DefaultSymbols,EE
-julia> U1=polar(2V,pi)
+julia> U1=pol(2V,pi)
 -2 + 0im V
-julia> U2=polar(sqrt(2)*1V,45°)
+julia> U2=pol(sqrt(2)*1V,45°)
 1 + 1im V
 ```
 """
-function polar(r,phi)
+function pol(r,phi)
   return r*cos(phi)+1im*r*sin(phi)
 end
 
