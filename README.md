@@ -31,7 +31,7 @@ using Unitful,Unitful.DefaultSymbols,PyPlot,EE
     - Plot publication ready phasor diagrams
     - LaTeX labeling with absolute or relative rotation of text
 
-![Phasor diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordiagram.png?raw=true)
+![Phasor diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordiagram.png?raw=true) ![Circuit diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/RLcircuit.png?raw=true)
 
 - Function `polar` to generate a complex quantitiy based on the length and the angle
 - Constant `j` represeting the imaginary unit equvalent to `1im`
