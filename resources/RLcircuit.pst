@@ -1,0 +1,173 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Thu Aug 02 16:40:32 CEST 2018
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="4" x-max="26" y-min="6" y-max="22.5" auto-bounding="true">
+%<text anchor-point= "(7.5,22)"
+%	 text-vert-align= "baseline"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 text-frame= "noframe"
+%	 >
+%$\underline{I}_1$
+%</text>
+%<multicurve fill-style= "none"
+%	 points= "(5,20);(5,20);(10,20);(10,20)"
+%	 />
+%<multicurve fill-style= "none"
+%	 points= "(20,20);(20,20);(22,20);(22,20)"
+%	 />
+%<text anchor-point= "(15,22.5)"
+%	 text-vert-align= "bottom"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 text-frame= "noframe"
+%	 >
+%$X$
+%</text>
+%<g>
+%<multicurve fill-style= "none"
+%	 points= "(20,20);(20,20);(18,20);(18,20)"
+%	 />
+%<multicurve fill-style= "none"
+%	 points= "(12,20);(12,20);(10,20);(10,20)"
+%	 />
+%<smoothpolygon smoothness= "0.7;0.7;0.7;0.7;0.7"
+%	 closed= "false"
+%	 fill-style= "none"
+%	 points= "(12,20);(12.12,21);(12.75,21.5);(13.38,21);(13.5,20)"
+%	 />
+%<smoothpolygon smoothness= "0.7;0.7;0.7;0.7;0.7"
+%	 closed= "false"
+%	 fill-style= "none"
+%	 points= "(13.5,20);(13.62,21);(14.25,21.5);(14.88,21);(15,20)"
+%	 />
+%<smoothpolygon smoothness= "0.7;0.7;0.7;0.7;0.7"
+%	 closed= "false"
+%	 fill-style= "none"
+%	 points= "(15,20);(15.12,21);(15.75,21.5);(16.38,21);(16.5,20)"
+%	 />
+%<smoothpolygon smoothness= "0.7;0.7;0.7;0.7;0.7"
+%	 closed= "false"
+%	 fill-style= "none"
+%	 points= "(16.5,20);(16.62,21);(17.25,21.5);(17.88,21);(18,20)"
+%	 />
+%</g>
+%<multicurve right-arrow= "head"
+%	 fill-style= "none"
+%	 points= "(10,18);(10,18);(20,18);(20,18)"
+%	 />
+%<multicurve right-arrow= "head"
+%	 fill-style= "none"
+%	 points= "(5,20);(5,20);(8,20);(8,20)"
+%	 />
+%<text anchor-point= "(15,17)"
+%	 text-vert-align= "top"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 text-frame= "noframe"
+%	 >
+%$\underline{V}_x$
+%</text>
+%<text anchor-point= "(20,13)"
+%	 text-vert-align= "center-v"
+%	 fill-style= "none"
+%	 text-hor-align= "right"
+%	 text-frame= "noframe"
+%	 >
+%$R$
+%</text>
+%<g>
+%<multicurve fill-style= "none"
+%	 points= "(22,18);(22,18);(22,16);(22,16)"
+%	 />
+%<multicurve fill-style= "none"
+%	 points= "(22,10);(22,10);(22,8);(22,8)"
+%	 />
+%<parallelogram p1= "(23,16)"
+%	 p2= "(23,10)"
+%	 p3= "(21,10)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<multicurve fill-style= "none"
+%	 points= "(22,6);(22,6);(5,6);(5,6)"
+%	 />
+%<multicurve right-arrow= "head"
+%	 fill-style= "none"
+%	 points= "(25,18);(25,18);(25,8);(25,8)"
+%	 />
+%<multicurve right-arrow= "head"
+%	 fill-style= "none"
+%	 points= "(5,18);(5,18);(5,8);(5,8)"
+%	 />
+%<text anchor-point= "(26,13)"
+%	 text-vert-align= "center-v"
+%	 fill-style= "none"
+%	 text-hor-align= "left"
+%	 text-frame= "noframe"
+%	 >
+%$\underline{V}_r$
+%</text>
+%<text anchor-point= "(4,13)"
+%	 text-vert-align= "center-v"
+%	 fill-style= "none"
+%	 text-hor-align= "right"
+%	 text-frame= "noframe"
+%	 >
+%$\underline{V}_1$
+%</text>
+%<multicurve fill-style= "none"
+%	 points= "(22,20);(22,20);(22,18);(22,18)"
+%	 />
+%<multicurve fill-style= "none"
+%	 points= "(22,8);(22,8);(22,6);(22,6)"
+%	 />
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(26,22.5)
+\rput[B](7.5,22){$\underline{I}_1$}
+\psline(5,20)(10,20)
+\psline(20,20)(22,20)
+\rput[b](15,22.5){$X$}
+\psline(20,20)(18,20)
+\psline(12,20)(10,20)
+\pscustom[]{\psbezier(12,20)(12.08,20.7)(12.21,21.07)(12.44,21.25)
+\psbezier(12.66,21.43)(12.84,21.43)(13.06,21.25)
+\psbezier(13.29,21.07)(13.42,20.7)(13.5,20)
+}
+\pscustom[]{\psbezier(13.5,20)(13.58,20.7)(13.71,21.07)(13.94,21.25)
+\psbezier(14.16,21.43)(14.34,21.43)(14.56,21.25)
+\psbezier(14.79,21.07)(14.92,20.7)(15,20)
+}
+\pscustom[]{\psbezier(15,20)(15.08,20.7)(15.21,21.07)(15.43,21.25)
+\psbezier(15.66,21.43)(15.84,21.43)(16.07,21.25)
+\psbezier(16.29,21.07)(16.42,20.7)(16.5,20)
+}
+\pscustom[]{\psbezier(16.5,20)(16.58,20.7)(16.71,21.07)(16.93,21.25)
+\psbezier(17.16,21.43)(17.34,21.43)(17.57,21.25)
+\psbezier(17.79,21.07)(17.92,20.7)(18,20)
+}
+\psline{->}(10,18)(20,18)
+\psline{->}(5,20)(8,20)
+\rput[t](15,17){$\underline{V}_x$}
+\rput[r](20,13){$R$}
+\psline(22,18)(22,16)
+\psline(22,10)(22,8)
+\pspolygon[](23,16)(23,10)(21,10)(21,16)
+\psline(22,6)(5,6)
+\psline{->}(25,18)(25,8)
+\psline{->}(5,18)(5,8)
+\rput[l](26,13){$\underline{V}_r$}
+\rput[r](4,13){$\underline{V}_1$}
+\psline(22,20)(22,18)
+\psline(22,8)(22,6)
+\end{pspicture}
