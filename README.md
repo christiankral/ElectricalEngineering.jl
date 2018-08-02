@@ -82,6 +82,7 @@ julia> printuln("I1",I1,kA)
 
     - Gray scale scheme `EE.Gray` based on four gray shades
      `colorBlack1`, `colorBlack2`, `colorBlack3`, `colorBlack4`
+![Curves](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/curves.png?raw=true)
 - Additional light background color `colorBlack5`
 - Different line and marker types
     - `lineStyle1`, `lineStyle2`, `lineStyle3`,` lineStyle4`
