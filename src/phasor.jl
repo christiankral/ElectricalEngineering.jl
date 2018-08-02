@@ -1,4 +1,4 @@
-export j,phasor,polar
+export j,phasor,pol
 
 doc"""
 `j = 1im` equals the imaginary unit
