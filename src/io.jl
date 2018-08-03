@@ -33,7 +33,9 @@ julia> U1=300V+j*400V
 julia> printuln("U1",U1,kV)
               U1 = 0.3 kV + j 0.4 kV
                  = 0.5 kV ∠ 53.1301°
-julia> printuln("U1",U1,label="(a)")
+julia> printuln("real(U1)",real(U1),kV)
+        real(U1) = 0.3 kV
+julia> printuln("U1",U1,V,label="(a)")
 (a)           U1 = 300 V + j 400 V
                  = 500 V ∠ 53.1301°
 ```

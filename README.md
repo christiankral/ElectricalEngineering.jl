@@ -62,14 +62,15 @@ julia> 4Ω∥(j*4Ω)
     - Convert printed quantity optionally into a target unit
     - Works with scalars and vectors of real or complex quantities
 ```julia
-julia> I1=200A+j*500A
-200 + 500im A
-julia> printuln("I1",I1)
-              I1 = 200 A + j 500 A
-                 = 538.516 A ∠ 68.1986°
-julia> printuln("I1",I1,kA)
-              I1 = 0.2 kA + j 0.5 kA
-                 = 0.538516 kA ∠ 68.1986°
+julia> U1=300V+j*400V
+julia> printuln("U1",U1,kV)
+              U1 = 0.3 kV + j 0.4 kV
+                 = 0.5 kV ∠ 53.1301°
+julia> printuln("real(U1)",real(U1),kV)
+        real(U1) = 0.3 kV
+julia> printuln("U1",U1,V,label="(a)")
+(a)           U1 = 300 V + j 400 V
+                 = 500 V ∠ 53.1301°
 ```
 - Function `save3fig`
     - Save one figure in the three file formats `png`, `eps` and `pdf`
