@@ -1,6 +1,6 @@
 # EE.jl
 
-This is a Julia package on electrical engineering (EE) based on [Unitful](https://github.com/ajkeller34/Unitful.jl) and [PyPlot](https://github.com/JuliaPy/PyPlot.jl). To install these modules, apply `Pkg.add("Unitful")` and `Pkg.add("PyPlot")`
+This is a Julia package on electrical engineering (EE) based on [Unitful](doc/Unitful.md) and [PyPlot](https://github.com/JuliaPy/PyPlot.jl). To install these modules, apply `Pkg.add("Unitful")` and `Pkg.add("PyPlot")`
 In the EE.jl module the processing and calculation of real and complex quantities is supported. The module is tested with Julia 0.6.2 and 0.6.4.
 
 The non-official package EE.jl can be installed by (has to be done only once):
