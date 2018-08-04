@@ -1,1 +1,1 @@
-The Julia package [Unitful](https://github.com/ajkeller34/Unitful.jl) provides units so that calculations can be performed with physical quantities instead of numbers only. The package can be installed with `Pkg.add("Unitful")`. For the application in [EE.jl](../README.md) 
+The Julia package [Unitful](https://github.com/ajkeller34/Unitful.jl) provides units so that calculations can be performed with physical quantities instead of numbers only. The package can be installed with `Pkg.add("Unitful")`. For the application in [EE.jl](/README.md) 
