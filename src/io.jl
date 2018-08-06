@@ -1,4 +1,4 @@
-export printuln,save3fig
+export printuln,usprint,save3fig
 
 doc"""
 # Function call
@@ -98,6 +98,36 @@ function printuln(r...;label="")
             @printf("\n")
         end
     end
+end
+
+
+doc"""
+# Function call
+
+`usprint(u,U)`
+
+# Description
+
+Returns a string containing the number with six digits plus unit without space
+in betweem, such that the string output can be copied and pasted.
+
+# Variables
+
+`u` Variable to be processed
+
+`U` Optional target unit; if not provided, the actual unit is used
+
+# Examples
+```julia
+julia> I1=1mA
+julia> usprint(I1)
+1mA
+julia> usprint(I1,A)
+0.001A
+"""
+function usprint(u,U=unit(u))
+    q=uconvert(U,u)
+    return @sprintf("%g%s",Float64(ustrip(q)),U)
 end
 
 doc"""
