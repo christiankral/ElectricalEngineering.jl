@@ -15,6 +15,9 @@ module EE
     # Input and output functions to print phasors, figures, etc.
     include("io.jl")
 
+    # Unitful additional functions
+    include("unitful.jl")
+
     # Default colors for plotting (with PyPlot)
     include("plot.jl")
     include("Tab20bc.jl")
