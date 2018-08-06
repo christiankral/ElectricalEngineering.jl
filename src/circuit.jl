@@ -12,6 +12,10 @@ Type `\parallel` and hit the `tab` key to autocomplete the parallel symbol ∥
 This calculates the parallell connection of impedances. Optionally, the
 calculation can be performed using units from the module Unitiful.
 
+**Important note:** Use the ∥ operator in parentheses, since its precedence
+is equal to the (low) precedence of relation operators or use the function call
+with arguments to avoid miscalculations 
+
 # Variables
 
 `z` Vector of impedances
@@ -24,10 +28,13 @@ julia> ∥(4,6)
 2.4
 julia> ∥(4Ω,6Ω)
 2.4 Ω
-julia> 4Ω∥6Ω
-2.4 Ω
+julia> 2Ω+(4Ω∥6Ω) # Parntheses are required since != 2Ω+4Ω∥6Ω -> 3Ω
+4.4 Ω0
 julia> 2.4Ω∥(4Ω∥6Ω)
 1.2 Ω
+julia> ∥(4Ω,6Ω,2.4Ω)
+1.2 Ω
+
 ```
 
 Type `\Omega` and hit the `tab` key to autocomplete the parallel symbol Ω
