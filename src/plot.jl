@@ -80,11 +80,13 @@ Creates a plot with a horizontal and a vertical axis instead of a frame.
 
 # Examples
 
+Copy and paste the following code:
+
 ```julia
-julia> using Unitful,Unitful.DefaultSymbols,EE,PyPlot
-julia> x=collect(0.0:0.1:5.0); y=2*exp.(sin.(x));
-julia> plot(x,y,color=colorBlack1,linewidth=lineWidth1,linestyle=lineStyle1)
-julia> xlim(0,5);ylim(0,6);arrowAxes(xlabel=L"$x$",ylabel=L"$y$")
+using Unitful,Unitful.DefaultSymbols,EE,PyPlot
+x=collect(0.0:0.1:5.0); y=exp.(sin.(x));
+plot(x,y,color=colorBlack1,linewidth=lineWidth1,linestyle=lineStyle1)
+xlim(0,5);ylim(0,3);arrowAxes(xlabel=L"$x$",ylabel=L"$y$")
 ```
 """
 function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
@@ -93,6 +95,7 @@ function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
     labelsep = 0.06,
     left=0.2, right=0.85, top=0.85, bottom=0.20)
     # The basic idea of this implementation is taken from:
+    # http://www.yueshen.me/2015/1011.html
     # https://stackoverflow.com/questions/33737736/matplotlib-axis-arrow-tip/44138298#44138298
 
     # Create enough space around the plot area of fit in arrows
