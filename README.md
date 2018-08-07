@@ -93,3 +93,7 @@ julia> printuln("U1",U1,V,label="(a)")
     - `legendFontSize`
     - Type `?EE.Gray` or `?EE.Tab20bc` to see application examples
 - Assign color schemes to quantities, using either `using EE.Gray` of gray scale graphics or `using EE.Tab20bc`
+- Function `arrowAxes`
+    - Plot graphs with arrowed axes
+    - Add plot labels
+![Curves](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/arrowaxes.png?raw=true)    
