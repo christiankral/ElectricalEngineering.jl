@@ -37,10 +37,10 @@ doc"""
 # Function call
 
 `arrowAxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
-    color="black", axisoverhang = 0.18, linewidth = 0.75,
-    headwidth = 0.06, headlength = 0.09, overhang = 0.1,
-    labelsep = 0.06,
-    left=0.2, right=0.85, bottom=0.20, top=0.85)`
+color="black", axisoverhang = 0.18, linewidth = 0.75,
+headwidth = 0.06, headlength = 0.09, overhang = 0.1,
+labelsep = 0.06,
+left=0.2, right=0.85, bottom=0.20, top=0.85)`
 
 # Description
 
@@ -128,6 +128,7 @@ function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
     hwy = headwidth*dx*height/width # Width of y-axis arrow head
     hly = headlength*dy*width/height # Length of y-axis arrow length
 
+    # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.arrow.html#matplotlib.axes.Axes.arrow
     # Horizontal arrow
     ax[:arrow](xmin,ya,dx*(1+axisoverhang),0,fc=color,ec=color,lw=linewidth,
         head_width=hwx,head_length=hlx,overhang=overhang,
@@ -136,6 +137,7 @@ function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
     ax[:arrow](xa,ymin,0,dy*(1+axisoverhang),fc=color,ec=color,lw=linewidth,
         head_width=hwy, head_length=hly, overhang=overhang,
         length_includes_head=true, clip_on=false)
+    # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
     # Horizontal label
     ax[:text](xmax+dx*axisoverhang,ya+dy*labelsep,xlabel,ha="right",va="bottom")
     # Vertical label
