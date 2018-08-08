@@ -132,7 +132,7 @@ refV = abs(V1); refI=abs(I1)*0.8
 phasor(V1,label=L"$\underline{V}_1$",tlabel=-0.1,ref=refV,relrot=true)
 phasor(Vr,label=L"$\underline{V}_r$",tlabel=-0.1,ref=refV,relrot=true)
 phasor(Vx,origin=Vr,label=L"$\underline{V}_x$",tlabel=0.15,ref=refV,relrot=true)
-phasor(I1,label=L"$\underline{I}_1$",tlabel=0.2,rlabel=0.7,ref=refI,relrot=true,par=0.05)
+phasor(I1,label=L"$\underline{I}_1$",tlabel=0.2,rlabel=0.7,ref=refI,relrot=true,linestyle="--",par=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 ax=gca(); ax[:set_axis_off](); # Remove axis
 # save3fig("phasordiagram",crop=true);
