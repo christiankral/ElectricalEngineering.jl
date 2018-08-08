@@ -59,20 +59,20 @@ Creates a plot with a horizontal and a vertical axis instead of a frame.
 `color` Color of the axes; default value = "black"
 
 `axisoverhang` Overhang of the axis, relative to plot area;
-default value = 0.18 (18% of plot range)
+default value = 0.18 (18% of plot width)
 
 `linewidth` Line width of the axes; default value = 0.75
 
 `headwidth` Width of head, relative to plot area;
-default value = 0.045 (4.5% of horizontal plot range)
+default value = 0.045 (4.5% of horizontal plot width)
 
 `headlength` Length of head, relative to plot area;
-default value = 0.07 (7% of horizontal plot range)
+default value = 0.07 (7% of horizontal plot width)
 
 `overhang` Overhang of arrow head; default value = 0.0
 
 `labelsep` Location of labels from axis, relative to plot area;
-default value = 0.06 (6% of plot area)
+default value = 0.05 (5% of plot width)
 
 `left` Left side of the figure; default value = 0.2
 
@@ -99,7 +99,7 @@ xlim(0,5);ylim(0,3);arrowAxes(xlabel=L"$x$",ylabel=L"$y$")
 function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
     color="black", axisoverhang = 0.18, linewidth = 0.75,
     headwidth = 0.045, headlength = 0.07, overhang = 0,
-    labelsep = 0.06,
+    labelsep = 0.05,
     left=0.2, right=0.85, bottom=0.20, top=0.85, fancy=false)
     # The basic idea of this implementation is taken from:
     # http://www.yueshen.me/2015/1011.html
