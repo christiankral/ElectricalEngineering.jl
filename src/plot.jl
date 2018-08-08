@@ -91,7 +91,7 @@ xlim(0,5);ylim(0,3);arrowAxes(xlabel=L"$x$",ylabel=L"$y$")
 """
 function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
     color="black",axisoverhang = 0.18, linewidth = 0.75,
-    headwidth = 0.045, headlength = 0.06, overhang = 0,
+    headwidth = 0.045, headlength = 0.07, overhang = 0,
     labelsep = 0.06,
     left=0.2, right=0.85, top=0.85, bottom=0.20)
     # The basic idea of this implementation is taken from:
