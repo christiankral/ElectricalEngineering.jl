@@ -192,7 +192,7 @@ function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
     # https://matplotlib.org/users/annotations.html#basic-annotation
     # so that the back and forth paths overlap and the line style does not
     # appear correctly; replace
-    plot([xorigin+dpx,xend+dpx],[yorigin+dp,yend+dpy],
+    plot([xorigin+dpx,xend+dpx],[yorigin+dpy,yend+dpy],
         color=color,linestyle=linestyle,linewidth=linewidth)
     # Code based on plot replaces the previous implementation inspired by:
     # https://stackoverflow.com/questions/51746400/linestyle-in-plot-and-annotate-are-not-equal-in-matplotlib
