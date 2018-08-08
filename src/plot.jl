@@ -40,7 +40,7 @@ doc"""
 color="black", axisoverhang = 0.18, linewidth = 0.75,
 headwidth = 0.06, headlength = 0.09, overhang = 0.1,
 labelsep = 0.06,
-left=0.2, right=0.85, bottom=0.20, top=0.85)`
+left=0.2, right=0.85, bottom=0.20, top=0.85, fancy=false)`
 
 # Description
 
@@ -56,27 +56,34 @@ Creates a plot with a horizontal and a vertical axis instead of a frame.
 
 `ya` Vertical location of the horizontal axis; default value = 0
 
-`color` Color of the axes
+`color` Color of the axes; default value = "black"
 
-`axisoverhang` Overhang of the axis, relative to plot area
+`axisoverhang` Overhang of the axis, relative to plot area;
+default value = 0.18 (18% of plot range)
 
-`linewidth` Line width of the axes
+`linewidth` Line width of the axes; default value = 0.75
 
-`headwidth` Width of head, relative to plot area
+`headwidth` Width of head, relative to plot area;
+default value = 0.045 (4.5% of horizontal plot range)
 
-`headlength` Length of head, relative to plot area
+`headlength` Length of head, relative to plot area;
+default value = 0.07 (7% of horizontal plot range)
 
-`overhang` Overhang of arrow head
+`overhang` Overhang of arrow head; default value = 0.0
 
-`labelsep` Location of labels from axis, relative to plot area
+`labelsep` Location of labels from axis, relative to plot area;
+default value = 0.06 (6% of plot area)
 
-`left` Left side of the figure
+`left` Left side of the figure; default value = 0.2
 
-`right` Right side of the figure
+`right` Right side of the figure; default value = 0.85
 
-`bottom` Bottom side of the figure
+`bottom` Bottom side of the figure; default value = 0.2
 
-`top` Top side of the figure
+`top` Top side of the figure; default value = 0.85
+
+`fancy` If `true`, the annotate arrow is used instead of the axis arrow; in this
+case the arrow scales with the figure size automatically; default value = `false`
 
 # Examples
 
@@ -90,10 +97,10 @@ xlim(0,5);ylim(0,3);arrowAxes(xlabel=L"$x$",ylabel=L"$y$")
 ```
 """
 function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
-    color="black",axisoverhang = 0.18, linewidth = 0.75,
+    color="black", axisoverhang = 0.18, linewidth = 0.75,
     headwidth = 0.045, headlength = 0.07, overhang = 0,
     labelsep = 0.06,
-    left=0.2, right=0.85, top=0.85, bottom=0.20)
+    left=0.2, right=0.85, bottom=0.20, top=0.85, fancy=false)
     # The basic idea of this implementation is taken from:
     # http://www.yueshen.me/2015/1011.html
     # https://stackoverflow.com/questions/33737736/matplotlib-axis-arrow-tip/44138298#44138298
@@ -131,15 +138,38 @@ function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
     hwy = headwidth*dx*height/width # Width of y-axis arrow head
     hly = headlength*dy*width/height # Length of y-axis arrow length
 
-    # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.arrow.html#matplotlib.axes.Axes.arrow
-    # Horizontal arrow
-    ax[:arrow](xmin,ya,dx*(1+axisoverhang),0,fc=color,ec=color,lw=linewidth,
-        head_width=hwx,head_length=hlx,overhang=overhang,joinstyle="round",
-        length_includes_head=true,clip_on=false)
-    # Vertical arrow
-    ax[:arrow](xa,ymin,0,dy*(1+axisoverhang),fc=color,ec=color,lw=linewidth,
-        head_width=hwy, head_length=hly, overhang=overhang,joinstyle="round",
-        length_includes_head=true, clip_on=false)
+    if fancy
+        # Horizontal arrow created by annotate instead of axis.arrow
+        annotate("",xy=(xmax+axisoverhang*dx,ya),
+            xytext=(xmin,ya),xycoords="data",
+            arrowprops=Dict("edgecolor"=>color,"facecolor"=>color,
+                "width"=>0.2,
+                "linewidth"=>linewidth*0.6/0.7,"linestyle"=>"-",
+                "headlength"=>headlength*10/0.07,
+                "headwidth"=>headwidth*5/0.045,
+                "joinstyle"=>"round"),
+            annotation_clip=false)
+        # Vertical arrow created by annotate instead of axis.arrow
+        annotate("",xy=(xa,ymax+axisoverhang*dy),
+            xytext=(xa,ymin),xycoords="data",
+            arrowprops=Dict("edgecolor"=>color,"facecolor"=>color,
+                "width"=>width,
+                "linewidth"=>linewidth*0.6/0.7,"linestyle"=>"-",
+                "headlength"=>headlength*10/0.07,
+                "headwidth"=>headwidth*5/0.045,
+                "joinstyle"=>"round"),
+            annotation_clip=false)
+    else
+        # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.arrow.html#matplotlib.axes.Axes.arrow
+        # Horizontal arrow
+        ax[:arrow](xmin,ya,dx*(1+axisoverhang),0,fc=color,ec=color,lw=linewidth,
+            head_width=hwx,head_length=hlx,overhang=overhang,joinstyle="round",
+            length_includes_head=true,clip_on=false)
+        # Vertical arrow
+        ax[:arrow](xa,ymin,0,dy*(1+axisoverhang),fc=color,ec=color,lw=linewidth,
+            head_width=hwy, head_length=hly, overhang=overhang,joinstyle="round",
+            length_includes_head=true, clip_on=false)
+    end
     # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
     # Horizontal label
     ax[:text](xmax+dx*axisoverhang,ya+dy*labelsep,xlabel,ha="right",va="bottom")
