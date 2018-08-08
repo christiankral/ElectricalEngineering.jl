@@ -42,7 +42,8 @@ doc"""
 `phasor(c;origin=0.0+0.0im,ref=1,par=0,
     rlabel=0.5,tlabel=0.1,label="",ha="center",va="center",
     relrot=false,relangle=0,
-    color="black",linesstyle="-",width=0.2,headlength=10,headwidth=5)`
+    color="black",linesstyle="-",linewidth=1,
+    width=0.2,headlength=10,headwidth=5)`
 
 # Description
 
@@ -87,7 +88,6 @@ phasor applying a displacement of 20% with respect to `ref`; default value
 
 `ha` Horizontal alignment of label; actually represents the tangential
 alignment of the label; default value = "center"
-`linewidth` Line width of arrow shaft
 
 `va` Vertical alignment of label; actually represents the radial
 alignment of the label; default value = "center"
@@ -106,6 +106,8 @@ orientation of the phasor; default value = 0
 value = "black"
 
 `linestyle` Line style of the phasor; default value = "-"
+
+`linewidth` Line width of the phasor; default value = 1
 
 `width` Line width of the shaft line; default value = 0.2
 
@@ -145,8 +147,8 @@ function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
     label="",
     ha="center",va="center",
     relrot=false,relangle=0.0,
-    color="black",linestyle="-",width=0.2,
-    headlength=10.0,headwidth=5.0)
+    color="black",linestyle="-",linewidth=1,
+    width=0.2,headlength=10.0,headwidth=5.0)
 
     # Check if units of c, origin and ref are compatible
     # Starting point (origin) of phase
@@ -192,15 +194,19 @@ function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
     # appear correctly
     annotate("",xy=(xend+dpx,yend+dpy),
         xytext=(xorigin+dpx,yorigin+dpy),xycoords="data",
-        arrowprops=Dict("arrowstyle"=>"-","linestyle"=>linestyle,
-           "facecolor"=>color),
+        arrowprops=Dict("arrowstyle"=>"-",
+            "linestyle"=>linestyle,
+            "linewidth"=>linewidth,
+            "color"=>color,
+            "facecolor"=>color),
         annotation_clip=false)
     # Draw arrow head without line style; this is a workaround explained in
     # https://stackoverflow.com/questions/47180328/pyplot-dotted-line-with-fancyarrowpatch/47205418#47205418
     annotate("",xy=(xend+dpx,yend+dpy),
         xytext=(xoriginHead+dpx,yoriginHead+dpy),xycoords="data",
         arrowprops=Dict("edgecolor"=>color,"facecolor"=>color,
-            "width"=>width,"linestyle"=>"-","headlength"=>headlength,
+            "width"=>width,"linestyle"=>"-",
+            "headlength"=>headlength,
             "headwidth"=>headwidth),
         annotation_clip=false)
 
