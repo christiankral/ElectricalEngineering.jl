@@ -191,15 +191,21 @@ function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
     # Draw shaft separately: otherwise, the arrow contour will be drawn as in
     # https://matplotlib.org/users/annotations.html#basic-annotation
     # so that the back and forth paths overlap and the line style does not
-    # appear correctly
-    annotate("",xy=(xend+dpx,yend+dpy),
-        xytext=(xorigin+dpx,yorigin+dpy),xycoords="data",
-        arrowprops=Dict("arrowstyle"=>"-",
-            "linestyle"=>linestyle,
-            "linewidth"=>linewidth,
-            "color"=>color,
-            "facecolor"=>color),
-        annotation_clip=false)
+    # appear correctly; replace
+    plot([xorigin+dpx,xend+dpx],[yorigin+dp,yend+dpy],
+        color=color,linestyle=linestyle,linewidth=linewidth)
+    # Code based on plot replaces the previous implementation inspired by:
+    # https://stackoverflow.com/questions/51746400/linestyle-in-plot-and-annotate-are-not-equal-in-matplotlib
+    # Previous (obsolete) implementation:
+    # annotate("",xy=(xend+dpx,yend+dpy),
+    #     xytext=(xorigin+dpx,yorigin+dpy),xycoords="data",
+    #     arrowprops=Dict("arrowstyle"=>"-",
+    #         "linestyle"=>linestyle,
+    #         "linewidth"=>linewidth,
+    #         "color"=>color,
+    #         "facecolor"=>color),
+    #     annotation_clip=false)
+
     # Draw arrow head without line style; this is a workaround explained in
     # https://stackoverflow.com/questions/47180328/pyplot-dotted-line-with-fancyarrowpatch/47205418#47205418
     annotate("",xy=(xend+dpx,yend+dpy),
