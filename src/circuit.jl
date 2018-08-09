@@ -9,8 +9,8 @@ Type `\parallel` and hit the `tab` key to autocomplete the parallel symbol ∥
 
 # Description
 
-This calculates the parallell connection of impedances. Optionally, the
-calculation can be performed using units from the module Unitiful.
+This calculates the parallel connection of impedances. Optionally, the
+calculation can be performed using units from the module Unitful.
 
 **Important note:** Use the ∥ operator in parentheses, since its precedence
 is equal to the (low) precedence of relation operators or use the function call
