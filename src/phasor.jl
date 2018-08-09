@@ -1,4 +1,4 @@
-export j, pol, phasor, phasorsine
+export j, pol, phasor, phasorsine, phasorangle
 
 doc"""
 `j = 1im` equals the imaginary unit
@@ -92,15 +92,15 @@ alignment of the label; default value = "center"
 `va` Vertical alignment of label; actually represents the radial
 alignment of the label; default value = "center"
 
-`labelrelrot` Relative rotation of label; if `labelrelrot == false` (default value)
-then the label is not rotated relative to the orientation of the phasor;
+`labelrelrot` Relative rotation of label; if `labelrelrot == false` (default
+value) then the label is not rotated relative to the orientation of the phasor;
 otherwise the label is rotated relative to the phasor by the angle
-`labelrelangle` (indicated in degrees)
+`labelrelangle`
 
-`labelrelangle` Relative angle of label in degree with respect to phasor
-orientation; this angle is only applied, it `labelrelrot == true`; this angle the
-indicates the relative orientation of the label with respect to the
-orientation of the phasor; default value = 0
+`labelrelangle` Relative angle of label  with respect to phasor orientation;
+this angle is only applied, it `labelrelrot == true`; this angle the indicates
+the relative orientation of the label with respect to the orientation of the
+phasor; default value = 0
 
 `color` Color of the phasor; i.e., shaft and arrow head color; default
 value = "black"
@@ -132,9 +132,10 @@ Vr = real(Z1)*I1
 Vx = V1 - Vr
 refV = abs(V1); refI=abs(I1)*0.8
 phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV, labelrelrot=true)
-phasor(Vr, label=L"$\underline{V}_r$", labeltsep=0.1, ref=refV, labelrelrot=true)
+phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV, labelrelrot=true)
 phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
 phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
+phasorangle(0.3,phi1,phi2,arrow1=".",arrow2="-|>",ha="left",label=L"$\varphi_1$", labelrsep=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 removeaxes(); # Remove axis
 # save3fig("phasordiagram",crop=true);
@@ -180,8 +181,8 @@ function phasor(c;
     dry = yend - yorigin # = imag(c)./ref
     # Length of phasor
     dr = sqrt(drx^2 + dry^2)
-    # Angle of phasor in degrees
-    absangle = atan2(dry, drx)*180/pi
+    # Angle of phasor
+    absangle = atan2(dry, drx)
     # Orientation tangential to phasor (lagging by 90°)
     # Real part of tangential component with repsect to length
     dtx = +dry/dr
@@ -229,12 +230,12 @@ function phasor(c;
         # Without relative rotation of label
         text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
             yorigin + dry*labelrsep - dty*labeltsep + dpy,
-            label, ha=ha, va=va, rotation=labelrelangle)
+            label, ha=ha, va=va, rotation=labelrelangle*180/pi)
     else
         # Applying relative rotation of label
         text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
             yorigin + dry*labelrsep - dty*labeltsep + dpy,
-            label, ha=ha, va=va, rotation=absangle+labelrelangle)
+            label, ha=ha, va=va, rotation=(absangle+labelrelangle)*180/pi)
     end
 end
 
@@ -298,9 +299,9 @@ respect to `ref`; default value = 0.1
 `labelrelrot` Relative rotation of label; if `labelrelrot == false` (default value)
 then the label is not rotated relative to the orientation of the phasor;
 otherwise the label is rotated relative to the phasor by the angle
-`labelrelangle` (indicated in degrees)
+`labelrelangle`
 
-`labelrelangle` Relative angle of label in degree with respect to phasor
+`labelrelangle` Relative angle of label with respect to phasor
 orientation; this angle is only applied, it `labelrelrot == true`; this angle the
 indicates the relative orientation of the label with respect to the
 orientation of the phasor; default value = 0
@@ -401,36 +402,243 @@ function phasorsine(mag = 1,
         color=color, linewidth=linewidth, linestyle=linestyle)
 
     ax2 = gca()
+    # First phasor and sine wave diagram must be drawn with add = false
     if !add
+        # Scale and tick x-axis
         xlim(0,360)
         ylim(-1.1,1.1)
         xticks(collect(90:90:360))
-        arrowaxes(xlabel=xlabel, ylabel=ylabel, fancy=fancy)
         yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel])
+        # Create arrows and labels of axes
+        arrowaxes(xlabel=xlabel, ylabel=ylabel, fancy=fancy)
     else
+        # If additional phasor and sine wave diagram are added, further
+        # y-axis ticks have to beee added; for this purpose, the existing (old)
+        # ticks are stored
         yticks_old = ax2[:get_yticks]()
+        # Store existing (old) labels
         ytickslabel_old = ax2[:get_yticklabels]()
-        yticks(cat(1, yticks_old, [-mag,mag]), cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]))
+        # Extend old ticks and labels by addition ticks and labels
+        yticks(cat(1, yticks_old, [-mag,mag]),
+            cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]))
     end
-    # Dotted line of phasor projection
+
+    # Dotted line from phasor arrow to begin of sine wave
     con = matplotlib[:patches][:ConnectionPatch](
         xyA=(360,mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax1, color=colorBlack4,
         linewidth=lineWidth4, linestyle=":", clip_on=false)
     ax2[:add_artist](con)
-    # Dotted line of maximum
+    # Dotted line of y-axis of right diagram to maximum of sine wave
     con = matplotlib[:patches][:ConnectionPatch](
         xyB=(mod(90-phi*180/pi,360),mag), xyA=(0, mag),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax2, color=colorBlack4,
         linewidth=lineWidth4, linestyle=":", clip_on=false)
     ax2[:add_artist](con)
-    # Dotted line of minimum
+    # Dotted line of y-axis of right diagram to minimum of sine wave
     con = matplotlib[:patches][:ConnectionPatch](
         xyB=(mod(270-phi*180/pi,360),-mag), xyA=(0, -mag),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax2, color=colorBlack4,
         linewidth=lineWidth4, linestyle=":", clip_on=false)
     ax2[:add_artist](con)
+end
+
+doc"""
+# Function call
+
+`phasorangle(r = 1, phi1 = 0, phi2 = pi/2; origin = 0.0im*r/ustrip(r),
+    label= "", labelphisep = 0.5, labelrsep = 0.1,
+    labelrelrot = false, labelrelangle = 0, ha = "center", va = "center",
+    color="black", arrowstyle1 = ".", arrowstyle2 = "-|>", dot90 = false,
+    linewidth = 0.6, linestyle = "-", width = 0.2,
+    headlength = 5, headwidth = 2.5)`
+
+# Description
+
+This function draws an arrowed arc, intended to label the angle between phasors.
+The arc is drawn from angle `phi1` (begin) to `phi2` (end). The begin and end
+arrow shapes can be set. The arc can be labeled and optionally a dot maker can
+be used to indicate right angles (90°).
+
+# Variables
+
+`r` Radius if the arc ; shall be between 0 and 1; default value = 1
+
+`phi1` Phase angle of the begin of the arc; default value = 0
+
+`phi2` Phase angle of the end of the arc; default value = pi/2
+
+`origin` Complex quantity, indicating the origin of the arc; default value =
+0.0 + 0.0im
+
+`label` Label of the angle; default value =""
+
+`labelphisep` Angular separation of the label with respect to the arc; if
+`labelphisep == 0`, the label is located at angle `phi1` and if `labelphisep ==
+1`, the label is located at angle `phi2`; default value = 0.5, right in the
+middle between `phi1` and `phi2`
+
+labelrsep` Radial per unit location of label (in direction of the phasor):
+`labelrsep = 0` locates the label right on the arc. A positive value locates the
+label outside the arc, a negative value locates the label inside the arc;
+default value = 0.1
+
+`labelrelrot` Relative rotation of label; if `labelrelrot == false` (default
+value) then the label is not rotated relative to the center of the arc;
+otherwise the label is rotated relative to the  angle `labelrelangle`
+
+`labelrelangle` Relative angle of label with respect to center of the arc; this
+angle is only applied, it `labelrelrot == true`; this angle indicates the
+relative orientation of the label with respect to the center of the arc;
+default value = 0
+
+`ha` Horizontal alignment of label; actually represents the radial alignment of
+the label; default value = "center"
+
+`va` Vertical alignment of label; actually represents the tangential alignment
+of the label; default value = "center"
+
+c
+`color` Color of the arc; default value = "black"
+
+`arrowstyle1` Arrow style of the begin of the arc; default value = "."; valid
+strings are:
+
+- `.` dot marker
+- `<|-` arrow
+
+`arrowstyle2` Arrow style of the end of the arc; default value = "-|>"; valid
+strings are:
+
+- `.` dot marker
+- `-|>` arrow
+
+`headlength` Length of arrow head; default value = 5
+
+`headwidth` Width of arrow head; default value = 2.5
+
+# Example
+
+Copy and paste code:
+
+```julia
+using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+figure(figsize=(3.3, 2.5))
+rc("text", usetex=true);
+rc("font", family="serif")
+
+V1 = 100V + j*0V # Voltage
+Z1 = 30Ω + j*40Ω # Impedance
+I1 = V1/Z1 # Current
+Vr = real(Z1)*I1
+Vx = V1 - Vr
+refV = abs(V1); refI=abs(I1)*0.8
+phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV, labelrelrot=true)
+phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV, labelrelrot=true)
+phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
+phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
+phasorangle(0.3,phi1,phi2,arrow1=".",arrow2="-|>",ha="left",label=L"$\varphi_1$", labelrsep=0.05)
+axis("square"); xlim(-1,1); ylim(-1,1)
+removeaxes(); # Remove axis
+# save3fig("phasordiagram",crop=true);
+```
+"""
+function phasorangle(r = 1,
+    phi1 = 0,
+    phi2 = pi/2;
+    origin = 0.0im*r/ustrip(r),
+    label = L"$\varphi$",
+    labelphisep = 0.5,
+    labelrsep = 0.1,
+    labelrelrot = false,
+    labelrelangle = 0,
+    ha = "center",
+    va = "center",
+    color="black",
+    arrowstyle1 = ".",
+    arrowstyle2 = "-|>",
+    dot90 = false,
+    linewidth = 0.6,
+    linestyle = "-",
+    width = 0.2,
+    headlength = 5,
+    headwidth = 2.5)
+
+    # Determine sign of the difference of angles in order to revert oriention
+    # angle, if required
+    sig = sign(phi2-phi1)
+    # Number of segments based on every 2 degrees
+    segs = round((phi2-phi1)*180/pi/    2)*sig
+    # Create vector of angles to draw arc
+    phi = collect(linspace(phi1,phi2,segs))
+    # Arc coordinates
+    x = upstrip(r)*cos.(phi) + real(upstrip(origin))
+    y = upstrip(r)*sin.(phi) + imag(upstrip(origin))
+    # Draw arc
+    plot(x,y,color=color,linewidth=linewidth,linestyle=linestyle)
+
+    # Draw arrows at begin and end of arc, depending on the specified arrow
+    # styles
+
+    # Begin of arc
+    if arrowstyle1 == "<|-"
+        # Arrow head
+        annotate("", xy=(x[1], y[1]),
+            xytext=(x[1]-sig*0.01*r*cos(phi1-pi/2*0.98),
+                y[1]-sig*0.01*r*sin(phi1-pi/2*0.98)),
+            xycoords="data",
+            arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
+                "width"=>width, "linestyle"=>"-",
+                "headlength"=>headlength,
+                "headwidth"=>headwidth),
+            annotation_clip=false)
+    elseif arrowstyle1 == "."
+        # Dot marker
+        plot(x[1],y[1],marker=".",color=color)
+    end
+
+    # End of arc
+    if arrowstyle2 == "-|>"
+        # Arrow head
+        annotate("", xy=(x[end], y[end]),
+            xytext=(x[end]-sig*0.01*r*cos(phi2+pi/2*0.98),
+                y[end]-sig*0.01*r*sin(phi2+pi/2*0.98)),
+            xycoords="data",
+            arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
+                "width"=>width, "linestyle"=>"-",
+                "headlength"=>headlength,
+                "headwidth"=>headwidth),
+            annotation_clip=false)
+    elseif arrowstyle2 == "."
+        # Marker dot
+        plot(x[end],y[end],marker=".",color=color)
+    end
+
+    # Plot label
+    # Angle in the middle of the arc
+    phim = (phi1+phi2)/2.0
+    # Angle difference
+    dphi = phi2-phi1
+    # Radial position of text
+    rlabel = r + labelrsep
+    # Angular position of text
+    philabel = phi1 + dphi*labelphisep
+    # Rectangular position of text
+    if labelrelrot == false
+        # Without relative rotation of label
+        text(rlabel*cos(philabel),rlabel*sin(philabel),
+            label, ha=ha, va=va, rotation=labelrelangle*180/pi)
+    else
+        # Applying relative rotation of label
+        text(rlabel*cos(philabel),rlabel*sin(philabel),
+            label, ha=ha, va=va, rotation=(phim+labelrelangle)*180/pi)
+    end
+
+    # Optionally create a dot in the center of the arc to indicate 90°
+    if dot90
+        plot(r/2*cos(phim),r/2*sin(phim),marker=".",color=color)
+    end
 end
