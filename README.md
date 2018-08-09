@@ -35,9 +35,9 @@ using Unitful,Unitful.DefaultSymbols,PyPlot,EE
 
 - Function `pol` to generate a complex quantity based on the length and the angle (polar representation)
 ```julia
-julia> U1=pol(2V,pi)
+julia> U1 = pol(2V, pi)
 -2 + 0im V
-julia> U2=pol(sqrt(2)*1V,45°)
+julia> U2 = pol(sqrt(2) * 1V, 45°)
 1 + 1im V
 ```
 - Constant `j` representing the imaginary unit equivalent to `1im`
@@ -50,7 +50,7 @@ julia> U2=pol(sqrt(2)*1V,45°)
 ```julia
 julia> 4Ω∥6Ω
 2.4000000000000004 Ω
-julia> 4Ω∥(j*4Ω)
+julia> 4Ω∥(j * 4Ω)
 2.0 + 2.0im Ω
 ```  
 
@@ -62,13 +62,13 @@ julia> 4Ω∥(j*4Ω)
     - Convert printed quantity optionally into a target unit
     - Works with scalars and vectors of real or complex quantities
 ```julia
-julia> U1=300V+j*400V
-julia> printuln("U1",U1,kV)
+julia> U1 = 300V+j*400V
+julia> printuln("U1", U1, kV)
               U1 = 0.3 kV + j 0.4 kV
                  = 0.5 kV ∠ 53.1301°
-julia> printuln("real(U1)",real(U1),kV)
+julia> printuln("real(U1)", real(U1),kV)
         real(U1) = 0.3 kV
-julia> printuln("U1",U1,V,label="(a)")
+julia> printuln("U1", U1, V, label="(a)")
 (a)           U1 = 300 V + j 400 V
                  = 500 V ∠ 53.1301°
 ```
@@ -93,7 +93,7 @@ julia> printuln("U1",U1,V,label="(a)")
     - `legendFontSize`
     - Type `?EE.Gray` or `?EE.Tab20bc` to see application examples
 - Assign color schemes to quantities, using either `using EE.Gray` of gray scale graphics or `using EE.Tab20bc`
-- Function `arrowAxes`
+- Function `arrowaxes`
     - Plot graphs with arrowed axes
     - Add plot labels
 ![Curves](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/arrowaxes.png?raw=true)    

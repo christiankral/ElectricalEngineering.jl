@@ -28,29 +28,29 @@ allowed
 # Examples
 
 ```julia
-julia> using Unitful,Unitful.DefaultSymbols,EE
-julia> U1=300V+j*400V
-julia> printuln("U1",U1,kV)
+julia> using Unitful, Unitful.DefaultSymbols, EE
+julia> U1 = 300V+j*400V
+julia> printuln("U1", U1, kV)
               U1 = 0.3 kV + j 0.4 kV
                  = 0.5 kV ∠ 53.1301°
-julia> printuln("real(U1)",real(U1),kV)
+julia> printuln("real(U1)", real(U1), kV)
         real(U1) = 0.3 kV
-julia> printuln("U1",U1,V,label="(a)")
+julia> printuln("U1", U1, V, label="(a)")
 (a)           U1 = 300 V + j 400 V
                  = 500 V ∠ 53.1301°
 ```
 """
-function printuln(r...;label="")
+function printuln(r...; label="")
     # r[1] = 1st argument = string to be printed
     # r[2] = 2nd argument = quantity to shown
     # r[3] = 3rd argument = optional output unit
     # If unit is specified as preferred 3rd argument, then convert number
     # to this argument
-    for k in collect(1:size(r[2],1))
-        if length(r)>=3
+    for k in collect(1:size(r[2], 1))
+        if length(r) > =3
             # Convert numerical value to specified units
             # Change printed unit
-            num = uconvert(r[3],r[2][k])
+            num = uconvert(r[3], r[2][k])
         else
             num = r[2][k]
         end
@@ -66,34 +66,34 @@ function printuln(r...;label="")
         # special spelling of units
 
         # Print text string (1st argument)
-        if size(r[2],1)==1
+        if size(r[2], 1) == 1
           # Second argument (string) is a scalar value
-          if label==""
-              @printf("%16s = ",r[1])
+          if label == ""
+              @printf("%16s = ", r[1])
           else
-              @printf("%-4s%12s = ",label,r[1])
+              @printf("%-4s%12s = ",label, r[1])
           end
         else
           # Second argument (string) is a vector
-          if label==""
-              @printf("%16s = ",r[1]*"["*@sprintf("%i",k)*"]")
+          if label == ""
+              @printf("%16s = ", r[1]*"["*@sprintf("%i", k)*"]")
           else
-              if k==1
+              if k == 1
                   # Print label only in first entry
-                  @printf("%-4s%12s = ",label,r[1]*"["*@sprintf("%i",k)*"]")
+                  @printf("%-4s%12s = ", label, r[1]*"["*@sprintf("%i", k)*"]")
               else
                   # Omit label on sencond and following entries
-                  @printf("%16s = ",r[1]*"["*@sprintf("%i",k)*"]")
+                  @printf("%16s = ", r[1]*"["*@sprintf("%i", k)*"]")
               end
           end
         end
-        @printf("%g %s",numre,numunit)
-        if numim>0
-            @printf(" + j %g %s\n",abs(numim),numunit)
-            @printf("%16s = %g %s ∠ %g°\n","",numabs,numunit,numargdeg)
-        elseif ustrip(imag(num))<0
-            @printf(" - j %g %s\n",abs(numim),numunit)
-            @printf("%16s = %g %s ∠ %g°\n","",numabs,numunit,numargdeg)
+        @printf("%g %s", numre, numunit)
+        if numim > 0
+            @printf(" + j %g %s\n", abs(numim), numunit)
+            @printf("%16s = %g %s ∠ %g°\n","",numabs, numunit, numargdeg)
+        elseif ustrip(imag(num)) < 0
+            @printf(" - j %g %s\n",abs(numim), numunit)
+            @printf("%16s = %g %s ∠ %g°\n","",numabs, numunit, numargdeg)
         else
             @printf("\n")
         end
@@ -119,21 +119,21 @@ in betweem, such that the string output can be copied and pasted.
 
 # Examples
 ```julia
-julia> I1=1mA
+julia> I1 = 1mA
 julia> usprint(I1)
 1mA
-julia> usprint(I1,A)
+julia> usprint(I1, A)
 0.001A
 """
-function usprint(u,U=unit(u))
-    q=uconvert(U,u)
-    return @sprintf("%g%s",Float64(ustrip(q)),U)
+function usprint(u, U=unit(u))
+    q = uconvert(U, u)
+    return @sprintf("%g%s", Float64(ustrip(q)), U)
 end
 
 doc"""
 # Function call
 
-`save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)`
+`save3fig(fileName, subDir="."; dpi=300, tight=true, crop=false)`
 
 # Description
 
@@ -173,21 +173,22 @@ installation of the following software
 
 ```julia
 >julia save3fig("phasordiagram")
->julia save3fig("phasordiagram_crop",crop=true)
+>julia save3fig("phasordiagram_crop", crop=true)
 ```
 """
-function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
+function save3fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
     # Store PNG file
     mkpath(subDir*"/png")
-    if tight==false
+    if tight == false
         savefig(subDir*"/png/"*fileName*".png", dpi=dpi)
     else
-        savefig(subDir*"/png/"*fileName*".png", dpi=dpi, bbox_inches="tight", pad_inches=0.02)
+        savefig(subDir*"/png/"*fileName*".png", dpi=dpi,
+            bbox_inches = "tight", pad_inches=0.02)
     end
     if crop==true
         try
-            arg=`$subDir/png/$fileName.png`
-            status=readstring(`convert $arg -trim $arg`);
+            arg = `$subDir/png/$fileName.png`
+            status = readstring(`convert $arg -trim $arg`);
         catch err
             error("module EE: function save3fig: Binary file not found: convert
     The software convert (imagemagick) may not be installed or the path may not
@@ -199,17 +200,19 @@ function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
 
     # Store EPS file
     mkpath(subDir*"/eps")
-    if tight==false
+    if tight == false
         savefig(subDir*"/eps/"*fileName*".eps")
     else
-        savefig(subDir*"/eps/"*fileName*".eps", bbox_inches="tight", pad_inches=0.02)
+        savefig(subDir*"/eps/"*fileName*".eps",
+            bbox_inches = "tight", pad_inches=0.02)
     end
     if crop==true
         try
-            arg=`$subDir/eps/$fileName.eps`
-            argtemp=`$subDir/eps/$fileName.eps.temp`
-            status=readstring(`epstool --copy --bbox $arg $argtemp`);
-            mv(subDir*"/eps/"*fileName*".eps.temp",subDir*"/eps/"*fileName*".eps",
+            arg = `$subDir/eps/$fileName.eps`
+            argtemp = `$subDir/eps/$fileName.eps.temp`
+            status = readstring(`epstool --copy --bbox $arg $argtemp`);
+            mv(subDir*"/eps/"*fileName*".eps.temp",
+                subDir*"/eps/"*fileName*".eps",
                 remove_destination=true)
         catch err
             error("module EE: function save3fig: Binary file not found: epstool
@@ -222,14 +225,15 @@ function save3fig(fileName,subDir=".";dpi=300,tight=true,crop=false)
 
     # Store PDF file
     mkpath(subDir*"/pdf")
-    if tight==false
+    if tight == false
         savefig(subDir*"/pdf/"*fileName*".pdf")
     else
-        savefig(subDir*"/pdf/"*fileName*".pdf",bbox_inches="tight", pad_inches=0.02)
+        savefig(subDir*"/pdf/"*fileName*".pdf",
+            bbox_inches="tight", pad_inches=0.02)
     end
-    if crop==true
+    if crop == true
         try
-            arg=`$subDir/pdf/$fileName.pdf`
+            arg = `$subDir/pdf/$fileName.pdf`
             status=readstring(`pdfcrop $arg $arg`);
         catch err
             error("module EE: function save3fig: Binary file not found: dpfcrop

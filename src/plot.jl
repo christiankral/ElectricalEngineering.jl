@@ -92,11 +92,11 @@ Copy and paste the following code:
 ```julia
 using Unitful,Unitful.DefaultSymbols,EE,PyPlot
 x=collect(0.0:0.1:5.0); y=exp.(sin.(x));
-plot(x,y,color=colorBlack1,linewidth=lineWidth1,linestyle=lineStyle1)
-xlim(0,5);ylim(0,3);arrowAxes(xlabel=L"$x$",ylabel=L"$y$")
+plot(x,y,color=colorBlack1, linewidth=lineWidth1, linestyle=lineStyle1)
+xlim(0,5); ylim(0,3); arrowaxes(xlabel=L"$x$",ylabel=L"$y$")
 ```
 """
-function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
+function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
     color="black", axisoverhang = 0.18, linewidth = 0.75,
     headwidth = 0.045, headlength = 0.07, overhang = 0,
     labelsep = 0.05,
@@ -135,26 +135,30 @@ function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
     # Physical arrow dimensions
     hwx = headwidth*dy # Width of x-axis arrow head
     hlx = headlength*dx # Length of x-axis arrow length
-    hwy = headwidth*dx*height/width # Width of y-axis arrow head
-    hly = headlength*dy*width/height # Length of y-axis arrow length
+    hwy = headwidth*dx * height/width # Width of y-axis arrow head
+    hly = headlength*dy * width/height # Length of y-axis arrow length
 
     if fancy
         # Horizontal arrow created by annotate instead of axis.arrow
-        annotate("",xy=(xmax+axisoverhang*dx,ya),
-            xytext=(xmin,ya),xycoords="data",
-            arrowprops=Dict("edgecolor"=>color,"facecolor"=>color,
+        annotate("", xy=(xmax+axisoverhang*dx, ya),
+            xytext=(xmin, ya), xycoords="data",
+            arrowprops=Dict("edgecolor"=>color,
+                "facecolor"=>color,
                 "width"=>0.2,
-                "linewidth"=>linewidth*0.6/0.7,"linestyle"=>"-",
+                "linewidth"=>linewidth*0.6/0.7,
+                "linestyle"=>"-",
                 "headlength"=>headlength*10/0.07,
                 "headwidth"=>headwidth*5/0.045,
                 "joinstyle"=>"round"),
             annotation_clip=false)
         # Vertical arrow created by annotate instead of axis.arrow
-        annotate("",xy=(xa,ymax+axisoverhang*dy),
-            xytext=(xa,ymin),xycoords="data",
-            arrowprops=Dict("edgecolor"=>color,"facecolor"=>color,
+        annotate("", xy=(xa,ymax+axisoverhang*dy),
+            xytext=(xa,ymin), xycoords="data",
+            arrowprops=Dict("edgecolor"=>color,
+                "facecolor"=>color,
                 "width"=>0.2,
-                "linewidth"=>linewidth*0.6/0.7,"linestyle"=>"-",
+                "linewidth"=>linewidth*0.6/0.7,
+                "linestyle"=>"-",
                 "headlength"=>headlength*10/0.07,
                 "headwidth"=>headwidth*5/0.045,
                 "joinstyle"=>"round"),
@@ -162,17 +166,21 @@ function arrowAxes(fig=gcf(),ax=gca();xa=0,ya=0,xlabel="",ylabel="",
     else
         # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.arrow.html#matplotlib.axes.Axes.arrow
         # Horizontal arrow
-        ax[:arrow](xmin,ya,dx*(1+axisoverhang),0,fc=color,ec=color,lw=linewidth,
-            head_width=hwx,head_length=hlx,overhang=overhang,joinstyle="round",
-            length_includes_head=true,clip_on=false)
+        ax[:arrow](xmin, ya, dx*(1+axisoverhang) ,0,
+            fc=color, ec=color, lw=linewidth,
+            head_width=hwx, head_length=hlx, overhang=overhang,
+            joinstyle="round", length_includes_head=true, clip_on=false)
         # Vertical arrow
-        ax[:arrow](xa,ymin,0,dy*(1+axisoverhang),fc=color,ec=color,lw=linewidth,
-            head_width=hwy, head_length=hly, overhang=overhang,joinstyle="round",
-            length_includes_head=true, clip_on=false)
+        ax[:arrow](xa, ymin, 0, dy*(1+axisoverhang),
+            fc=color, ec=color,lw=linewidth,
+            head_width=hwy, head_length=hly, overhang=overhang,
+            joinstyle="round", length_includes_head=true, clip_on=false)
     end
     # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
     # Horizontal label
-    ax[:text](xmax+dx*axisoverhang,ya+dy*labelsep,xlabel,ha="right",va="bottom")
+    ax[:text](xmax+dx*axisoverhang, ya+dy*labelsep, xlabel,
+        ha="right", va="bottom")
     # Vertical label
-    ax[:text](xa+dx*labelsep,ymax+dy*axisoverhang,ylabel,ha="left",va="top")
+    ax[:text](xa+dx*labelsep, ymax+dy*axisoverhang, ylabel,
+        ha="left",va="top")
 end

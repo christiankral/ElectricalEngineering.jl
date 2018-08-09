@@ -1,4 +1,4 @@
-export j,phasor,pol
+export j, phasor, pol
 
 doc"""
 `j = 1im` equals the imaginary unit
@@ -8,7 +8,7 @@ const j=1im
 doc"""
 # Function call
 
-`pol(r,phi)`
+`pol(r, phi)`
 
 # Description
 
@@ -25,25 +25,25 @@ specified in degrees, by using unit `°`
 # Examples
 
 ```julia
-julia> using Unitful,Unitful.DefaultSymbols,EE
-julia> U1=pol(2V,pi)
+julia> using Unitful, Unitful.DefaultSymbols, EE
+julia> U1 = pol(2V,pi)
 -2 + 0im V
-julia> U2=pol(sqrt(2)*1V,45°)
+julia> U2 = pol(sqrt(2)*1V,45°)
 1 + 1im V
 ```
 """
-function pol(r,phi)
-  return r*cos(phi)+1im*r*sin(phi)
+function pol(r, phi)
+  return r*cos(phi) + 1im*r*sin(phi)
 end
 
 doc"""
 # Function call
 
-`phasor(c;origin=0.0+0.0im,ref=1,par=0,
-    rlabel=0.5,tlabel=0.1,label="",ha="center",va="center",
-    relrot=false,relangle=0,
-    color="black",linesstyle="-",linewidth=1,
-    width=0.2,headlength=10,headwidth=5)`
+`phasor(c;origin=0.0+0.0im, ref=1, par=0,
+    labelrsep=0.5, labeltsep=0.1, label="", ha="center", va="center",
+    labelrelrot=false, labelrelangle=0,
+    color="black", linesstyle="-", linewidth=1,
+    width=0.2, headlength=10, headwidth=5)`
 
 # Description
 
@@ -74,17 +74,17 @@ the per unit tangential shift (offset) of a phasor, with respect to `ref`;
 so typically `ref` will be selected to be around 0.05 to 0.1;
 default value = 0 (no shift of phasor)
 
-`rlabel` Radial per unit location of label (in direction of the phasor):
-`rlabel = 0` represents the shaft of the phasor and `rlabel = 1` represents
+`labelrsep` Radial per unit location of label (in direction of the phasor):
+`labelrsep = 0` represents the shaft of the phasor and `labelrsep = 1` represents
 the arrow hear of the phasor; default value = 0.5, i.e., the radial center
 of the phasor
 
-`tlabel` Tangential per unit location of label: `tlabel = 0` means that the
-label is plotted onto the phasor; `tlabel = -0.25` plots the label on top of
-the phasor applying a displacement of 25% with respect to `ref`;
-`tlabel` Plots the label below the
+`labeltsep` Tangential per unit location of label: `labeltsep = 0` means that the
+label is plotted onto the phasor; `labeltsep = 0.1` plots the label on top of
+the phasor applying a displacement of 10% with respect to `ref`;
+`labeltsep = -0.2` Plots the label below the
 phasor applying a displacement of 20% with respect to `ref`; default value
-= 0.25
+= 0.1
 
 `ha` Horizontal alignment of label; actually represents the tangential
 alignment of the label; default value = "center"
@@ -92,13 +92,13 @@ alignment of the label; default value = "center"
 `va` Vertical alignment of label; actually represents the radial
 alignment of the label; default value = "center"
 
-`relrot` Relative rotation of label; if `relrot == false` (default value)
+`labelrelrot` Relative rotation of label; if `labelrelrot == false` (default value)
 then the label is not rotated relative to the orientation of the phasor;
 otherwise the label is rotated relative to the phasor by the angle
-`relangle` (indicated in degrees)
+`labelrelangle` (indicated in degrees)
 
-`relangle` Relative angle of label in degree with respect to phasor
-orientation; this angle is only applied, it `relrot == true`; this angle the
+`labelrelangle` Relative angle of label in degree with respect to phasor
+orientation; this angle is only applied, it `labelrelrot == true`; this angle the
 indicates the relative orientation of the label with respect to the
 orientation of the phasor; default value = 0
 
@@ -120,69 +120,78 @@ value = "black"
 Copy and paste code:
 
 ```julia
-using Unitful,Unitful.DefaultSymbols,PyPlot,EE
-figure(figsize=(3.3,2.5))
-rc("text",usetex=true);
+using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+figure(figsize=(3.3, 2.5))
+rc("text", usetex=true);
 rc("font", family="serif")
 
-V1 = 100V+j*0V # Voltage
-Z1 = 30Ω+j*40Ω # Impedance
+V1 = 100V + j*0V # Voltage
+Z1 = 30Ω + j*40Ω # Impedance
 I1 = V1/Z1       # Current
 Vr = real(Z1)*I1
-Vx = V1-Vr
+Vx = V1 - Vr
 refV = abs(V1); refI=abs(I1)*0.8
-phasor(V1,label=L"$\underline{V}_1$",tlabel=-0.1,ref=refV,relrot=true)
-phasor(Vr,label=L"$\underline{V}_r$",tlabel=-0.1,ref=refV,relrot=true)
-phasor(Vx,origin=Vr,label=L"$\underline{V}_x$",tlabel=0.15,ref=refV,relrot=true)
-phasor(I1,label=L"$\underline{I}_1$",tlabel=0.2,rlabel=0.7,ref=refI,relrot=true,linestyle="--",par=0.05)
+phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV, labelrelrot=true)
+phasor(Vr, label=L"$\underline{V}_r$", labeltsep=0.1, ref=refV, labelrelrot=true)
+phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
+phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 ax=gca(); ax[:set_axis_off](); # Remove axis
 # save3fig("phasordiagram",crop=true);
 ```
 
 """
-function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
-    ref=abs(c./ustrip(c)),par=0.0,
-    rlabel=0.5,tlabel=0.1,
-    label="",
-    ha="center",va="center",
-    relrot=false,relangle=0.0,
-    color="black",linestyle="-",linewidth=1,
-    width=0.2,headlength=10.0,headwidth=5.0)
+function phasor(c;
+    origin = (0.0+0.0im).*c./ustrip(c),
+    ref = abs(c./ustrip(c)),
+    par = 0.0,
+    labelrsep = 0.5,
+    labeltsep = 0.1,
+    label = "",
+    ha = "center",
+    va = "center",
+    labelrelrot = false,
+    labelrelangle = 0.0,
+    color = "black",
+    linestyle = "-",
+    linewidth = 1,
+    width = 0.2,
+    headlength = 10.0,
+    headwidth = 5.0)
 
     # Check if units of c, origin and ref are compatible
     # Starting point (origin) of phase
-    xorigin=0.0
-    yorigin=0.0
-    xend=0.0
-    yend=0.0
+    xorigin = 0.0
+    yorigin = 0.0
+    xend = 0.0
+    yend = 0.0
     try
-        xorigin=uconvert(Unitful.NoUnits,real(origin)./ref)
-        yorigin=uconvert(Unitful.NoUnits,imag(origin)./ref)
+        xorigin = uconvert(Unitful.NoUnits, real(origin)./ref)
+        yorigin = uconvert(Unitful.NoUnits, imag(origin)./ref)
         # End point of phasor
-        xend=uconvert(Unitful.NoUnits,real(origin+c)./ref)
-        yend=uconvert(Unitful.NoUnits,imag(origin+c)./ref)
+        xend = uconvert(Unitful.NoUnits, real(origin+c)./ref)
+        yend = uconvert(Unitful.NoUnits, imag(origin+c)./ref)
     catch err
         error("module EE: function phasor: Dimension mismatch of arguments `c`, `origin` and `ref`\n    The arguments `c`, `origin` and `ref` must have the same dimension (koherent SI unit)")
     end
 
     # Real part of phasor
-    drx=xend-xorigin # = real(c)./ref
+    drx = xend - xorigin # = real(c)./ref
     # Imag part of phasor
-    dry=yend-yorigin # = imag(c)./ref
+    dry = yend - yorigin # = imag(c)./ref
     # Length of phasor
-    dr=sqrt(drx^2+dry^2)
+    dr = sqrt(drx^2 + dry^2)
     # Angle of phasor in degrees
-    absangle=atan2(dry,drx)*180/pi
+    absangle = atan2(dry, drx)*180/pi
     # Orientation tangential to phasor (lagging by 90°)
     # Real part of tangential component with repsect to length
-    dtx=+dry/dr
+    dtx = +dry/dr
     # Imag part of tangential component with repsect to length
-    dty=-drx/dr
+    dty = -drx/dr
     # Real part of parallel shift of phasor
-    dpx=par*dtx
+    dpx = par*dtx
     # Imag part of parallel shift of phasor
-    dpy=par*dty
+    dpy = par*dty
     # Origin of head
     xoriginHead = xorigin + drx*0.99
     yoriginHead = yorigin + dry*0.99
@@ -192,13 +201,13 @@ function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
     # https://matplotlib.org/users/annotations.html#basic-annotation
     # so that the back and forth paths overlap and the line style does not
     # appear correctly; replace
-    plot([xorigin+dpx,xend+dpx],[yorigin+dpy,yend+dpy],
-        color=color,linestyle=linestyle,linewidth=linewidth)
+    plot([xorigin+dpx,xend+dpx], [yorigin+dpy,yend+dpy],
+        color=color, linestyle=linestyle, linewidth=linewidth)
     # Code based on plot replaces the previous implementation inspired by:
     # https://stackoverflow.com/questions/51746400/linestyle-in-plot-and-annotate-are-not-equal-in-matplotlib
     # Previous (obsolete) implementation:
-    # annotate("",xy=(xend+dpx,yend+dpy),
-    #     xytext=(xorigin+dpx,yorigin+dpy),xycoords="data",
+    # annotate("", xy=(xend+dpx,yend+dpy),
+    #     xytext=(xorigin+dpx,yorigin+dpy), xycoords="data",
     #     arrowprops=Dict("arrowstyle"=>"-",
     #         "linestyle"=>linestyle,
     #         "linewidth"=>linewidth,
@@ -208,24 +217,24 @@ function phasor(c;origin=(0.0+0.0im).*c./ustrip(c),
 
     # Draw arrow head without line style; this is a workaround explained in
     # https://stackoverflow.com/questions/47180328/pyplot-dotted-line-with-fancyarrowpatch/47205418#47205418
-    annotate("",xy=(xend+dpx,yend+dpy),
-        xytext=(xoriginHead+dpx,yoriginHead+dpy),xycoords="data",
-        arrowprops=Dict("edgecolor"=>color,"facecolor"=>color,
-            "width"=>width,"linestyle"=>"-",
+    annotate("", xy=(xend+dpx, yend+dpy),
+        xytext=(xoriginHead+dpx, yoriginHead+dpy), xycoords="data",
+        arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
+            "width"=>width, "linestyle"=>"-",
             "headlength"=>headlength,
             "headwidth"=>headwidth),
         annotation_clip=false)
 
     # Plot label
-    if relrot==false
+    if labelrelrot == false
         # Without relative roation of label
-        text(xorigin+drx*rlabel+dtx*tlabel+dpx,
-            yorigin+dry*rlabel+dty*tlabel+dpy,
-            label,ha=ha,va=va,rotation=relangle)
+        text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
+            yorigin + dry*labelrsep - dty*labeltsep + dpy,
+            label, ha=ha, va=va, rotation=labelrelangle)
     else
         # Applying relative rotation of label
-        text(xorigin+drx*rlabel+dtx*tlabel+dpx,
-            yorigin+dry*rlabel+dty*tlabel+dpy,
-            label,ha=ha,va=va,rotation=absangle+relangle)
+        text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
+            yorigin + dry*labelrsep - dty*labeltsep + dpy,
+            label, ha=ha, va=va, rotation=absangle+labelrelangle)
     end
 end
