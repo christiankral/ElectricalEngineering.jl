@@ -50,7 +50,7 @@ julia> U2 = pol(sqrt(2) * 1V, 45°)
 ```julia
 julia> 4Ω∥6Ω
 2.4000000000000004 Ω
-julia> 4Ω∥(j * 4Ω)
+julia> 4Ω∥(j*4Ω)
 2.0 + 2.0im Ω
 ```  
 
@@ -62,7 +62,7 @@ julia> 4Ω∥(j * 4Ω)
     - Convert printed quantity optionally into a target unit
     - Works with scalars and vectors of real or complex quantities
 ```julia
-julia> U1 = 300V+j*400V
+julia> U1 = 300V + j*400V
 julia> printuln("U1", U1, kV)
               U1 = 0.3 kV + j 0.4 kV
                  = 0.5 kV ∠ 53.1301°
@@ -98,4 +98,4 @@ julia> printuln("U1", U1, V, label="(a)")
     - Add plot labels
 ![Curves](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/arrowaxes.png?raw=true)    
 - Function `removeaxes`
-    - Removes the axes of the active plot 
+    - Removes the axes of the active plot
