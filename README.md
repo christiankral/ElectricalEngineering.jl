@@ -27,12 +27,6 @@ using Unitful,Unitful.DefaultSymbols,PyPlot,EE
 
 ## Phasors
 
-- Function `phasor`
-    - Plot publication ready phasor diagrams
-    - LaTeX labeling with absolute or relative rotation of text
-
-![Phasor diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordiagram.png?raw=true) ![Circuit diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/RLcircuit.png?raw=true)
-
 - Function `pol` to generate a complex quantity based on the length and the angle (polar representation)
 ```julia
 julia> U1 = pol(2V, pi)
@@ -41,6 +35,15 @@ julia> U2 = pol(sqrt(2) * 1V, 45°)
 1 + 1im V
 ```
 - Constant `j` representing the imaginary unit equivalent to `1im`
+- Function `phasor`
+    - Plot publication ready phasor diagrams
+    - LaTeX labeling with absolute or relative rotation of text
+
+![Phasor diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordiagram.png?raw=true) ![Circuit diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/RLcircuit.png?raw=true)
+- Function `phasorsine`
+    - Plot phasor in the left subplot of a figure
+    - Plot sine wave corresponding to the phasor in the right subplot
+![Phasor and sine wave](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasorsine.png?raw=true)
 
 ## Circuits and Physics
 
