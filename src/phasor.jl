@@ -333,23 +333,10 @@ Copy and paste code:
 
 ```julia
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
-figure(figsize=(3.3, 2.5))
-rc("text", usetex=true);
-rc("font", family="serif")
-
-V1 = 100V + j*0V # Voltage
-Z1 = 30Ω + j*40Ω # Impedance
-I1 = V1/Z1 # Current
-Vr = real(Z1)*I1
-Vx = V1 - Vr
-refV = abs(V1); refI=abs(I1)*0.8
-phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV, labelrelrot=true)
-phasor(Vr, label=L"$\underline{V}_r$", labeltsep=0.1, ref=refV, labelrelrot=true)
-phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
-phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
-axis("square"); xlim(-1,1); ylim(-1,1)
-removeaxes(); # Remove axis
-# save3fig("phasordiagram",crop=true);
+phasorsine(1, 45°, ylabel=L"$u,i$", maglabel=L"$\hat{U}$", labelrsep=0.3,
+    color=colorBlack2, linestyle=lineStyle2, fancy=true)
+phasorsine(0.55, 0, add=true, maglabel=L"$\hat{I}$",fancy=true)
+# save3fig("phasorsine",crop=true);
 ```
 """
 function phasorsine(mag = 1,
