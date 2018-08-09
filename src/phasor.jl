@@ -131,11 +131,18 @@ I1 = V1/Z1 # Current
 Vr = real(Z1)*I1
 Vx = V1 - Vr
 refV = abs(V1); refI=abs(I1)*0.8
-phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV, labelrelrot=true)
-phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV, labelrelrot=true)
-phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
-phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
-phasorangle(0.3,phi1,phi2,arrow1=".",arrow2="-|>",ha="left",label=L"$\varphi_1$", labelrsep=0.05)
+phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV,
+    labelrelrot=true)
+phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV,
+    labelrelrot=true)
+phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV,
+    labelrelrot=true)
+phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI,
+    labelrelrot=true, linestyle="--", par=0.05)
+phi1=angle(I1)
+phi2=angle(V1)
+phasorangle(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
+    label=L"$\varphi_1$", labelrsep=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 removeaxes(); # Remove axis
 # save3fig("phasordiagram",crop=true);
@@ -536,11 +543,18 @@ I1 = V1/Z1 # Current
 Vr = real(Z1)*I1
 Vx = V1 - Vr
 refV = abs(V1); refI=abs(I1)*0.8
-phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV, labelrelrot=true)
-phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV, labelrelrot=true)
-phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
-phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
-phasorangle(0.3,phi1,phi2,arrow1=".",arrow2="-|>",ha="left",label=L"$\varphi_1$", labelrsep=0.05)
+phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV,
+    labelrelrot=true)
+phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV,
+    labelrelrot=true)
+phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV,
+    labelrelrot=true)
+phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI,
+    labelrelrot=true, linestyle="--", par=0.05)
+phi1=angle(I1)
+phi2=angle(V1)
+phasorangle(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
+    label=L"$\varphi_1$", labelrsep=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 removeaxes(); # Remove axis
 # save3fig("phasordiagram",crop=true);
