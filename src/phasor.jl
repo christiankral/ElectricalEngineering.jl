@@ -421,14 +421,14 @@ function phasorsine(mag = 1,
     ax2[:add_artist](con)
     # Dotted line of maximum
     con = matplotlib[:patches][:ConnectionPatch](
-        xyA=(mod(90-phi*180/pi,360),mag), xyB=(0, mag),
+        xyB=(mod(90-phi*180/pi,360),mag), xyA=(0, mag),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax2, color=colorBlack4,
         linewidth=lineWidth4, linestyle=":", clip_on=false)
     ax2[:add_artist](con)
     # Dotted line of minimum
     con = matplotlib[:patches][:ConnectionPatch](
-        xyA=(mod(270-phi*180/pi,360),-mag), xyB=(0, -mag),
+        xyB=(mod(270-phi*180/pi,360),-mag), xyA=(0, -mag),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax2, color=colorBlack4,
         linewidth=lineWidth4, linestyle=":", clip_on=false)
