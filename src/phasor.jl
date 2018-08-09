@@ -135,7 +135,7 @@ phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV,
     labelrelrot=true)
 phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV,
     labelrelrot=true)
-phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV,
+phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.2, ref=refV,
     labelrelrot=true)
 phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI,
     labelrelrot=true, linestyle="--", par=0.05)
@@ -547,7 +547,7 @@ phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV,
     labelrelrot=true)
 phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV,
     labelrelrot=true)
-phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV,
+phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.2, ref=refV,
     labelrelrot=true)
 phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI,
     labelrelrot=true, linestyle="--", par=0.05)
