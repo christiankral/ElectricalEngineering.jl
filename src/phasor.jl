@@ -136,7 +136,7 @@ phasor(Vr, label=L"$\underline{V}_r$", labeltsep=0.1, ref=refV, labelrelrot=true
 phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
 phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
-ax=gca(); ax[:set_axis_off](); # Remove axis
+removeaxis(); # Remove axis
 # save3fig("phasordiagram",crop=true);
 ```
 

@@ -97,3 +97,5 @@ julia> printuln("U1", U1, V, label="(a)")
     - Plot graphs with arrowed axes
     - Add plot labels
 ![Curves](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/arrowaxes.png?raw=true)    
+- Function `removeaxes`
+    - Removes the axes of the active plot 

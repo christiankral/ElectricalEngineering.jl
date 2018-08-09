@@ -36,7 +36,7 @@ const legendFontSize=10
 doc"""
 # Function call
 
-`arrowAxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
+`arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
 color="black", axisoverhang = 0.18, linewidth = 0.75,
 headwidth = 0.06, headlength = 0.09, overhang = 0.1,
 labelsep = 0.06,
@@ -183,4 +183,21 @@ function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
     # Vertical label
     ax[:text](xa+dx*labelsep, ymax+dy*axisoverhang, ylabel,
         ha="left",va="top")
+end
+
+doc"""
+# Function call
+
+`removeaxes(ax=gca())`
+
+# Description
+
+Removes the axis of the actual plot
+
+# Variables
+
+`ax` Axes handle; by default the axes handle of a actual figure is used
+"""
+function removeaxes(ax=gca())
+    ax[:set_axis_off]();
 end

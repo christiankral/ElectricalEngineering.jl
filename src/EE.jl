@@ -6,6 +6,11 @@ module EE
     # - Unitful             Handling of quantity units
     using PyPlot, Unitful
 
+    # Default colors for plotting (with PyPlot)
+    include("plot.jl")
+    include("Tab20bc.jl")
+    include("Gray.jl")
+
     # Complex phasor calculation and plotting
     include("phasor.jl")
 
@@ -17,9 +22,4 @@ module EE
 
     # Unitful additional functions
     include("unitful.jl")
-
-    # Default colors for plotting (with PyPlot)
-    include("plot.jl")
-    include("Tab20bc.jl")
-    include("Gray.jl")
 end
