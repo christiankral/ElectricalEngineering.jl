@@ -47,7 +47,7 @@ function printuln(r...; label="")
     # If unit is specified as preferred 3rd argument, then convert number
     # to this argument
     for k in collect(1:size(r[2], 1))
-        if length(r) > =3
+        if length(r) >= 3
             # Convert numerical value to specified units
             # Change printed unit
             num = uconvert(r[3], r[2][k])
