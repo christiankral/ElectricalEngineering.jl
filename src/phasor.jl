@@ -226,7 +226,7 @@ function phasor(c;
 
     # Plot label
     if labelrelrot == false
-        # Without relative roation of label
+        # Without relative rotation of label
         text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
             yorigin + dry*labelrsep - dty*labeltsep + dpy,
             label, ha=ha, va=va, rotation=labelrelangle)
