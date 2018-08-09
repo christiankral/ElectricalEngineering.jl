@@ -37,6 +37,7 @@ doc"""
 # Function call
 
 `arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
+xneg = false, yneg = false,
 color="black", axisoverhang = 0.18, linewidth = 0.75,
 headwidth = 0.06, headlength = 0.09, overhang = 0.1,
 labelsep = 0.06,
@@ -55,6 +56,16 @@ Creates a plot with a horizontal and a vertical axis instead of a frame.
 `xa` Horizontal location of the vertical axis; default value = 0
 
 `ya` Vertical location of the horizontal axis; default value = 0
+
+`xlabel` Label of x-axis; default value = ""
+
+`ylabel` Label of y-axis; default value = ""
+
+`xneg` If true, the horizontal arrow is drawn from right to left;
+default value = `false`
+
+`yneg` If true, the vertical arrow is drawn from top to bottom;
+default value = `false`
 
 `color` Color of the axes; default value = "black"
 
@@ -97,6 +108,7 @@ xlim(0,5); ylim(0,3); arrowaxes(xlabel=L"$x$",ylabel=L"$y$")
 ```
 """
 function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
+    xneg = false, yneg = false,
     color="black", axisoverhang = 0.18, linewidth = 0.75,
     headwidth = 0.045, headlength = 0.07, overhang = 0,
     labelsep = 0.05,
@@ -138,10 +150,15 @@ function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
     hwy = headwidth*dx * height/width # Width of y-axis arrow head
     hly = headlength*dy * width/height # Length of y-axis arrow length
 
+    xbeg = xneg ? xmax : xmin
+    xend = xneg ? xmin-axisoverhang*dx : xmax+axisoverhang*dx
+    ybeg = yneg ? ymax : ymin
+    yend = yneg ? ymin-axisoverhang*dy : ymax+axisoverhang*dy
+
     if fancy
         # Horizontal arrow created by annotate instead of axis.arrow
-        annotate("", xy=(xmax+axisoverhang*dx, ya),
-            xytext=(xmin, ya), xycoords="data",
+        annotate("", xy=(xend, ya),
+            xytext=(xbeg, ya), xycoords="data",
             arrowprops=Dict("edgecolor"=>color,
                 "facecolor"=>color,
                 "width"=>0.2,
@@ -152,8 +169,8 @@ function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
                 "joinstyle"=>"round"),
             annotation_clip=false)
         # Vertical arrow created by annotate instead of axis.arrow
-        annotate("", xy=(xa,ymax+axisoverhang*dy),
-            xytext=(xa,ymin), xycoords="data",
+        annotate("", xy=(xa,yend),
+            xytext=(xa,ybeg), xycoords="data",
             arrowprops=Dict("edgecolor"=>color,
                 "facecolor"=>color,
                 "width"=>0.2,
@@ -166,23 +183,25 @@ function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
     else
         # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.arrow.html#matplotlib.axes.Axes.arrow
         # Horizontal arrow
-        ax[:arrow](xmin, ya, dx*(1+axisoverhang) ,0,
+        ax[:arrow](xbeg, ya, xend-xbeg ,0,
             fc=color, ec=color, lw=linewidth,
             head_width=hwx, head_length=hlx, overhang=overhang,
             joinstyle="round", length_includes_head=true, clip_on=false)
         # Vertical arrow
-        ax[:arrow](xa, ymin, 0, dy*(1+axisoverhang),
+        ax[:arrow](xa, ybeg, 0, yend-ybeg,
             fc=color, ec=color,lw=linewidth,
             head_width=hwy, head_length=hly, overhang=overhang,
             joinstyle="round", length_includes_head=true, clip_on=false)
     end
     # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
     # Horizontal label
-    ax[:text](xmax+dx*axisoverhang, ya+dy*labelsep, xlabel,
-        ha="right", va="bottom")
+    ha = xneg ? "left" : "right"
+    ax[:text](xend, ya+dy*labelsep, xlabel,
+        ha=ha, va="bottom")
     # Vertical label
-    ax[:text](xa+dx*labelsep, ymax+dy*axisoverhang, ylabel,
-        ha="left",va="top")
+    va = yneg ? "bottom" : "top"
+    ax[:text](xa+dx*labelsep, yend, ylabel,
+        ha="left",va=va)
 end
 
 doc"""
