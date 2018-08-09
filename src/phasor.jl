@@ -1,4 +1,4 @@
-export j, phasor, pol
+export j, pol, phasor, phasorsine
 
 doc"""
 `j = 1im` equals the imaginary unit
@@ -139,7 +139,6 @@ axis("square"); xlim(-1,1); ylim(-1,1)
 removeaxes(); # Remove axis
 # save3fig("phasordiagram",crop=true);
 ```
-
 """
 function phasor(c;
     origin = (0.0+0.0im).*c./ustrip(c),
@@ -237,4 +236,214 @@ function phasor(c;
             yorigin + dry*labelrsep - dty*labeltsep + dpy,
             label, ha=ha, va=va, rotation=absangle+labelrelangle)
     end
+end
+
+doc"""
+# Function call
+
+`phasorsine(mag = 1, phi = 0; add = false, figsize = (6.6,2.5),
+    xlabel = L"$\omega t$\,($^\circ $)", ylabel = "", maglabel = "",
+    phasorlabel = maglabel, labeltsep = 0.1, labelrsep = 0.5,
+    labelrelrot = true, labelrelangle = 0,
+    color = "black", linewidth = 1, linestyle = "-",
+    colorDash="gray", left=0.20, right=0.80, bottom=0.20, top=0.80,
+    fancy=false)`
+
+# Description
+
+This function draws a phasor with magnitude between 0 and 1 on the left subplot
+of a figure and a sine diagram on the right subplot of the figure. Such graph
+is used in electrical engineering to explain the relationship between phasors
+and time domain wave forms.
+
+# Variables
+
+`mag` Magnitude of displayed phasor; shall be between 0 and 1;
+default value = 1
+
+`phi` Phase angle of the phasor; default value = 0
+
+`add` When calling this function the first time, `add` shall be equal to
+`false`, which is the default value. In this case a new figure with the
+dimensions specified in `figsize` is created. In order to add a second phasor
+and sine diagram to an existing figure, `add` has to be set `true`
+
+`figsize` Size of the new figure, if `add` is equal to `false`; default value
+= (6.6,2.5)
+
+`xlabel` Label of x-axis of right subplot; default value ="ωt(°)" in LaTeX
+notation
+
+`ylabel` label of y-axis of right subplot; default value = "";  if more than one
+phasors and sine diagram shall be drawn (`add = true`), this label is displayed
+only once; therefore, one has to create the label of all phasors when function
+`phasorsine` is called the first time for creating a figure
+
+`maglabel` Label of positive and negative magnitude `mag` on the right subplot;
+dafault value = "";
+
+`phasorlabel` Label of phasor of left subplot; default value = `maglabel`
+
+labelrsep` Radial per unit location of label (in direction of the phasor):
+`labelrsep = 0` represents the shaft of the phasor and `labelrsep = 1` represents
+the arrow hear of the phasor; default value = 0.5, i.e., the radial center
+of the phasor
+
+`labeltsep` Tangential per unit location of label: `labeltsep = 0` means that
+the label is plotted onto the phasor; `labeltsep = 0.1` plots the label on top
+of the phasor applying a displacement of 10% with respect to `ref`; `labeltsep =
+-0.2` Plots the label below the phasor applying a displacement of 20% with
+respect to `ref`; default value = 0.1
+
+`labelrelrot` Relative rotation of label; if `labelrelrot == false` (default value)
+then the label is not rotated relative to the orientation of the phasor;
+otherwise the label is rotated relative to the phasor by the angle
+`labelrelangle` (indicated in degrees)
+
+`labelrelangle` Relative angle of label in degree with respect to phasor
+orientation; this angle is only applied, it `labelrelrot == true`; this angle the
+indicates the relative orientation of the label with respect to the
+orientation of the phasor; default value = 0
+
+`color` Color of the phasor; i.e., shaft and arrow head color; default
+value = "black"
+
+`linewidth` Line width of the phasor; default value = 1
+
+`linestyle` Line style of the phasor; default value = "-"
+
+`colorDash` Color of the dashed circle (left subplot) and the horizontal dashed
+lines between the left and right subplot; default value = colorBlack4
+
+`left` Left side of the figure; default value = 0.2
+
+`right` Right side of the figure; default value = 0.85
+
+`bottom` Bottom side of the figure; default value = 0.2
+
+`top` Top side of the figure; default value = 0.85
+
+`fancy` This affects how the axes of the right subplot are drawn; if `true`, the
+annotate arrow is used instead of the axis arrow; in this case the arrow scales
+with the figure size automatically; default value = `false`
+
+# Example
+
+Copy and paste code:
+
+```julia
+using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+figure(figsize=(3.3, 2.5))
+rc("text", usetex=true);
+rc("font", family="serif")
+
+V1 = 100V + j*0V # Voltage
+Z1 = 30Ω + j*40Ω # Impedance
+I1 = V1/Z1 # Current
+Vr = real(Z1)*I1
+Vx = V1 - Vr
+refV = abs(V1); refI=abs(I1)*0.8
+phasor(V1, label=L"$\underline{V}_1$", labeltsep=0.1, ref=refV, labelrelrot=true)
+phasor(Vr, label=L"$\underline{V}_r$", labeltsep=0.1, ref=refV, labelrelrot=true)
+phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
+phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
+axis("square"); xlim(-1,1); ylim(-1,1)
+removeaxes(); # Remove axis
+# save3fig("phasordiagram",crop=true);
+```
+"""
+function phasorsine(mag = 1,
+    phi = 0;
+    add = false,
+    figsize = (6.6,2.5),
+    xlabel = L"$\omega t$\,($^\circ $)",
+    ylabel = "",
+    maglabel = "",
+    phasorlabel = maglabel,
+    color = "black",
+    linewidth = 1,
+    linestyle = "-",
+    labeltsep = 0.1,
+    labelrsep = 0.5,
+    labelrelrot = true,
+    labelrelangle = 0,
+    colorDash="gray",
+    left=0.20,
+    right=0.80,
+    bottom=0.20,
+    top=0.80,
+    fancy=false)
+    # https://matplotlib.org/tutorials/text/annotations.html#plotting-guide-annotation
+    # https://matplotlib.org/users/annotations.html
+    # https://stackoverflow.com/questions/17543359/drawing-lines-between-two-plots-in-matplotlib
+
+    # Create figure
+    if !add
+        # Create new figure
+        fig = figure(figsize=figsize)
+        subplots_adjust(left=left, right=right, bottom=bottom, top=top)
+    end
+    # Create left subplot
+    subplot(121)
+    psi = collect(0:pi/500:2*pi)
+    x = mag*cos.(psi)
+    y = mag*sin.(psi)
+    plot(x, y, color=colorDash, linewidth=1, linestyle=":",
+        dash_capstyle="round")
+    phasor(pol(mag,phi), ref=1,
+        label=phasorlabel, labelrsep=labelrsep, labeltsep=labeltsep,
+        labelrelrot=labelrelrot, labelrelangle=labelrelangle,
+        color=color, linestyle=linestyle, linewidth=linewidth)
+    axis("square")
+    ax1 = gca()
+    if !add
+        xlim(-1.1,1.1)
+        ylim(-1.1,1.1)
+        ax1[:spines]["left"][:set_visible](false)
+        ax1[:spines]["right"][:set_visible](false)
+        ax1[:spines]["bottom"][:set_visible](false)
+        ax1[:spines]["top"][:set_visible](false)
+        xticks([])
+        yticks([])
+    end
+
+    # Create right subplot
+    subplot(122)
+    yphi = mag*sin.(psi+phi)
+    plot(psi*180/pi, yphi,
+        color=color, linewidth=linewidth, linestyle=linestyle)
+
+    ax2 = gca()
+    if !add
+        xlim(0,360)
+        ylim(-1.1,1.1)
+        xticks(collect(90:90:360))
+        arrowaxes(xlabel=xlabel, ylabel=ylabel, fancy=fancy)
+        yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel])
+    else
+        yticks_old = ax2[:get_yticks]()
+        ytickslabel_old = ax2[:get_yticklabels]()
+        yticks(cat(1, yticks_old, [-mag,mag]), cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]))
+    end
+    # Dotted line of phasor projection
+    con = matplotlib[:patches][:ConnectionPatch](
+        xyA=(360,mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
+        coordsA="data", coordsB="data",
+        axesA=ax2, axesB=ax1, color=colorBlack4,
+        linewidth=lineWidth4, linestyle=":", clip_on=false)
+    ax2[:add_artist](con)
+    # Dotted line of maximum
+    con = matplotlib[:patches][:ConnectionPatch](
+        xyA=(mod(90-phi*180/pi,360),mag), xyB=(0, mag),
+        coordsA="data", coordsB="data",
+        axesA=ax2, axesB=ax2, color=colorBlack4,
+        linewidth=lineWidth4, linestyle=":", clip_on=false)
+    ax2[:add_artist](con)
+    # Dotted line of minimum
+    con = matplotlib[:patches][:ConnectionPatch](
+        xyA=(mod(270-phi*180/pi,360),-mag), xyB=(0, -mag),
+        coordsA="data", coordsB="data",
+        axesA=ax2, axesB=ax2, color=colorBlack4,
+        linewidth=lineWidth4, linestyle=":", clip_on=false)
+    ax2[:add_artist](con)
 end
