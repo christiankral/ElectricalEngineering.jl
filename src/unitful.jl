@@ -3,7 +3,7 @@ export upstrip
 doc"""
 # Function call
 
-`upstrip(u,U)`
+`upstrip(u, U)`
 
 # Description
 
@@ -20,13 +20,13 @@ determining the number.
 
 # Examples
 ```julia
-julia> I1=1.0mA
+julia> I1 = 1.0mA
 julia> upstrip(I1)
 0.001
-julia> usprint(I1,mA)
+julia> usprint(I1, mA)
 1.0
 """
-function upstrip(u,U=unit(upreferred(u)))
-    q=uconvert(U,u)
+function upstrip(u, U=unit(upreferred(u)))
+    q=uconvert(U, u)
     return ustrip(q)
 end

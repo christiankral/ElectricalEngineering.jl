@@ -3,7 +3,7 @@ export printuln,usprint,save3fig
 doc"""
 # Function call
 
-`printuln(r...;label="")`
+`printuln(r...; label="")`
 
 # Description
 
