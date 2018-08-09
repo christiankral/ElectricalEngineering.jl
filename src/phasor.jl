@@ -127,7 +127,7 @@ rc("font", family="serif")
 
 V1 = 100V + j*0V # Voltage
 Z1 = 30Ω + j*40Ω # Impedance
-I1 = V1/Z1       # Current
+I1 = V1/Z1 # Current
 Vr = real(Z1)*I1
 Vx = V1 - Vr
 refV = abs(V1); refI=abs(I1)*0.8
@@ -136,7 +136,7 @@ phasor(Vr, label=L"$\underline{V}_r$", labeltsep=0.1, ref=refV, labelrelrot=true
 phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.15, ref=refV, labelrelrot=true)
 phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI, labelrelrot=true, linestyle="--", par=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
-removeaxis(); # Remove axis
+removeaxes(); # Remove axis
 # save3fig("phasordiagram",crop=true);
 ```
 
