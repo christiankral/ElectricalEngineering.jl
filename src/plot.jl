@@ -121,8 +121,8 @@ xlim(0,5); ylim(0,3); arrowaxes(xlabel=L"$x$",ylabel=L"$y$")
 ```
 """
 function arrowaxes(fig=gcf(), ax=gca();
-    xmin=ax[:get_xlim]()[1], xmax=ax[:get_xlim]()[1],
-    ymin=ax[:get_ylim]()[1], ymax=ax[:get_ylim]()[1],
+    xmin=ax[:get_xlim]()[1], xmax=ax[:get_xlim]()[2],
+    ymin=ax[:get_ylim]()[1], ymax=ax[:get_ylim]()[2],
     xa=0, ya=0, xlabel="", ylabel="",
     xneg = false, yneg = false,
     color="black", backgroundcolor="none", axisoverhang = 0.18,
