@@ -143,7 +143,7 @@ phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV,
 phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.2, ref=refV,
     labelrelrot=true)
 phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI,
-    labelrelrot=true, linestyle="--", par=0.05)
+    labelrelrot=true, linestyle="--", par=-0.05)
 phi1=angle(I1)
 phi2=angle(V1)
 angulardimension(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
@@ -202,9 +202,9 @@ function phasor(c;
     # Imag part of tangential component with repsect to length
     dty = -drx/dr
     # Real part of parallel shift of phasor
-    dpx = par*dtx
+    dpx = -par*dtx
     # Imag part of parallel shift of phasor
-    dpy = par*dty
+    dpy = -par*dty
     # Origin of head
     xoriginHead = xorigin + drx*0.99
     yoriginHead = yorigin + dry*0.99
@@ -573,7 +573,7 @@ phasor(Vr, label=L"$\underline{V}_r$", labeltsep=-0.25, ref=refV,
 phasor(Vx, origin=Vr, label=L"$\underline{V}_x$", labeltsep=-0.2, ref=refV,
     labelrelrot=true)
 phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI,
-    labelrelrot=true, linestyle="--", par=0.05)
+    labelrelrot=true, linestyle="--", par=-0.05)
 phi1=angle(I1)
 phi2=angle(V1)
 angulardimension(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
