@@ -113,8 +113,8 @@ xlim(0,5); ylim(0,3); arrowaxes(xlabel=L"$x$",ylabel=L"$y$")
 """
 function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
     xneg = false, yneg = false,
-    color="black", axisoverhang = 0.18, linewidth = 0.75,
-    headwidth = 0.045, headlength = 0.07, overhang = 0,
+    color="black", backgroundcolor="none", axisoverhang = 0.18,
+    linewidth = 0.75, headwidth = 0.045, headlength = 0.07, overhang = 0,
     labelsep = 0.05,
     left=0.2, right=0.85, bottom=0.20, top=0.85, fancy=false)
     # The basic idea of this implementation is taken from:
