@@ -120,6 +120,7 @@ rc("text", usetex=true); rc("font", family="serif")
 x=collect(0.0:0.1:5.0); y=exp.(sin.(x));
 plot(x,y,color=colorBlack1, linewidth=lineWidth1, linestyle=lineStyle1)
 xlim(0,5); ylim(0,3); arrowaxes(xlabel=L"$x$",ylabel=L"$y$")
+# save3fig("arrowaxes", crop=true)
 ```
 """
 function arrowaxes(fig=gcf(), ax=gca();
