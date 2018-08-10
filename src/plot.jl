@@ -115,6 +115,8 @@ Copy and paste the following code:
 
 ```julia
 using Unitful,Unitful.DefaultSymbols,EE,PyPlot
+figure(figsize=(3.3, 2.5))
+rc("text", usetex=true); rc("font", family="serif")
 x=collect(0.0:0.1:5.0); y=exp.(sin.(x));
 plot(x,y,color=colorBlack1, linewidth=lineWidth1, linestyle=lineStyle1)
 xlim(0,5); ylim(0,3); arrowaxes(xlabel=L"$x$",ylabel=L"$y$")
@@ -338,9 +340,7 @@ Copy and paste code:
 ```julia
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
 figure(figsize=(3.3, 2.5))
-rc("text", usetex=true);
-rc("font", family="serif")
-
+rc("text", usetex=true); rc("font", family="serif")
 t1=0.2;t2=0.3;ymax=1
 t=[0,t1,t1+t2,2*t1+t2,2*(t1+t2),3*t1+2*t2]
 y=[0,ymax,0,ymax,0,ymax]

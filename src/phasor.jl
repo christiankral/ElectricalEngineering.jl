@@ -127,9 +127,7 @@ Copy and paste code:
 ```julia
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
 figure(figsize=(3.3, 2.5))
-rc("text", usetex=true);
-rc("font", family="serif")
-
+rc("text", usetex=true); rc("font", family="serif")
 V1 = 100V + j*0V # Voltage
 Z1 = 30Ω + j*40Ω # Impedance
 I1 = V1/Z1 # Current
@@ -354,6 +352,8 @@ Copy and paste code:
 
 ```julia
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+figure(figsize=(3.3, 2.5))
+rc("text", usetex=true); rc("font", family="serif")
 phasorsine(1, 45°, ylabel=L"$u,i$", maglabel=L"$\hat{U}$", labelrsep=0.3,
     color=colorBlack2, linestyle=lineStyle2, fancy=true)
 phasorsine(0.55, 0, add=true, maglabel=L"$\hat{I}$",fancy=true)
@@ -557,9 +557,7 @@ Copy and paste code:
 ```julia
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
 figure(figsize=(3.3, 2.5))
-rc("text", usetex=true);
-rc("font", family="serif")
-
+rc("text", usetex=true); rc("font", family="serif")
 V1 = 100V + j*0V # Voltage
 Z1 = 30Ω + j*40Ω # Impedance
 I1 = V1/Z1 # Current
@@ -687,8 +685,6 @@ end
 """doc
 # Function call
 
-# Function call
-
 ```
 phasordimension(c; origin = 0im, ref = 1;
     label = "", labeltsep = 0.1, labelrsep=0.5, labelrelrot=false,
@@ -790,12 +786,9 @@ Copy and paste the following code:
 ```
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
 figure(figsize=(3.3, 2.5))
-rc("text", usetex=true);
-rc("font", family="serif")
-close("all")
+rc("text", usetex=true); rc("font", family="serif")
 Z1 = pol(1,30°)
 phasor(Z1, label=L"$\underline{Z}$", labeltsep = 0.05, labelrelrot=true)
-# xlim(0, 1); axis("equal")
 phasordimension(real(Z1), label=L"$R$", arrowstyle1="",
     linestyle="-", linewidth=1, headwidth=5, headlength=10,
     labeltsep=0, color="gray", backgroundcolor="white")
