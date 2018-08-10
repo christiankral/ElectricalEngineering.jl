@@ -456,12 +456,15 @@ end
 doc"""
 # Function call
 
-`angulardimension(r = 1, phi1 = 0, phi2 = pi/2; origin = 0.0im*r/ustrip(r),
+```
+angulardimension(r = 1, phi1 = 0, phi2 = pi/2; origin = 0.0im*r/ustrip(r),
     label= "", labelphisep = 0.5, labelrsep = 0.1,
     labelrelrot = false, labelrelangle = 0, ha = "center", va = "center",
-    color="black", arrowstyle1 = ".", arrowstyle2 = "-|>", dot90 = false,
+    color="black", backgroundcolor="none",
+    arrowstyle1 = ".", arrowstyle2 = "-|>", dot90 = false,
     linewidth = 0.6, linestyle = "-", width = 0.2,
-    headlength = 5, headwidth = 2.5)`
+    headlength = 5, headwidth = 2.5)
+```
 
 # Description
 
@@ -508,8 +511,10 @@ the label; default value = "center"
 `va` Vertical alignment of label; actually represents the tangential alignment
 of the label; default value = "center"
 
-c
 `color` Color of the arc; default value = "black"
+
+`backgroundcolor` Background color of the label; if labelrsep is equal to 0, the
+background color "white" can be used; default value = "none"
 
 `arrowstyle1` Arrow style of the begin of the arc; default value = "."; valid
 strings are:
