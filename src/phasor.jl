@@ -105,6 +105,9 @@ phasor; default value = 0
 `color` Color of the phasor; i.e., shaft and arrow head color; default
 value = "black"
 
+`backgroundcolor` Background color of the label; if labelrsep is equal to 0, the
+background color "white" can be used; default value = "none"
+
 `linestyle` Line style of the phasor; default value = "-"
 
 `linewidth` Line width of the phasor; default value = 1
@@ -160,6 +163,7 @@ function phasor(c;
     labelrelrot = false,
     labelrelangle = 0.0,
     color = "black",
+    backgroundcolor = "none",
     linestyle = "-",
     linewidth = 1,
     width = 0.2,
@@ -237,12 +241,14 @@ function phasor(c;
         # Without relative rotation of label
         text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
             yorigin + dry*labelrsep - dty*labeltsep + dpy,
-            label, ha=ha, va=va, rotation=labelrelangle*180/pi)
+            label, ha=ha, va=va, rotation=labelrelangle*180/pi,
+            backgroundcolor=backgroundcolor)
     else
         # Applying relative rotation of label
         text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
             yorigin + dry*labelrsep - dty*labeltsep + dpy,
-            label, ha=ha, va=va, rotation=(absangle+labelrelangle)*180/pi)
+            label, ha=ha, va=va, rotation=(absangle+labelrelangle)*180/pi,
+            backgroundcolor=backgroundcolor)
     end
 end
 
@@ -316,6 +322,9 @@ orientation of the phasor; default value = 0
 `color` Color of the phasor; i.e., shaft and arrow head color; default
 value = "black"
 
+`backgroundcolor` Background color of all labels; if labelrsep is equal to 0, the
+background color "white" can be used; default value = "none"
+
 `linewidth` Line width of the phasor; default value = 1
 
 `linestyle` Line style of the phasor; default value = "-"
@@ -356,6 +365,7 @@ function phasorsine(mag = 1,
     maglabel = "",
     phasorlabel = maglabel,
     color = "black",
+    backgroundcolor = "none",
     linewidth = 1,
     linestyle = "-",
     labeltsep = 0.1,
@@ -388,7 +398,8 @@ function phasorsine(mag = 1,
     phasor(pol(mag,phi), ref=1,
         label=phasorlabel, labelrsep=labelrsep, labeltsep=labeltsep,
         labelrelrot=labelrelrot, labelrelangle=labelrelangle,
-        color=color, linestyle=linestyle, linewidth=linewidth)
+        color=color, backgroundcolor=backgroundcolor,
+        linestyle=linestyle, linewidth=linewidth)
     axis("square")
     ax1 = gca()
     if !add
@@ -414,8 +425,10 @@ function phasorsine(mag = 1,
         # Scale and tick x-axis
         xlim(0,360)
         ylim(-1.1,1.1)
-        xticks(collect(90:90:360))
-        yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel])
+        xticks(collect(90:90:360),
+            backgroundcolor=backgroundcolor)
+        yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel],
+            backgroundcolor=backgroundcolor)
         # Create arrows and labels of axes
         arrowaxes(xlabel=xlabel, ylabel=ylabel, fancy=fancy)
     else
@@ -427,7 +440,8 @@ function phasorsine(mag = 1,
         ytickslabel_old = ax2[:get_yticklabels]()
         # Extend old ticks and labels by addition ticks and labels
         yticks(cat(1, yticks_old, [-mag,mag]),
-            cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]))
+            cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]),
+                backgroundcolor=backgroundcolor)
     end
 
     # Dotted line from phasor arrow to begin of sine wave
