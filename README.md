@@ -44,10 +44,10 @@ julia> U2 = pol(sqrt(2) * 1V, 45°)
     - Plot phasor in the left subplot of a figure
     - Plot sine wave corresponding to the phasor in the right subplot
 ![Phasor and sine wave](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasorsine.png?raw=true)
-- Function `phasorangle`
+- Function `angulardimension`
     - Draw arc to indicate angle between phasors
     - Chose between different arrow shapes
-    
+
 ## Circuits and Physics
 
 - Function `∥`

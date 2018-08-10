@@ -1,4 +1,4 @@
-export j, pol, phasor, phasorsine, phasorangle
+export j, pol, phasor, phasorsine, angulardimension
 
 doc"""
 `j = 1im` equals the imaginary unit
@@ -141,7 +141,7 @@ phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI,
     labelrelrot=true, linestyle="--", par=0.05)
 phi1=angle(I1)
 phi2=angle(V1)
-phasorangle(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
+angulardimension(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
     label=L"$\varphi_1$", labelrsep=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 removeaxes(); # Remove axis
@@ -456,7 +456,7 @@ end
 doc"""
 # Function call
 
-`phasorangle(r = 1, phi1 = 0, phi2 = pi/2; origin = 0.0im*r/ustrip(r),
+`angulardimension(r = 1, phi1 = 0, phi2 = pi/2; origin = 0.0im*r/ustrip(r),
     label= "", labelphisep = 0.5, labelrsep = 0.1,
     labelrelrot = false, labelrelangle = 0, ha = "center", va = "center",
     color="black", arrowstyle1 = ".", arrowstyle2 = "-|>", dot90 = false,
@@ -553,18 +553,18 @@ phasor(I1, label=L"$\underline{I}_1$", labeltsep=-0.2, labelrsep=0.7, ref=refI,
     labelrelrot=true, linestyle="--", par=0.05)
 phi1=angle(I1)
 phi2=angle(V1)
-phasorangle(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
+angulardimension(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
     label=L"$\varphi_1$", labelrsep=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 removeaxes(); # Remove axis
 # save3fig("phasordiagram",crop=true);
 ```
 """
-function phasorangle(r = 1,
+function angulardimension2(r = 1,
     phi1 = 0,
     phi2 = pi/2;
     origin = 0.0im*r/ustrip(r),
-    label = L"$\varphi$",
+    label = "",
     labelphisep = 0.5,
     labelrsep = 0.1,
     labelrelrot = false,
@@ -572,6 +572,7 @@ function phasorangle(r = 1,
     ha = "center",
     va = "center",
     color="black",
+    backgroundcolor="none",
     arrowstyle1 = ".",
     arrowstyle2 = "-|>",
     dot90 = false,
@@ -644,11 +645,13 @@ function phasorangle(r = 1,
     if labelrelrot == false
         # Without relative rotation of label
         text(rlabel*cos(philabel),rlabel*sin(philabel),
-            label, ha=ha, va=va, rotation=labelrelangle*180/pi)
+            label, ha=ha, va=va, rotation=labelrelangle*180/pi,
+            backgroundcolor=backgroundcolor)
     else
         # Applying relative rotation of label
         text(rlabel*cos(philabel),rlabel*sin(philabel),
-            label, ha=ha, va=va, rotation=(phim+labelrelangle)*180/pi)
+            label, ha=ha, va=va, rotation=(phim+labelrelangle)*180/pi,
+            backgroundcolor=backgroundcolor)
     end
 
     # Optionally create a dot in the center of the arc to indicate 90°
