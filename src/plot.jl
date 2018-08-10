@@ -205,7 +205,7 @@ function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
     # Vertical label
     va = yneg ? "bottom" : "top"
     ax[:text](xa+dx*labelsep, yend, ylabel,
-        ha="left",va=va backgroundcolor=backgroundcolor)
+        ha="left",va=va, backgroundcolor=backgroundcolor)
 end
 
 doc"""
@@ -332,7 +332,7 @@ rc("font", family="serif")
 t1=0.2;t2=0.3;ymax=1
 t=[0,t1,t1+t2,2*t1+t2,2*(t1+t2),3*t1+2*t2]
 y=[0,ymax,0,ymax,0,ymax]
-step(x,y,linewidth=lineWidth1,linestyle=lineStyle1,color=colorBlack1)
+step(t,y,linewidth=1,color="black")
 grid(true); xlim(0,1), ylim(-0.1,1.3);
 xlabel(L"$t$\,(s)"); ylabel(L"$y$")
 lengthdimension(0,0.2,t1,0.2,label=L"$t_1$",labeltsep=0,backgroundcolor="white")
