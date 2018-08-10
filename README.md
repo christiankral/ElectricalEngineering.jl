@@ -47,6 +47,10 @@ julia> U2 = pol(sqrt(2) * 1V, 45°)
 - Function `angulardimension`
     - Draw arc to indicate angle between phasors
     - Chose between different arrow shapes
+    - Create dimension of phasor
+    - Function `phasordimension`
+    - Create auxiliary lines and parallel shifted dimensions
+![Length dimension](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordimension.png?raw=true)    
 
 ## Circuits and Physics
 
