@@ -39,11 +39,13 @@ end
 doc"""
 # Function call
 
-`phasor(c;origin=0.0+0.0im, ref=1, par=0,
+```
+phasor(c;origin=0.0+0.0im, ref=1, par=0,
     labelrsep=0.5, labeltsep=0.1, label="", ha="center", va="center",
     labelrelrot=false, labelrelangle=0,
-    color="black", linesstyle="-", linewidth=1,
-    width=0.2, headlength=10, headwidth=5)`
+    color="black", backgroundcolor="none", linesstyle="-", linewidth=1,
+    width=0.2, headlength=10, headwidth=5)
+```
 
 # Description
 
@@ -255,13 +257,15 @@ end
 doc"""
 # Function call
 
-`phasorsine(mag = 1, phi = 0; add = false, figsize = (6.6,2.5),
+```
+phasorsine(mag = 1, phi = 0; add = false, figsize = (6.6,2.5),
     xlabel = L"$\omega t$\,($^\circ $)", ylabel = "", maglabel = "",
     phasorlabel = maglabel, labeltsep = 0.1, labelrsep = 0.5,
     labelrelrot = true, labelrelangle = 0,
     color = "black", linewidth = 1, linestyle = "-",
     colorDash="gray", left=0.20, right=0.80, bottom=0.20, top=0.80,
-    fancy=false)`
+    fancy=false)
+```
 
 # Description
 
