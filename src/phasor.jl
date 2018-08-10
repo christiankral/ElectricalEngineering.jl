@@ -1,4 +1,4 @@
-export j, pol, phasor, phasorsine, angulardimension
+export j, pol, phasor, phasorsine, angulardimension, phasordimension
 
 doc"""
 `j = 1im` equals the imaginary unit
@@ -681,4 +681,41 @@ function angulardimension(r = 1,
     if dot90
         plot(r/2*cos(phim),r/2*sin(phim),marker=".",color=color)
     end
+end
+
+function phasordimension(c;
+    origin = (0.0+0.0im).*c./ustrip(c),
+    ref = abs(c./ustrip(c)),
+    label = "",
+    labeltsep = 0.1,
+    labelrsep = 0.5,
+    labelrelrot = false,
+    labelrelangle = 0,
+    ha = "center",
+    va = "center",
+    color="black",
+    backgroundcolor = "none",
+    arrowstyle1 = "<|-",
+    arrowstyle2 = "-|>",
+    linewidth = 0.6,
+    linestyle = "-",
+    width = 0.2,
+    headlength = 5,
+    headwidth = 2.5,
+    par = 0,
+    paroverhang = 0.02,
+    parcolor = "black",
+    parlinewidth = 0.6,
+    parlinestyle = "-")
+
+    lengthdimension(real(origin/ref), imag(origin/ref),
+        real((c+origin)/ref), imag((c+origin)/ref),
+        label=label, labeltsep = labeltsep, labelrsep=labelrsep,
+        labelrelrot=labelrelrot, labelrelangle = labelrelangle, ha=ha, va=va,
+        color=color, backgroundcolor = backgroundcolor,
+        arrowstyle1=arrowstyle1, arrowstyle2=arrowstyle2,
+        linewidth = linewidth, linestyle=linestyle, width=width,
+        headlength=headlength, headwidth=headwidth,
+        par=par, paroverhang=paroverhang, parcolor = parcolor,
+        parlinewidth=parlinewidth, parlinestyle=parlinestyle)
 end
