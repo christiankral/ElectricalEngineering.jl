@@ -37,7 +37,8 @@ doc"""
 # Function call
 
 ```
-arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
+arrowaxes(fig=gcf(), ax=gca(); xmin, xmax, ymin, ymax,
+    xa=0, ya=0, xlabel="", ylabel="",
     xneg = false, yneg = false,
     color="black", backgroundcolor="none", axisoverhang = 0.18,
     linewidth = 0.75, headwidth = 0.06, headlength = 0.09, overhang = 0.1,
@@ -51,6 +52,14 @@ Creates a plot with a horizontal and a vertical axis instead of a frame.
 # Variables
 
 `fig` Figure handle; by default the figure handle of a actual figure is used
+
+`xmin` Minimum of horizontal axis; default value = actual scaling
+
+`xmax` Maximum of horizontal axis; default value = actual scaling
+
+`ymin` Minimum of vertical axis; default value = actual scaling
+
+`ymax` Maximum of vertical axis; default value = actual scaling
 
 `ax` Axes handle; by default the axes handle of a actual figure is used
 
@@ -111,7 +120,10 @@ plot(x,y,color=colorBlack1, linewidth=lineWidth1, linestyle=lineStyle1)
 xlim(0,5); ylim(0,3); arrowaxes(xlabel=L"$x$",ylabel=L"$y$")
 ```
 """
-function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
+function arrowaxes(fig=gcf(), ax=gca();
+    xmin=ax[:get_xlim]()[1], xmax=ax[:get_xlim]()[1],
+    ymin=ax[:get_ylim]()[1], ymax=ax[:get_ylim]()[1],
+    xa=0, ya=0, xlabel="", ylabel="",
     xneg = false, yneg = false,
     color="black", backgroundcolor="none", axisoverhang = 0.18,
     linewidth = 0.75, headwidth = 0.045, headlength = 0.07, overhang = 0,
@@ -138,10 +150,10 @@ function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
     ax[:spines]["left"][:set_color]("none")
 
     # Axis limits
-    (xmin,xmax) = ax[:get_xlim]() # Horizontal limits
-    dx = xmax-xmin # Difference of horizontal limits
-    (ymin,ymax) = ax[:get_ylim]() # Vertical limits
-    dy = ymax-ymin # Difference of vertical limits
+    (xMIN,xMAX) = ax[:get_xlim]() # Horizontal limits
+    dx = xMAX-xMIN # Difference of horizontal limits
+    (yMIN,yMAX) = ax[:get_ylim]() # Vertical limits
+    dy = yMAX-yMIN # Difference of vertical limits
     # Get width and height of axes object to compute
     # matching arrowhead length and width
     dps = fig[:dpi_scale_trans][:inverted]()
