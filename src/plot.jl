@@ -36,12 +36,13 @@ const legendFontSize  =  10
 doc"""
 # Function call
 
-`arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
-xneg = false, yneg = false,
-color="black", axisoverhang = 0.18, linewidth = 0.75,
-headwidth = 0.06, headlength = 0.09, overhang = 0.1,
-labelsep = 0.06,
-left=0.2, right=0.85, bottom=0.20, top=0.85, fancy=false)`
+```
+arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
+    xneg = false, yneg = false,
+    color="black", backgroundcolor="none", axisoverhang = 0.18,
+    linewidth = 0.75, headwidth = 0.06, headlength = 0.09, overhang = 0.1,
+    labelsep = 0.06, left=0.2, right=0.85, bottom=0.20, top=0.85, fancy=false)
+```
 
 # Description
 
@@ -68,6 +69,9 @@ default value = `false`
 default value = `false`
 
 `color` Color of the axes; default value = "black"
+
+`backgroundcolor` Background color of the label; if labelrsep is equal to 0, the
+background color "white" can be used; default value = "none"
 
 `axisoverhang` Overhang of the axis, relative to plot area;
 default value = 0.18 (18% of plot width)
@@ -197,11 +201,11 @@ function arrowaxes(fig=gcf(), ax=gca(); xa=0, ya=0, xlabel="", ylabel="",
     # Horizontal label
     ha = xneg ? "left" : "right"
     ax[:text](xend, ya+dy*labelsep, xlabel,
-        ha=ha, va="bottom")
+        ha=ha, va="bottom", backgroundcolor=backgroundcolor)
     # Vertical label
     va = yneg ? "bottom" : "top"
     ax[:text](xa+dx*labelsep, yend, ylabel,
-        ha="left",va=va)
+        ha="left",va=va backgroundcolor=backgroundcolor)
 end
 
 doc"""
