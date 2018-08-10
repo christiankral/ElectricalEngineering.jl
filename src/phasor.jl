@@ -204,8 +204,8 @@ function phasor(c;
     # Imag part of parallel shift of phasor
     dpy = -par*dty
     # Origin of head
-    xoriginHead = xorigin + drx*0.999
-    yoriginHead = yorigin + dry*0.999
+    xoriginHead = xorigin + dr*drx*0.999
+    yoriginHead = yorigin + dr*dry*0.999
     # Draw arrow shaft and head
     # https://matplotlib.org/api/_as_gen/matplotlib.pyplot.annotate.html?highlight=annotate#matplotlib.pyplot.annotate
     # Draw shaft separately: otherwise, the arrow contour will be drawn as in
