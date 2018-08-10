@@ -783,7 +783,7 @@ overhang `paroverhang`; default value = 0.02
 
 Copy and paste the following code:
 
-```
+```julia
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
 figure(figsize=(3.3, 2.5))
 rc("text", usetex=true); rc("font", family="serif")
@@ -792,8 +792,8 @@ phasor(Z1, label=L"$\underline{Z}$", labeltsep = 0.05, labelrelrot=true)
 phasordimension(real(Z1), label=L"$R$", arrowstyle1="",
     linestyle="-", linewidth=1, headwidth=5, headlength=10,
     labeltsep=0, color="gray", backgroundcolor="white")
-    phasordimension(j*imag(Z1), origin=real(Z1), label=L"j$\cdot X$",arrowstyle1="",
-    linestyle="-", linewidth=1, headwidth=5, headlength=10,
+    phasordimension(j*imag(Z1), origin=real(Z1), label=L"j$\cdot X$",
+    arrowstyle1="", linestyle="-", linewidth=1, headwidth=5, headlength=10,
     labeltsep=0, color="gray", backgroundcolor="white")
 arrowaxes(xmin = real(Z1)+0.1, xlabel="Re", ylabel=L"j$\cdot$Im", fancy=true)
 xlim([-0.5,1]);ylim([-0.5,1]); axis("square"); removeaxes();
