@@ -188,26 +188,26 @@ function phasor(c;
         error("module EE: function phasor: Dimension mismatch of arguments `c`, `origin` and `ref`\n    The arguments `c`, `origin` and `ref` must have the same dimension (koherent SI unit)")
     end
 
-    # Real part of phasor
-    drx = xend - xorigin # = real(c)./ref
-    # Imag part of phasor
-    dry = yend - yorigin # = imag(c)./ref
     # Length of phasor
-    dr = sqrt(drx^2 + dry^2)
+    dr = sqrt((xend-xorigin)^2 + (yend-yorigin)^2)
+    # Real part of phasor
+    drx = (xend - xorigin)/dr # = real(c)./ref
+    # Imag part of phasor
+    dry = (yend - yorigin)/dr # = imag(c)./ref
     # Angle of phasor
     absangle = atan2(dry, drx)
     # Orientation tangential to phasor (lagging by 90°)
-    # Real part of tangential component with repsect to length
-    dtx = +dry/dr
-    # Imag part of tangential component with repsect to length
-    dty = -drx/dr
+    # Real part of tangential component with respect to length
+    dtx = +dry
+    # Imag part of tangential component with respect to length
+    dty = -drx
     # Real part of parallel shift of phasor
     dpx = -par*dtx
     # Imag part of parallel shift of phasor
     dpy = -par*dty
     # Origin of head
-    xoriginHead = xorigin + drx*0.99
-    yoriginHead = yorigin + dry*0.99
+    xoriginHead = xorigin + drx*0.999
+    yoriginHead = yorigin + dry*0.999
     # Draw arrow shaft and head
     # https://matplotlib.org/api/_as_gen/matplotlib.pyplot.annotate.html?highlight=annotate#matplotlib.pyplot.annotate
     # Draw shaft separately: otherwise, the arrow contour will be drawn as in
@@ -241,14 +241,14 @@ function phasor(c;
     # Plot label
     if labelrelrot == false
         # Without relative rotation of label
-        text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
-            yorigin + dry*labelrsep - dty*labeltsep + dpy,
+        text(xorigin + dr*drx*labelrsep - dtx*labeltsep + dpx,
+            yorigin + dr*dry*labelrsep - dty*labeltsep + dpy,
             label, ha=ha, va=va, rotation=labelrelangle*180/pi,
             backgroundcolor=backgroundcolor)
     else
         # Applying relative rotation of label
-        text(xorigin + drx*labelrsep - dtx*labeltsep + dpx,
-            yorigin + dry*labelrsep - dty*labeltsep + dpy,
+        text(xorigin + dr*drx*labelrsep - dtx*labeltsep + dpx,
+            yorigin + dr*dry*labelrsep - dty*labeltsep + dpy,
             label, ha=ha, va=va, rotation=(absangle+labelrelangle)*180/pi,
             backgroundcolor=backgroundcolor)
     end
@@ -583,7 +583,7 @@ removeaxes(); # Remove axis
 # save3fig("phasordiagram",crop=true);
 ```
 """
-function angulardimension2(r = 1,
+function angulardimension(r = 1,
     phi1 = 0,
     phi2 = pi/2;
     origin = 0.0im*r/ustrip(r),

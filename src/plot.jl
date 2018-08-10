@@ -3,7 +3,7 @@ export colorBlack1, colorBlack2, colorBlack3, colorBlack4, colorBlack5,
     lineWidth1, lineWidth2, lineWidth3, lineWidth4,
     marker1, marker2, marker3, marker4,
     markerSize1, markerSize2, markerSize3, markerSize4,
-    legendFontSize, arrowaxes, removeaxes
+    legendFontSize, arrowaxes, removeaxes, lengthdimension
 
 const colorBlack1 = "0"
 const colorBlack2 = "0.25"
@@ -223,4 +223,231 @@ Removes the axis of the actual plot
 """
 function removeaxes(ax=gca())
     ax[:set_axis_off]();
+end
+
+doc"""
+# Function call
+
+```
+lengthdimension(x1=0, y1=0, x2=1, y2=1;
+    label = "", labeltsep = 0.1, labelrsep=0.5, labelrelrot=false,
+    labelrelangle=0, ha = "center", va = "center",
+    color="black", backgroundcolor = "none",
+    arrowstyle1 = "<|-", arrowstyle2 = "-|>", linewidth=0.6, linestyle = "-",
+    width=0.2, headlength=5, headwidth=2.5,
+    par=0, paroverhang = 0.02, parcolor = "black",
+    parlinewidth=0.6, parlinestyle = "-")
+
+```
+
+# Description
+
+This function draws length dimension with label based on rectangular x- and
+y-coordinates. The length dimension arrow can be shifted parallel to the
+specified  coordinates by means the single parameter `par`. Additionally,
+auxiliary lines  from the specified coordinates to the length dimension are
+drawn.
+
+# Variables
+
+`x1` x-component of the begin of the length dimension; default value = 0
+
+`y1` y-component of the begin of the length dimension; default value = 0
+
+`x2` x-component of the end of the length dimension; default value = 1
+
+`y2` y-component of the end of the length dimension; default value = 1
+
+`label` Label of the angle; default value =""
+
+`labelphisep` Angular separation of the label with respect to the arc; if
+`labelphisep == 0`, the label is located at angle `phi1` and if `labelphisep ==
+1`, the label is located at angle `phi2`; default value = 0.5, right in the
+middle between `phi1` and `phi2`
+
+labelrsep` Radial per unit location of label (in direction of the phasor):
+`labelrsep = 0` locates the label right on the arc. A positive value locates the
+label outside the arc, a negative value locates the label inside the arc;
+default value = 0.1
+
+`labelrelrot` Relative rotation of label; if `labelrelrot == false` (default
+value) then the label is not rotated relative to the center of the arc;
+otherwise the label is rotated relative to the  angle `labelrelangle`
+
+`labelrelangle` Relative angle of label with respect to center of the arc; this
+angle is only applied, it `labelrelrot == true`; this angle indicates the
+relative orientation of the label with respect to the center of the arc;
+default value = 0
+
+`ha` Horizontal alignment of label; actually represents the radial alignment of
+the label; default value = "center"
+
+`va` Vertical alignment of label; actually represents the tangential alignment
+of the label; default value = "center"
+
+`color` Color of the arc; default value = "black"
+
+`backgroundcolor` Background color of the label; if labelrsep is equal to 0, the
+background color "white" can be used; default value = "none"
+
+`arrowstyle1` Arrow style of the begin of the arc; default value = "."; valid
+strings are:
+
+- `.` dot marker
+- `<|-` arrow
+
+`arrowstyle2` Arrow style of the end of the arc; default value = "-|>"; valid
+strings are:
+
+- `.` dot marker
+- `-|>` arrow
+
+`headlength` Length of arrow head; default value = 5
+
+`headwidth` Width of arrow head; default value = 2.5
+
+`par` In order to be able to draw the length dimension parallel to the specified
+coordiantes `x1`, `y1`, `x2`, `y2`, `par` is used to specify the per unit
+tangential shift (offset) of the length dimension; default value = 0 (no shift)
+
+`paroverhang` The auxiliary lines, drawn in case of `par != 0`, show the absolute
+overhang `paroverhang`; default value = 0.02
+
+`parcolor` Color of the auxiliary lines; default value = "black"
+
+`parlinewidth` Line width of the auxiliary line; default value = 0.6
+
+`parlinestyle` Line style of the auxiliary line; default value = "-"
+
+# Example
+
+Copy and paste code:
+
+```julia
+using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+figure(figsize=(3.3, 2.5))
+rc("text", usetex=true);
+rc("font", family="serif")
+
+t1=0.2;t2=0.3;ymax=1
+t=[0,t1,t1+t2,2*t1+t2,2*(t1+t2),3*t1+2*t2]
+y=[0,ymax,0,ymax,0,ymax]
+step(x,y,linewidth=lineWidth1,linestyle=lineStyle1,color=colorBlack1)
+grid(true); xlim(0,1), ylim(-0.1,1.3);
+xlabel(L"$t$\,(s)"); ylabel(L"$y$")
+lengthdimension(0,0.2,t1,0.2,label=L"$t_1$",labeltsep=0,backgroundcolor="white")
+lengthdimension(t1,0.2,t1+t2,0.2,label=L"$t_2$",labeltsep=0,backgroundcolor="white")
+lengthdimension(t1,ymax,2*t1+t2,ymax,label=L"$T$",par=0.1,labeltsep=0.05,labelrsep=0.7)
+# save3fig("lengthdimension",crop=true)
+```
+"""
+function lengthdimension(
+    x1 = 0,
+    y1 = 0,
+    x2 = 1,
+    y2 = 1;
+    label = "",
+    labeltsep = 0.1,
+    labelrsep = 0.5,
+    labelrelrot = false,
+    labelrelangle = 0,
+    ha = "center",
+    va = "center",
+    color="black",
+    backgroundcolor = "none",
+    arrowstyle1 = "<|-",
+    arrowstyle2 = "-|>",
+    linewidth = 0.6,
+    linestyle = "-",
+    width = 0.2,
+    headlength = 5,
+    headwidth = 2.5,
+    par = 0,
+    paroverhang = 0.02,
+    parcolor = "black",
+    parlinewidth = 0.6,
+    parlinestyle = "-")
+
+    # Length of line
+    dr = sqrt((x2-x1)^2 + (y2-y1)^2)
+    # x-difference of line
+    drx = (x2 - x1)/dr
+    # y-difference of line
+    dry = (y2 - y1)/dr
+    # Angle of line
+    absangle = atan2(dry, drx)
+    # Orientation tangential to phasor (lagging by 90°)
+    # x-component of tangential component with repsect to length
+    dtx = +dry
+    # y-component of tangential component with repsect to length
+    dty = -drx
+    # x-component of parallel shift of line
+    dpx = -par*dtx
+    # y-component of parallel shift of line
+    dpy = -par*dty
+    # x-component of auxiliary line indicating parallel shift of line
+    dox = -paroverhang*dtx*sign(par)
+    # y-component of auxiliary line indicating parallel shift of line
+    doy = -paroverhang*dty*sign(par)
+
+    # Draw line
+    plot([x1+dpx,x2+dpx], [y1+dpy,y2+dpy],
+        color=color, linewidth=linewidth,linestyle=linestyle)
+    # Draw line indicating parallel shift
+    if par!=0
+        plot([x1,x1+dpx+dox], [y1,y1+dpy+doy],
+            color=parcolor, linewidth=parlinewidth, linestyle=parlinestyle)
+        plot([x2,x2+dpx+dox], [y2,y2+dpy+doy],
+            color=parcolor, linewidth=parlinewidth, linestyle=parlinestyle)
+    end
+
+    # Draw arrows at begin and end of line, depending on the specified arrow
+    # styles
+
+    # Begin of line
+    if arrowstyle1 == "<|-"
+        # Arrow head
+        annotate("", xy=(x1+dpx, y1+dpy),
+            xytext=(x1+dpx+0.001*drx, y1+dpy+0.001*dry),
+            xycoords="data",
+            arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
+                "width"=>width, "linestyle"=>"-",
+                "headlength"=>headlength,
+                "headwidth"=>headwidth),
+            annotation_clip=false)
+    elseif arrowstyle1 == "."
+        # Dot marker
+        plot(x1+dpx, y1+dpy, marker=".", color=color)
+    end
+
+    # End of line
+    if arrowstyle2 == "-|>"
+        # Arrow head
+        annotate("", xy=(x2+dpx, y2+dpy),
+            xytext=(x2+dpx-0.001*drx, y2+dpy-0.001*dry),
+            xycoords="data",
+            arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
+                "width"=>width, "linestyle"=>"-",
+                "headlength"=>headlength,
+                "headwidth"=>headwidth),
+            annotation_clip=false)
+    elseif arrowstyle2 == "."
+        # Marker dot
+        plot(x2+dpx, y2+dpy ,marker=".", color=color)
+    end
+
+    # Plot label
+    if labelrelrot == false
+        # Without relative rotation of label
+        text(x1 + dr*drx*labelrsep - dtx*labeltsep + dpx,
+            y1 + dr*dry*labelrsep - dty*labeltsep + dpy,
+            label, ha=ha, va=va, rotation=labelrelangle*180/pi,
+            backgroundcolor=backgroundcolor)
+    else
+        # Applying relative rotation of label
+        text(x1 + dr*drx*labelrsep - dtx*labeltsep + dpx,
+            y1 + dr*dry*labelrsep - dty*labeltsep + dpy,
+            label, ha=ha, va=va, rotation=(absangle+labelrelangle)*180/pi,
+            backgroundcolor=backgroundcolor)
+    end
 end
