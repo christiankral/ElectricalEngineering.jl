@@ -126,7 +126,7 @@ function arrowaxes(fig=gcf(), ax=gca();
     xa=0, ya=0, xlabel="", ylabel="",
     xneg = false, yneg = false,
     color="black", backgroundcolor="none", axisoverhang = 0.18,
-    linewidth = 0.75, headwidth = 0.045, headlength = 0.07, overhang = 0,
+    linewidth = 0.6, headwidth = 5, headlength = 10, overhang = 0,
     labelsep = 0.05,
     left=0.2, right=0.85, bottom=0.20, top=0.85)
     # The basic idea of this implementation is taken from:
@@ -192,7 +192,7 @@ function arrowaxes(fig=gcf(), ax=gca();
             "linewidth"=>linewidth,
             "linestyle"=>"-",
             "headlength"=>headlength,
-            "headwidth"=>headwidth5,
+            "headwidth"=>headwidth,
             "joinstyle"=>"round"),
         annotation_clip=false)
     # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
