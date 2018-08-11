@@ -354,7 +354,7 @@ Copy and paste code:
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
 rc("text", usetex=true); rc("font", family="serif")
 phasorsine(1, 45°, ylabel=L"$u,i$", maglabel=L"$\hat{U}$", labelrsep=0.3,
-    color=colorBlack2, linestyle=lineStyle2, fancy=true)
+    color="gray", linestyle="--", fancy=true)
 phasorsine(0.55, 0, add=true, maglabel=L"$\hat{I}$",fancy=true)
 # save3fig("phasorsine",crop=true);
 ```
