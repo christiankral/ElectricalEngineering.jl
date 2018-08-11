@@ -438,8 +438,10 @@ function phasorsine(mag = 1,
         ylim(-1.1, 1.1)
         xticks(collect(90:90:360),
             backgroundcolor=backgroundcolor)
-        yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel],
-            backgroundcolor=backgroundcolor)
+        if maglabel != ""
+            yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel],
+                backgroundcolor=backgroundcolor)
+        end
         # Create arrows and labels of axes
         arrowaxes(xlabel=xlabel, ylabel=ylabel)
     else
@@ -450,9 +452,11 @@ function phasorsine(mag = 1,
         # Store existing (old) labels
         ytickslabel_old = ax2[:get_yticklabels]()
         # Extend old ticks and labels by addition ticks and labels
-        yticks(cat(1, yticks_old, [-mag,mag]),
-            cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]),
-                backgroundcolor=backgroundcolor)
+        if maglabel != ""
+            yticks(cat(1, yticks_old, [-mag,mag]),
+                cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]),
+                    backgroundcolor=backgroundcolor)
+        end
     end
 
     # Plot dashed lines, if showdashline = true
