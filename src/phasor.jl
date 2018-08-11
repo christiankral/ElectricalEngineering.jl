@@ -442,7 +442,7 @@ function phasorsine(mag = 1,
             yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel],
                 backgroundcolor=backgroundcolor)
         else
-            yticks([])
+            yticks([-mag, 0, mag],["","",""])
         end
         # Create arrows and labels of axes
         arrowaxes(xlabel=xlabel, ylabel=ylabel)
@@ -458,6 +458,10 @@ function phasorsine(mag = 1,
             yticks(cat(1, yticks_old, [-mag,mag]),
                 cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]),
                     backgroundcolor=backgroundcolor)
+        else
+            yticks(cat(1, yticks_old, [-mag,mag]),
+                cat(1, ytickslabel_old, ["",""]),
+                    backgroundcolor=backgroundcolor)
         end
     end
 
@@ -468,7 +472,7 @@ function phasorsine(mag = 1,
         con = matplotlib[:patches][:ConnectionPatch](
             xyB=(360, mag*sin(phi)), xyA=(0, mag*sin(phi)),
             coordsA="data", coordsB="data",
-            axesA=ax1, axesB=ax2, color=colorDash,
+            axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth4, linestyle=":", clip_on=false)
         ax2[:add_artist](con)
         con = matplotlib[:patches][:ConnectionPatch](
