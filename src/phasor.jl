@@ -455,27 +455,34 @@ function phasorsine(mag = 1,
                 backgroundcolor=backgroundcolor)
     end
 
-    # Dotted line from phasor arrow to begin of sine wave,
-    # if showdashline = true
+    # Plot dashed lines, if showdashline = true
     if showdashline
+        # Dotted line from phasor arrow to begin of sine wave, split in two
+        # parts, to avoid overlay effects if multiple dashed lines are drawn
         con = matplotlib[:patches][:ConnectionPatch](
-            xyA=(360, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
+            xyB=(360, mag*sin(phi)), xyA=(0, mag*sin(phi)),
             coordsA="data", coordsB="data",
-            axesA=ax2, axesB=ax1, color=colorBlack4,
+            axesA=ax1, axesB=ax2, color=colorDash,
+            linewidth=lineWidth4, linestyle=":", clip_on=false)
+        ax2[:add_artist](con)
+        con = matplotlib[:patches][:ConnectionPatch](
+            xyA=(0, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
+            coordsA="data", coordsB="data",
+            axesA=ax2, axesB=ax1, color=colorDash,
             linewidth=lineWidth4, linestyle=":", clip_on=false)
         ax2[:add_artist](con)
         # Dotted line of y-axis of right diagram to maximum of sine wave
         con = matplotlib[:patches][:ConnectionPatch](
             xyB=(mod(90-phi*180/pi,360), mag), xyA=(0, mag),
             coordsA="data", coordsB="data",
-            axesA=ax2, axesB=ax2, color=colorBlack4,
+            axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth4, linestyle=":", clip_on=false)
         ax2[:add_artist](con)
         # Dotted line of y-axis of right diagram to minimum of sine wave
         con = matplotlib[:patches][:ConnectionPatch](
             xyB=(mod(270-phi*180/pi, 360),-mag), xyA=(0, -mag),
             coordsA="data", coordsB="data",
-            axesA=ax2, axesB=ax2, color=colorBlack4,
+            axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth4, linestyle=":", clip_on=false)
         ax2[:add_artist](con)
     end
