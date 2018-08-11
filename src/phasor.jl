@@ -688,12 +688,14 @@ function angulardimension(r = 1,
     # Rectangular position of text
     if labelrelrot == false
         # Without relative rotation of label
-        text(rlabel*cos(philabel),rlabel*sin(philabel),
+        text(rlabel*cos(philabel) + real(upstrip(origin)),
+            rlabel*sin(philabel) + imag(upstrip(origin)),
             label, ha=ha, va=va, rotation=labelrelangle*180/pi,
             backgroundcolor=backgroundcolor)
     else
         # Applying relative rotation of label
-        text(rlabel*cos(philabel),rlabel*sin(philabel),
+        text(rlabel*cos(philabel) + real(upstrip(origin)),
+            rlabel*sin(philabel) + imag(upstrip(origin)),
             label, ha=ha, va=va, rotation=(phim+labelrelangle)*180/pi,
             backgroundcolor=backgroundcolor)
     end
