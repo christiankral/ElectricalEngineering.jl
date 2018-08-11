@@ -352,7 +352,6 @@ Copy and paste code:
 
 ```julia
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
-figure(figsize=(3.3, 2.5))
 rc("text", usetex=true); rc("font", family="serif")
 phasorsine(1, 45°, ylabel=L"$u,i$", maglabel=L"$\hat{U}$", labelrsep=0.3,
     color=colorBlack2, linestyle=lineStyle2, fancy=true)
