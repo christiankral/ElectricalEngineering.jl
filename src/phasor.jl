@@ -441,6 +441,8 @@ function phasorsine(mag = 1,
         if maglabel != ""
             yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel],
                 backgroundcolor=backgroundcolor)
+        else
+            yticks([])
         end
         # Create arrows and labels of axes
         arrowaxes(xlabel=xlabel, ylabel=ylabel)
