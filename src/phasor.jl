@@ -498,7 +498,7 @@ doc"""
 # Function call
 
 ```
-angulardimension(r = 1, phi1 = 0, phi2 = pi/2; origin = 0.0im*r/ustrip(r),
+angulardimension(r = 1, phi1 = 0, phi2 = pi/2; origin = 0.0im,
     label= "", labelphisep = 0.5, labelrsep = 0.1,
     labelrelrot = false, labelrelangle = 0, ha = "center", va = "center",
     color="black", backgroundcolor="none",
@@ -516,14 +516,14 @@ be used to indicate right angles (90°).
 
 # Variables
 
-`r` Radius if the arc ; shall be between 0 and 1; default value = 1
+`r` Radius if the arc with not unit; shall be between 0 and 1; default value = 1
 
 `phi1` Phase angle of the begin of the arc; default value = 0
 
 `phi2` Phase angle of the end of the arc; default value = pi/2
 
-`origin` Complex quantity, indicating the origin of the arc; default value =
-0.0 + 0.0im
+`origin` Complex quantity, indicating the origin of the arc with no unit;
+default value = 0.0 + 0.0im
 
 `label` Label of the angle; default value =""
 
@@ -607,7 +607,7 @@ removeaxes(); # Remove axis
 function angulardimension(r = 1,
     phi1 = 0,
     phi2 = pi/2;
-    origin = 0.0im*r/ustrip(r),
+    origin = 0.0im,
     label = "",
     labelphisep = 0.5,
     labelrsep = 0.1,
@@ -688,22 +688,22 @@ function angulardimension(r = 1,
     # Rectangular position of text
     if labelrelrot == false
         # Without relative rotation of label
-        text(rlabel*cos(philabel) + real(upstrip(origin)),
-            rlabel*sin(philabel) + imag(upstrip(origin)),
+        text(rlabel*cos(philabel) + real(origin),
+            rlabel*sin(philabel) + imag(origin),
             label, ha=ha, va=va, rotation=labelrelangle*180/pi,
             backgroundcolor=backgroundcolor)
     else
         # Applying relative rotation of label
-        text(rlabel*cos(philabel) + real(upstrip(origin)),
-            rlabel*sin(philabel) + imag(upstrip(origin)),
+        text(rlabel*cos(philabel) + real(origin),
+            rlabel*sin(philabel) + imag(origin),
             label, ha=ha, va=va, rotation=(phim+labelrelangle)*180/pi,
             backgroundcolor=backgroundcolor)
     end
 
     # Optionally create a dot in the center of the arc to indicate 90°
     if dot90
-        plot(r/2*cos(phim) + real(upstrip(origin)),
-            r/2*sin(phim) + imag(upstrip(origin)),
+        plot(r/2*cos(phim) + real(origin),
+            r/2*sin(phim) + imag(origin),
             marker=".",color=color)
     end
 end
