@@ -42,7 +42,7 @@ arrowaxes(fig=gcf(), ax=gca(); xmin, xmax, ymin, ymax,
     xneg = false, yneg = false,
     color="black", backgroundcolor="none", axisoverhang = 0.18,
     linewidth = 0.75, headwidth = 0.06, headlength = 0.09, overhang = 0.1,
-    labelsep = 0.06, left=0.2, right=0.85, bottom=0.20, top=0.85, fancy=false)
+    labelsep = 0.06, left=0.2, right=0.85, bottom=0.20, top=0.85)
 ```
 
 # Description
@@ -106,9 +106,6 @@ default value = 0.05 (5% of plot width)
 
 `top` Top side of the figure; default value = 0.85
 
-`fancy` If `true`, the annotate arrow is used instead of the axis arrow; in this
-case the arrow scales with the figure size automatically; default value = `false`
-
 # Examples
 
 Copy and paste the following code:
@@ -131,7 +128,7 @@ function arrowaxes(fig=gcf(), ax=gca();
     color="black", backgroundcolor="none", axisoverhang = 0.18,
     linewidth = 0.75, headwidth = 0.045, headlength = 0.07, overhang = 0,
     labelsep = 0.05,
-    left=0.2, right=0.85, bottom=0.20, top=0.85, fancy=false)
+    left=0.2, right=0.85, bottom=0.20, top=0.85)
     # The basic idea of this implementation is taken from:
     # http://www.yueshen.me/2015/1011.html
     # https://stackoverflow.com/questions/33737736/matplotlib-axis-arrow-tip/44138298#44138298
@@ -174,44 +171,30 @@ function arrowaxes(fig=gcf(), ax=gca();
     ybeg = yneg ? ymax : ymin
     yend = yneg ? ymin-axisoverhang*dy : ymax+axisoverhang*dy
 
-    if fancy
-        # Horizontal arrow created by annotate instead of axis.arrow
-        annotate("", xy=(xend, ya),
-            xytext=(xbeg, ya), xycoords="data",
-            arrowprops=Dict("edgecolor"=>color,
-                "facecolor"=>color,
-                "width"=>0.2,
-                "linewidth"=>linewidth*0.6/0.7,
-                "linestyle"=>"-",
-                "headlength"=>headlength*10/0.07,
-                "headwidth"=>headwidth*5/0.045,
-                "joinstyle"=>"round"),
-            annotation_clip=false)
-        # Vertical arrow created by annotate instead of axis.arrow
-        annotate("", xy=(xa,yend),
-            xytext=(xa,ybeg), xycoords="data",
-            arrowprops=Dict("edgecolor"=>color,
-                "facecolor"=>color,
-                "width"=>0.2,
-                "linewidth"=>linewidth*0.6/0.7,
-                "linestyle"=>"-",
-                "headlength"=>headlength*10/0.07,
-                "headwidth"=>headwidth*5/0.045,
-                "joinstyle"=>"round"),
-            annotation_clip=false)
-    else
-        # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.arrow.html#matplotlib.axes.Axes.arrow
-        # Horizontal arrow
-        ax[:arrow](xbeg, ya, xend-xbeg ,0,
-            fc=color, ec=color, lw=linewidth,
-            head_width=hwx, head_length=hlx, overhang=overhang,
-            joinstyle="round", length_includes_head=true, clip_on=false)
-        # Vertical arrow
-        ax[:arrow](xa, ybeg, 0, yend-ybeg,
-            fc=color, ec=color,lw=linewidth,
-            head_width=hwy, head_length=hly, overhang=overhang,
-            joinstyle="round", length_includes_head=true, clip_on=false)
-    end
+    # Horizontal arrow created by annotate instead of axis.arrow
+    annotate("", xy=(xend, ya),
+        xytext=(xbeg, ya), xycoords="data",
+        arrowprops=Dict("edgecolor"=>color,
+            "facecolor"=>color,
+            "width"=>0.2,
+            "linewidth"=>linewidth,
+            "linestyle"=>"-",
+            "headlength"=>headlength,
+            "headwidth"=>headwidth,
+            "joinstyle"=>"round"),
+        annotation_clip=false)
+    # Vertical arrow created by annotate instead of axis.arrow
+    annotate("", xy=(xa,yend),
+        xytext=(xa,ybeg), xycoords="data",
+        arrowprops=Dict("edgecolor"=>color,
+            "facecolor"=>color,
+            "width"=>0.2,
+            "linewidth"=>linewidth,
+            "linestyle"=>"-",
+            "headlength"=>headlength,
+            "headwidth"=>headwidth5,
+            "joinstyle"=>"round"),
+        annotation_clip=false)
     # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
     # Horizontal label
     ha = xneg ? "left" : "right"

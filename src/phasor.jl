@@ -262,7 +262,7 @@ phasorsine(mag = 1, phi = 0; add = false, figsize = (6.6,2.5),
     labelrelrot = true, labelrelangle = 0,
     color = "black", linewidth = 1, linestyle = "-",
     colorDash="gray", left=0.20, right=0.80, bottom=0.20, top=0.80,
-    fancy=false)
+    showsine=true, showdashline=true)
 ```
 
 # Description
@@ -342,9 +342,9 @@ lines between the left and right subplot; default value = colorBlack4
 
 `top` Top side of the figure; default value = 0.85
 
-`fancy` This affects how the axes of the right subplot are drawn; if `true`, the
-annotate arrow is used instead of the axis arrow; in this case the arrow scales
-with the figure size automatically; default value = `false`
+`showsine` If `true`, the sinewave is shown; default value = `true`
+
+`showdashline` If `true`, the dashed lines are shown; default value = `true`
 
 # Example
 
@@ -354,8 +354,8 @@ Copy and paste code:
 using Unitful, Unitful.DefaultSymbols, PyPlot, EE
 rc("text", usetex=true); rc("font", family="serif")
 phasorsine(1, 45°, ylabel=L"$u,i$", maglabel=L"$\hat{U}$", labelrsep=0.3,
-    color="gray", linestyle="--", fancy=true)
-phasorsine(0.55, 0, add=true, maglabel=L"$\hat{I}$",fancy=true)
+    color="gray", linestyle="--")
+phasorsine(0.55, 0, add=true, maglabel=L"$\hat{I}$")
 # save3fig("phasorsine",crop=true);
 ```
 """
@@ -380,7 +380,8 @@ function phasorsine(mag = 1,
     right=0.80,
     bottom=0.20,
     top=0.80,
-    fancy=false)
+    showsine = true,
+    showdashline = true)
     # https://matplotlib.org/tutorials/text/annotations.html#plotting-guide-annotation
     # https://matplotlib.org/users/annotations.html
     # https://stackoverflow.com/questions/17543359/drawing-lines-between-two-plots-in-matplotlib
@@ -393,11 +394,15 @@ function phasorsine(mag = 1,
     end
     # Create left subplot
     subplot(121)
+    # Angle vector to draw circle
     psi = collect(0:pi/500:2*pi)
+    # Coordinates of circle
     x = mag*cos.(psi)
     y = mag*sin.(psi)
+    # Plot circle
     plot(x, y, color=colorDash, linewidth=1, linestyle=":",
         dash_capstyle="round")
+    # Plot phasor
     phasor(pol(mag,phi), ref=1,
         label=phasorlabel, labelrsep=labelrsep, labeltsep=labeltsep,
         labelrelrot=labelrelrot, labelrelangle=labelrelangle,
@@ -412,28 +417,31 @@ function phasorsine(mag = 1,
         ax1[:spines]["right"][:set_visible](false)
         ax1[:spines]["bottom"][:set_visible](false)
         ax1[:spines]["top"][:set_visible](false)
+        # Remove ticks
         xticks([])
         yticks([])
     end
 
     # Create right subplot
     subplot(122)
-    yphi = mag*sin.(psi+phi)
-    plot(psi*180/pi, yphi,
-        color=color, linewidth=linewidth, linestyle=linestyle)
-
+    # Plot sine if selected by showsine = true
+    if showsine
+        yphi = mag*sin.(psi+phi)
+        plot(psi*180/pi, yphi,
+            color=color, linewidth=linewidth, linestyle=linestyle)
+    end
     ax2 = gca()
     # First phasor and sine wave diagram must be drawn with add = false
     if !add
         # Scale and tick x-axis
-        xlim(0,360)
-        ylim(-1.1,1.1)
+        xlim(0, 360)
+        ylim(-1.1, 1.1)
         xticks(collect(90:90:360),
             backgroundcolor=backgroundcolor)
         yticks([-mag, 0, mag],[L"$-$"*maglabel, L"$0$", maglabel],
             backgroundcolor=backgroundcolor)
         # Create arrows and labels of axes
-        arrowaxes(xlabel=xlabel, ylabel=ylabel, fancy=fancy)
+        arrowaxes(xlabel=xlabel, ylabel=ylabel)
     else
         # If additional phasor and sine wave diagram are added, further
         # y-axis ticks have to beee added; for this purpose, the existing (old)
@@ -447,27 +455,30 @@ function phasorsine(mag = 1,
                 backgroundcolor=backgroundcolor)
     end
 
-    # Dotted line from phasor arrow to begin of sine wave
-    con = matplotlib[:patches][:ConnectionPatch](
-        xyA=(360,mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
-        coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax1, color=colorBlack4,
-        linewidth=lineWidth4, linestyle=":", clip_on=false)
-    ax2[:add_artist](con)
-    # Dotted line of y-axis of right diagram to maximum of sine wave
-    con = matplotlib[:patches][:ConnectionPatch](
-        xyB=(mod(90-phi*180/pi,360),mag), xyA=(0, mag),
-        coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax2, color=colorBlack4,
-        linewidth=lineWidth4, linestyle=":", clip_on=false)
-    ax2[:add_artist](con)
-    # Dotted line of y-axis of right diagram to minimum of sine wave
-    con = matplotlib[:patches][:ConnectionPatch](
-        xyB=(mod(270-phi*180/pi,360),-mag), xyA=(0, -mag),
-        coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax2, color=colorBlack4,
-        linewidth=lineWidth4, linestyle=":", clip_on=false)
-    ax2[:add_artist](con)
+    # Dotted line from phasor arrow to begin of sine wave,
+    # if showdashline = true
+    if showdashline
+        con = matplotlib[:patches][:ConnectionPatch](
+            xyA=(360, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
+            coordsA="data", coordsB="data",
+            axesA=ax2, axesB=ax1, color=colorBlack4,
+            linewidth=lineWidth4, linestyle=":", clip_on=false)
+        ax2[:add_artist](con)
+        # Dotted line of y-axis of right diagram to maximum of sine wave
+        con = matplotlib[:patches][:ConnectionPatch](
+            xyB=(mod(90-phi*180/pi,360), mag), xyA=(0, mag),
+            coordsA="data", coordsB="data",
+            axesA=ax2, axesB=ax2, color=colorBlack4,
+            linewidth=lineWidth4, linestyle=":", clip_on=false)
+        ax2[:add_artist](con)
+        # Dotted line of y-axis of right diagram to minimum of sine wave
+        con = matplotlib[:patches][:ConnectionPatch](
+            xyB=(mod(270-phi*180/pi, 360),-mag), xyA=(0, -mag),
+            coordsA="data", coordsB="data",
+            axesA=ax2, axesB=ax2, color=colorBlack4,
+            linewidth=lineWidth4, linestyle=":", clip_on=false)
+        ax2[:add_artist](con)
+    end
 end
 
 doc"""
@@ -794,7 +805,7 @@ phasordimension(real(Z1), label=L"$R$", arrowstyle1="",
     phasordimension(j*imag(Z1), origin=real(Z1), label=L"j$\cdot X$",
     arrowstyle1="", linestyle="-", linewidth=1, headwidth=5, headlength=10,
     labeltsep=0, color="gray", backgroundcolor="white")
-arrowaxes(xmin = real(Z1)+0.1, xlabel="Re", ylabel=L"j$\cdot$Im", fancy=true)
+arrowaxes(xmin = real(Z1)+0.1, xlabel="Re", ylabel=L"j$\cdot$Im")
 xlim([-0.5,1]);ylim([-0.5,1]); axis("square"); removeaxes();
 # save3fig("phasordimension", crop=true)
 ```
