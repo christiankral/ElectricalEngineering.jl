@@ -702,7 +702,9 @@ function angulardimension(r = 1,
 
     # Optionally create a dot in the center of the arc to indicate 90°
     if dot90
-        plot(r/2*cos(phim),r/2*sin(phim),marker=".",color=color)
+        plot(r/2*cos(phim) + real(upstrip(origin)),
+            r/2*sin(phim) + imag(upstrip(origin)),
+            marker=".",color=color)
     end
 end
 
