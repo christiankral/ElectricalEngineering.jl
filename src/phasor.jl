@@ -458,10 +458,6 @@ function phasorsine(mag = 1,
             yticks(cat(1, yticks_old, [-mag,mag]),
                 cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]),
                     backgroundcolor=backgroundcolor)
-        else
-            yticks(cat(1, yticks_old, [-mag,mag]),
-                cat(1, ytickslabel_old, ["",""]),
-                    backgroundcolor=backgroundcolor)
         end
     end
 
