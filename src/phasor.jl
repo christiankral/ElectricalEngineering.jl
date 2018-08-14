@@ -300,10 +300,10 @@ dafault value = "";
 
 `phasorlabel` Label of phasor of left subplot; default value = `maglabel`
 
-labelrsep` Radial per unit location of label (in direction of the phasor):
-`labelrsep = 0` represents the shaft of the phasor and `labelrsep = 1` represents
-the arrow hear of the phasor; default value = 0.5, i.e., the radial center
-of the phasor
+`labelrsep` Radial per unit location of label (in direction of the phasor):
+`labelrsep = 0` represents the shaft of the phasor and `labelrsep = 1`
+represents the arrow hear of the phasor; default value = 0.5, i.e., the radial
+center of the phasor
 
 `labeltsep` Tangential per unit location of label: `labeltsep = 0` means that
 the label is plotted onto the phasor; `labeltsep = 0.1` plots the label on top
