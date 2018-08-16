@@ -656,7 +656,7 @@ function angulardimension(r = 1,
             annotation_clip=false)
     elseif arrowstyle1 == "."
         # Dot marker
-        plot(x[1],y[1],marker=".",color=color)
+        plot(x[1],y[1],marker=".",color=color, clip_on=false)
     end
 
     # End of arc
@@ -673,7 +673,7 @@ function angulardimension(r = 1,
             annotation_clip=false)
     elseif arrowstyle2 == "."
         # Marker dot
-        plot(x[end],y[end],marker=".",color=color)
+        plot(x[end],y[end],marker="." ,color=color, clip_on=false)
     end
 
     # Plot label
@@ -704,7 +704,7 @@ function angulardimension(r = 1,
     if dot90
         plot(r/2*cos(phim) + real(origin),
             r/2*sin(phim) + imag(origin),
-            marker=".",color=color)
+            marker=".", color=color, clip_on=false)
     end
 end
 

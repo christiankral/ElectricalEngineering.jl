@@ -413,7 +413,7 @@ function lengthdimension(
             annotation_clip=false)
     elseif arrowstyle1 == "."
         # Dot marker
-        plot(x1+dpx, y1+dpy, marker=".", color=color)
+        plot(x1+dpx, y1+dpy, marker=".", color=color, clip_on=false)
     end
 
     # End of line
@@ -429,7 +429,7 @@ function lengthdimension(
             annotation_clip=false)
     elseif arrowstyle2 == "."
         # Marker dot
-        plot(x2+dpx, y2+dpy ,marker=".", color=color)
+        plot(x2+dpx, y2+dpy ,marker=".", color=color, clip_on=false)
     end
 
     # Plot label
