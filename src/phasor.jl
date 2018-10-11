@@ -186,69 +186,73 @@ function phasor(c;
         error("module EE: function phasor: Dimension mismatch of arguments `c`, `origin` and `ref`\n    The arguments `c`, `origin` and `ref` must have the same dimension (koherent SI unit)")
     end
 
-    # Length of phasor
-    dr = sqrt((xend-xorigin)^2 + (yend-yorigin)^2)
-    # Real part of phasor
-    drx = (xend - xorigin)/dr # = real(c)./ref
-    # Imag part of phasor
-    dry = (yend - yorigin)/dr # = imag(c)./ref
-    # Angle of phasor
-    absangle = atan2(dry, drx)
-    # Orientation tangential to phasor (lagging by 90°)
-    # Real part of tangential component with respect to length
-    dtx = +dry
-    # Imag part of tangential component with respect to length
-    dty = -drx
-    # Real part of parallel shift of phasor
-    dpx = -par*dtx
-    # Imag part of parallel shift of phasor
-    dpy = -par*dty
-    # Origin of head
-    xoriginHead = xorigin + dr*drx*0.999
-    yoriginHead = yorigin + dr*dry*0.999
-    # Draw arrow shaft and head
-    # https://matplotlib.org/api/_as_gen/matplotlib.pyplot.annotate.html?highlight=annotate#matplotlib.pyplot.annotate
-    # Draw shaft separately: otherwise, the arrow contour will be drawn as in
-    # https://matplotlib.org/users/annotations.html#basic-annotation
-    # so that the back and forth paths overlap and the line style does not
-    # appear correctly; replace
-    plot([xorigin+dpx,xend+dpx], [yorigin+dpy,yend+dpy],
-        color=color, linestyle=linestyle, linewidth=linewidth, clip_on=false)
-    # Code based on plot replaces the previous implementation inspired by:
-    # https://stackoverflow.com/questions/51746400/linestyle-in-plot-and-annotate-are-not-equal-in-matplotlib
-    # Previous (obsolete) implementation:
-    # annotate("", xy=(xend+dpx,yend+dpy),
-    #     xytext=(xorigin+dpx,yorigin+dpy), xycoords="data",
-    #     arrowprops=Dict("arrowstyle"=>"-",
-    #         "linestyle"=>linestyle,
-    #         "linewidth"=>linewidth,
-    #         "color"=>color,
-    #         "facecolor"=>color),
-    #     annotation_clip=false)
+    # Draw phasor only if length of c is greater than zero, see
+    # https://github.com/christiankral/EE.jl/issues/1
+    if upstrip(c)>0
+        # Length of phasor
+        dr = sqrt((xend-xorigin)^2 + (yend-yorigin)^2)
+        # Real part of phasor
+        drx = (xend - xorigin)/dr # = real(c)./ref
+        # Imag part of phasor
+        dry = (yend - yorigin)/dr # = imag(c)./ref
+        # Angle of phasor
+        absangle = atan2(dry, drx)
+        # Orientation tangential to phasor (lagging by 90°)
+        # Real part of tangential component with respect to length
+        dtx = +dry
+        # Imag part of tangential component with respect to length
+        dty = -drx
+        # Real part of parallel shift of phasor
+        dpx = -par*dtx
+        # Imag part of parallel shift of phasor
+        dpy = -par*dty
+        # Origin of head
+        xoriginHead = xorigin + dr*drx*0.999
+        yoriginHead = yorigin + dr*dry*0.999
+        # Draw arrow shaft and head
+        # https://matplotlib.org/api/_as_gen/matplotlib.pyplot.annotate.html?highlight=annotate#matplotlib.pyplot.annotate
+        # Draw shaft separately: otherwise, the arrow contour will be drawn as in
+        # https://matplotlib.org/users/annotations.html#basic-annotation
+        # so that the back and forth paths overlap and the line style does not
+        # appear correctly; replace
+        plot([xorigin+dpx,xend+dpx], [yorigin+dpy,yend+dpy],
+            color=color, linestyle=linestyle, linewidth=linewidth, clip_on=false)
+        # Code based on plot replaces the previous implementation inspired by:
+        # https://stackoverflow.com/questions/51746400/linestyle-in-plot-and-annotate-are-not-equal-in-matplotlib
+        # Previous (obsolete) implementation:
+        # annotate("", xy=(xend+dpx,yend+dpy),
+        #     xytext=(xorigin+dpx,yorigin+dpy), xycoords="data",
+        #     arrowprops=Dict("arrowstyle"=>"-",
+        #         "linestyle"=>linestyle,
+        #         "linewidth"=>linewidth,
+        #         "color"=>color,
+        #         "facecolor"=>color),
+        #     annotation_clip=false)
 
-    # Draw arrow head without line style; this is a workaround explained in
-    # https://stackoverflow.com/questions/47180328/pyplot-dotted-line-with-fancyarrowpatch/47205418#47205418
-    annotate("", xy=(xend+dpx, yend+dpy),
-        xytext=(xoriginHead+dpx, yoriginHead+dpy), xycoords="data",
-        arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
-            "width"=>width, "linestyle"=>"-",
-            "headlength"=>headlength,
-            "headwidth"=>headwidth),
-        annotation_clip=false)
+        # Draw arrow head without line style; this is a workaround explained in
+        # https://stackoverflow.com/questions/47180328/pyplot-dotted-line-with-fancyarrowpatch/47205418#47205418
+        annotate("", xy=(xend+dpx, yend+dpy),
+            xytext=(xoriginHead+dpx, yoriginHead+dpy), xycoords="data",
+            arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
+                "width"=>width, "linestyle"=>"-",
+                "headlength"=>headlength,
+                "headwidth"=>headwidth),
+            annotation_clip=false)
 
-    # Plot label
-    if labelrelrot == false
-        # Without relative rotation of label
-        text(xorigin + dr*drx*labelrsep - dtx*labeltsep + dpx,
-            yorigin + dr*dry*labelrsep - dty*labeltsep + dpy,
-            label, ha=ha, va=va, rotation=labelrelangle*180/pi,
-            backgroundcolor=backgroundcolor)
-    else
-        # Applying relative rotation of label
-        text(xorigin + dr*drx*labelrsep - dtx*labeltsep + dpx,
-            yorigin + dr*dry*labelrsep - dty*labeltsep + dpy,
-            label, ha=ha, va=va, rotation=(absangle+labelrelangle)*180/pi,
-            backgroundcolor=backgroundcolor)
+        # Plot label
+        if labelrelrot == false
+            # Without relative rotation of label
+            text(xorigin + dr*drx*labelrsep - dtx*labeltsep + dpx,
+                yorigin + dr*dry*labelrsep - dty*labeltsep + dpy,
+                label, ha=ha, va=va, rotation=labelrelangle*180/pi,
+                backgroundcolor=backgroundcolor)
+        else
+            # Applying relative rotation of label
+            text(xorigin + dr*drx*labelrsep - dtx*labeltsep + dpx,
+                yorigin + dr*dry*labelrsep - dty*labeltsep + dpy,
+                label, ha=ha, va=va, rotation=(absangle+labelrelangle)*180/pi,
+                backgroundcolor=backgroundcolor)
+        end
     end
 end
 
