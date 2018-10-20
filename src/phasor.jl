@@ -188,7 +188,7 @@ function phasor(c;
 
     # Draw phasor only if length of c is greater than zero, see
     # https://github.com/christiankral/EE.jl/issues/1
-    if upstrip(c)>0
+    if upstrip(abs(c))>0
         # Length of phasor
         dr = sqrt((xend-xorigin)^2 + (yend-yorigin)^2)
         # Real part of phasor
