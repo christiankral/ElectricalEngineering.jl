@@ -89,10 +89,10 @@ function printuln(r...; label="")
         end
         @printf("%g %s", numre, numunit)
         if numim > 0
-            @printf(" + j %g %s\n", abs(numim), numunit)
+            @printf(" + j*%g %s\n", abs(numim), numunit)
             @printf("%16s = %g %s ∠ %g°\n","",numabs, numunit, numargdeg)
         elseif ustrip(imag(num)) < 0
-            @printf(" - j %g %s\n",abs(numim), numunit)
+            @printf(" - j*%g %s\n",abs(numim), numunit)
             @printf("%16s = %g %s ∠ %g°\n","",numabs, numunit, numargdeg)
         else
             @printf("\n")
