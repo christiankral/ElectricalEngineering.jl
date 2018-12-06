@@ -1,3 +1,4 @@
+__precompile__(true)
 export ∥
 
 doc"""

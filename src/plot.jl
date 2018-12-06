@@ -1,3 +1,4 @@
+__precompile__(true)
 export colorBlack1, colorBlack2, colorBlack3, colorBlack4, colorBlack5,
     lineStyle1, lineStyle2, lineStyle3, lineStyle4,
     lineWidth1, lineWidth2, lineWidth3, lineWidth4,
