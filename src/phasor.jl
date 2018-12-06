@@ -1,4 +1,4 @@
-export j, pol, phasor, phasorsine, angulardimension, phasordimension
+export j, pol, ∠, phasor, phasorsine, angulardimension, phasordimension
 
 doc"""
 `j = 1im` equals the imaginary unit
@@ -34,6 +34,32 @@ julia> U2 = pol(sqrt(2)*1V,45°)
 """
 function pol(r, phi)
   return r*cos(phi) + 1im*r*sin(phi)
+end
+
+doc"""
+# Function call
+
+`∠(phi)`
+
+# Description
+
+Creates a complex quantity with length 1 and angle `phi`
+
+# Variables
+
+`phi` Angle of complex quantity; if module Unitful is utilized, the angle may be
+specified in degrees, by using unit `°`
+
+# Examples
+
+```julia
+julia> using Unitful, Unitful.DefaultSymbols, EE
+julia> U1 = 2V*∠(90°)
+-0.0 + 2.0im V
+```
+"""
+function ∠(phi)
+  return cos(phi) + 1im*sin(phi)
 end
 
 doc"""
