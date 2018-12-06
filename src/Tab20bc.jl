@@ -1,4 +1,3 @@
-__precompile__(true)
 doc"""
 # EE.Tab20bc
 

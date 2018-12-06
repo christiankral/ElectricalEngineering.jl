@@ -1,4 +1,3 @@
-__precompile__(true)
 export printuln,usprint,save3fig
 
 doc"""

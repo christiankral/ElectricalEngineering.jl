@@ -1,4 +1,3 @@
-__precompile__(true)
 export j, pol, phasor, phasorsine, angulardimension, phasordimension
 
 doc"""
