@@ -33,7 +33,7 @@ const markerSize4 = 5
 
 const legendFontSize  =  10
 
-"""
+@doc raw"""
 # Function call
 
 ```
@@ -223,7 +223,7 @@ function removeaxes(ax=gca())
     ax[:set_axis_off]();
 end
 
-"""
+@doc raw"""
 # Function call
 
 ```

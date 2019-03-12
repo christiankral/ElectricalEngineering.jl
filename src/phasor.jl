@@ -62,7 +62,7 @@ function ∠(phi)
   return cos(phi) + 1im*sin(phi)
 end
 
-"""
+@doc raw"""
 # Function call
 
 ```
@@ -282,7 +282,7 @@ function phasor(c;
     end
 end
 
-"""
+@doc raw"""
 # Function call
 
 ```
@@ -524,7 +524,7 @@ function phasorsine(mag = 1,
     end
 end
 
-"""
+@doc raw"""
 # Function call
 
 ```
@@ -739,7 +739,7 @@ function angulardimension(r = 1,
 end
 
 
-"""
+@doc raw"""
 # Function call
 
 ```
