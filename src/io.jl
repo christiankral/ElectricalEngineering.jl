@@ -1,6 +1,6 @@
 export printuln,usprint,save3fig
 
-"""
+@doc raw"""
 # Function call
 
 `printuln(r...; label="")`

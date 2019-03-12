@@ -1,6 +1,6 @@
 export ∥
 
-"""
+@doc raw"""
 # Function call
 
 `∥(z...)`
