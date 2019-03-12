@@ -1,27 +1,25 @@
 # EE.jl
 
-This is a Julia package on electrical engineering (EE) based on [Unitful](docs/Unitful.md) and [PyPlot](https://github.com/JuliaPy/PyPlot.jl). To install these modules, apply `Pkg.add("Unitful")` and `Pkg.add("PyPlot")`
-In the EE.jl module the processing and calculation of real and complex quantities is supported. The module is tested with Julia 0.6.2 and 0.6.4.
+This is a Julia package on electrical engineering (EE) based on [Unitful](docs/Unitful.md) and [PyPlot](https://github.com/JuliaPy/PyPlot.jl). The package EE.jl is tested with Julia 1.1.0. To install the package, start Julia and hit `]` to switch to the package manager.
 
-The non-official package EE.jl can be installed by (has to be done only once):
+```julia-repl
+add Pyplot
+add Unitful
+add git://github.com/christiankral/EE.jl.git
+```
+In order to update to the actual version of GitHub in the package manager, use:
 
-```julia
-Pkg.clone("git://github.com/christiankral/EE.jl.git")
+```julia-repl
+update EE
 ```
 
-In order to update to the actual version of GitHub use:
-
-```julia
-Pkg.update("EE")
-```
+To switch back to the Julia REPL and to start working hit `Backspace`.
 
 The module EE.jl has to be loaded by `using EE`. In order to use all the features of EE.jl, modules Unitful and PyPlot have to be loaded as well. It is thus recommended to appy:
 
 ```julia
 using Unitful,Unitful.DefaultSymbols,PyPlot,EE
 ```
-
-**Note:**  After updating to a newer version of EE.jl, the module can be reloaded without exiting the session by applying `reload("EE")`.
 
 # Features
 
