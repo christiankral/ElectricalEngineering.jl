@@ -1,5 +1,9 @@
 # History.md
 
+## V0.2.2
+- Move test example to `examples` folder
+- Create test runs to check EE package
+
 ## V0.2.1
 - Switch to Julia 1.X package management system
 
