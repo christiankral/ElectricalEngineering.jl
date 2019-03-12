@@ -1,4 +1,4 @@
-doc"""
+"""
 # EE.Gray
 
 Defines colors based on the four base types of gray `colorBlack1`,

@@ -1,11 +1,11 @@
 export j, pol, ∠, phasor, phasorsine, angulardimension, phasordimension
 
-doc"""
+"""
 `j = 1im` equals the imaginary unit
 """
 const j=1im
 
-doc"""
+"""
 # Function call
 
 `pol(r, phi)`
@@ -36,7 +36,7 @@ function pol(r, phi)
   return r*cos(phi) + 1im*r*sin(phi)
 end
 
-doc"""
+"""
 # Function call
 
 `∠(phi)`
@@ -62,7 +62,7 @@ function ∠(phi)
   return cos(phi) + 1im*sin(phi)
 end
 
-doc"""
+"""
 # Function call
 
 ```
@@ -282,7 +282,7 @@ function phasor(c;
     end
 end
 
-doc"""
+"""
 # Function call
 
 ```
@@ -524,7 +524,7 @@ function phasorsine(mag = 1,
     end
 end
 
-doc"""
+"""
 # Function call
 
 ```
@@ -739,7 +739,7 @@ function angulardimension(r = 1,
 end
 
 
-doc"""
+"""
 # Function call
 
 ```

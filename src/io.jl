@@ -1,6 +1,6 @@
 export printuln,usprint,save3fig
 
-doc"""
+"""
 # Function call
 
 `printuln(r...; label="")`
@@ -101,7 +101,7 @@ function printuln(r...; label="")
 end
 
 
-doc"""
+"""
 # Function call
 
 `usprint(u,U)`
@@ -130,7 +130,7 @@ function usprint(u, U=unit(u))
     return @sprintf("%g%s", Float64(ustrip(q)), U)
 end
 
-doc"""
+"""
 # Function call
 
 `save3fig(fileName, subDir="."; dpi=300, tight=true, crop=false)`

@@ -33,7 +33,7 @@ const markerSize4 = 5
 
 const legendFontSize  =  10
 
-doc"""
+"""
 # Function call
 
 ```
@@ -206,7 +206,7 @@ function arrowaxes(fig=gcf(), ax=gca();
         ha="left",va=va, backgroundcolor=backgroundcolor)
 end
 
-doc"""
+"""
 # Function call
 
 `removeaxes(ax=gca())`
@@ -223,7 +223,7 @@ function removeaxes(ax=gca())
     ax[:set_axis_off]();
 end
 
-doc"""
+"""
 # Function call
 
 ```

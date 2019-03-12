@@ -1,6 +1,6 @@
 export upstrip
 
-doc"""
+"""
 # Function call
 
 `upstrip(u, U)`
