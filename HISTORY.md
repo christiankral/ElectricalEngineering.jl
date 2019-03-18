@@ -1,5 +1,8 @@
 # History.md
 
+## V0.2.4
+- Fix issue with obsolete function `linspace`
+
 ## V0.2.3
 - Fix issue with obsolete function `atan2`
 
