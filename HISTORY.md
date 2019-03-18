@@ -1,5 +1,8 @@
 # History.md
 
+## V0.2.6
+- Fix issue with vector length when adding scalar to vector
+
 ## V0.2.5
 - Fix issue with integer arguments of function `range`
 

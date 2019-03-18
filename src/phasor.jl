@@ -664,8 +664,8 @@ function angulardimension(r = 1,
     # Create vector of angles to draw arc
     phi = collect(range(phi1,stop=phi2,length=segs))
     # Arc coordinates
-    x = upstrip(r)*cos.(phi) + real(upstrip(origin))
-    y = upstrip(r)*sin.(phi) + imag(upstrip(origin))
+    x = upstrip(r)*cos.(phi) + fill(real(upstrip(origin)),length(phi))
+    y = upstrip(r)*sin.(phi) + fill(imag(upstrip(origin)),length(phi))
     # Draw arc
     plot(x,y,color=color,linewidth=linewidth,linestyle=linestyle)
 
