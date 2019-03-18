@@ -220,7 +220,7 @@ Removes the axis of the actual plot
 `ax` Axes handle; by default the axes handle of a actual figure is used
 """
 function removeaxes(ax=gca())
-    ax[:set_axis_off]();
+    setproperty!(ax,"set_axis_off",true)
 end
 
 @doc raw"""

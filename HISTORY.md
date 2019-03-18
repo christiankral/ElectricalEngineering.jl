@@ -1,5 +1,8 @@
 # History.md
 
+## V0.2.7
+- Fix issue with `setproperty!`
+
 ## V0.2.6
 - Fix issue with vector length when adding scalar to vector
 
