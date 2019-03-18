@@ -371,7 +371,7 @@ function lengthdimension(
     # y-difference of line
     dry = (y2 - y1)/dr
     # Angle of line
-    absangle = atan2(dry, drx)
+    absangle = atan(dry, drx)
     # Orientation tangential to phasor (lagging by 90°)
     # x-component of tangential component with repsect to length
     dtx = +dry

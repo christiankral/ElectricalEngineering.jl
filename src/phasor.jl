@@ -222,7 +222,7 @@ function phasor(c;
         # Imag part of phasor
         dry = (yend - yorigin)/dr # = imag(c)./ref
         # Angle of phasor
-        absangle = atan2(dry, drx)
+        absangle = atan(dry, drx)
         # Orientation tangential to phasor (lagging by 90°)
         # Real part of tangential component with respect to length
         dtx = +dry

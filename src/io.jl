@@ -109,7 +109,7 @@ end
 # Description
 
 Returns a string containing the number with six digits plus unit without space
-in betweem, such that the string output can be copied and pasted.
+in between, such that the string output can be copied and pasted.
 
 # Variables
 

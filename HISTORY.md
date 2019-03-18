@@ -1,5 +1,8 @@
 # History.md
 
+## V0.2.3
+- Fix issue with obsolete function `atan2`
+
 ## V0.2.2
 - Move test example to `examples` folder
 - Create test runs to check EE package
