@@ -660,7 +660,7 @@ function angulardimension(r = 1,
     # angle, if required
     sig = sign(phi2-phi1)
     # Number of segments based on every 2 degrees
-    segs = round((phi2-phi1)*180/pi/    2)*sig
+    segs = Int(round((phi2-phi1)*180/pi/    2)*sig)
     # Create vector of angles to draw arc
     phi = collect(range(phi1,stop=phi2,length=segs))
     # Arc coordinates

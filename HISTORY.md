@@ -1,5 +1,8 @@
 # History.md
 
+## V0.2.5
+- Fix issue with integer arguments of function `range`
+
 ## V0.2.4
 - Fix issue with obsolete function `linspace`
 
