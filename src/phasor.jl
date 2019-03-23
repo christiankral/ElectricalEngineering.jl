@@ -476,6 +476,8 @@ function phasorsine(mag = 1,
         end
         # Create arrows and labels of axes
         arrowaxes(xlabel=xlabel, ylabel=ylabel)
+        # Change vertical scaling of left subplot to match 
+        ax1.set_ylim(ax2.get_ylim())
     else
         # If additional phasor and sine wave diagram are added, further
         # y-axis ticks have to beee added; for this purpose, the existing (old)
