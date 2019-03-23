@@ -1,7 +1,7 @@
 name = "EE"
 uuid = "a99b1616-44a5-11e9-1e56-19b93feb4686"
 authors = ["Christian Kral <dr.christian.kral@gmail.com>"]
-version = "0.2.9"
+version = "0.3.0"
 
 [deps]
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"

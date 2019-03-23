@@ -1,5 +1,9 @@
 # History.md
 
+## V0.3.0 2019-03-23
+- Update limits of arrowaxes
+- Fix issue caused by upgrading to Julia 1.0
+
 ## V0.2.9 2019-03-23
 - Fix issues removeaxes not removing the axes entirely
 
