@@ -476,22 +476,22 @@ function phasorsine(mag = 1,
         end
         # Create arrows and labels of axes
         arrowaxes(xlabel=xlabel, ylabel=ylabel)
-        # Change vertical scaling of left subplot to match 
-        ax1.set_ylim(ax2.get_ylim())
     else
         # If additional phasor and sine wave diagram are added, further
         # y-axis ticks have to beee added; for this purpose, the existing (old)
         # ticks are stored
-        yticks_old = ax2[:get_yticks]()
+        yticks_old = ax2.get_yticks()
         # Store existing (old) labels
-        ytickslabel_old = ax2[:get_yticklabels]()
+        ytickslabel_old = ax2.get_yticklabels()
         # Extend old ticks and labels by addition ticks and labels
         if maglabel != ""
-            yticks(cat(1, yticks_old, [-mag,mag]),
-                cat(1, ytickslabel_old, [L"$-$"*maglabel,maglabel]),
+            yticks(cat(yticks_old, [-mag,mag],dims=1),
+                cat(ytickslabel_old, [L"$-$"*maglabel,maglabel],dims=1),
                     backgroundcolor=backgroundcolor)
         end
     end
+    # Change vertical scaling of left subplot to match
+    ax1.set_ylim(ax2.get_ylim())
 
     # Plot dashed lines, if showdashline = true
     if showdashline
