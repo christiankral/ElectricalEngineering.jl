@@ -121,8 +121,8 @@ xlim(0,5); ylim(0,3); arrowaxes(xlabel=L"$x$",ylabel=L"$y$")
 ```
 """
 function arrowaxes(fig=gcf(), ax=gca();
-    xmin=ax[:get_xlim]()[1], xmax=ax[:get_xlim]()[2],
-    ymin=ax[:get_ylim]()[1], ymax=ax[:get_ylim]()[2],
+    xmin=ax.get_xlim()[1], xmax=ax.get_xlim()[2],
+    ymin=ax.get_ylim()[1], ymax=ax.get_xlim()[2],
     xa=0, ya=0, xlabel="", ylabel="",
     xneg = false, yneg = false,
     color="black", backgroundcolor="none", axisoverhang = 0.18,
@@ -134,20 +134,21 @@ function arrowaxes(fig=gcf(), ax=gca();
     # https://stackoverflow.com/questions/33737736/matplotlib-axis-arrow-tip/44138298#44138298
 
     # Create enough space around the plot area of fit in arrows
-    fig[:subplots_adjust](left=left, right=right, top=top, bottom=bottom)
-    # Format axis
-    ax[:spines]["right"][:set_visible](false) # Disable right axis
-    ax[:spines]["top"][:set_visible](false) # Disable top axis
-    ax[:yaxis][:set_ticks_position]("left") # Only show vertical ticks on left
-    ax[:xaxis][:set_ticks_position]("bottom") # Only show horizontal ticks on bottom
-    # Set position of horizontal axis
-    ax[:spines]["bottom"][:set_position](("data",ya))
+    fig.subplots_adjust(left=left, right=right, top=top, bottom=bottom)
+    # fig[:subplots_adjust](left=left, right=right, top=top, bottom=bottom)
+    ax.spines["right"].set_visible(false)
+    ax.spines["top"].set_visible(false)
+    ax.yaxis.set_ticks_position("left") # Only show vertical ticks on left
+    ax.xaxis.set_ticks_position("bottom") # Only show horizontal ticks on bottom
+    # Set position of horizontal axis:
+    ax.spines["bottom"].set_position(("data",ya))
     # Remove horizontal axis, since it will be overwritten by arrow
-    ax[:spines]["bottom"][:set_color]("none")
+    # ax[:spines]["bottom"][:set_color]("none")
+    ax.spines["bottom"].set_color("none")
     # Set position of vertical axis
-    ax[:spines]["left"][:set_position](("data",xa))
+    ax.spines["left"].set_position(("data",xa))
     # Remove vertical axis since it will be overwritten by arrow
-    ax[:spines]["left"][:set_color]("none")
+    ax.spines["left"].set_color("none")
 
     # Axis limits
     (xMIN,xMAX) = ax[:get_xlim]() # Horizontal limits
@@ -156,10 +157,10 @@ function arrowaxes(fig=gcf(), ax=gca();
     dy = yMAX-yMIN # Difference of vertical limits
     # Get width and height of axes object to compute
     # matching arrowhead length and width
-    dps = fig[:dpi_scale_trans][:inverted]()
-    bbox = ax[:get_window_extent]()[:transformed](dps)
-    width = bbox[:width] # width of bbox
-    height = bbox[:height] # height of bbox
+    dps = fig.dpi_scale_trans.inverted()
+    bbox = ax.get_window_extent().transformed(dps)
+    width = bbox.width # width of bbox
+    height = bbox.height # height of bbox
     # Physical arrow dimensions
     hwx = headwidth*dy # Width of x-axis arrow head
     hlx = headlength*dx # Length of x-axis arrow length
