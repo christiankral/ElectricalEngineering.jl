@@ -1,5 +1,8 @@
 # History.md
 
+## V0.2.9 2019-03-23
+- Fix issues removeaxes not removing the axes entirely
+
 ## V0.2.8 2019-03-23
 - Fix issues with matplotlib calls
 

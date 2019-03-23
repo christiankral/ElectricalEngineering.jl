@@ -221,7 +221,14 @@ Removes the axis of the actual plot
 `ax` Axes handle; by default the axes handle of a actual figure is used
 """
 function removeaxes(ax=gca())
+    # 
     setproperty!(ax,"set_axis_off",true)
+    xticks([])
+    yticks([])
+    ax.spines["right"].set_visible(false)
+    ax.spines["top"].set_visible(false)
+    ax.spines["bottom"].set_visible(false)
+    ax.spines["left"].set_visible(false)
 end
 
 @doc raw"""
