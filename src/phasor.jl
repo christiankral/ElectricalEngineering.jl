@@ -443,10 +443,10 @@ function phasorsine(mag = 1,
     if !add
         xlim(-1.1,1.1)
         ylim(-1.1,1.1)
-        ax1[:spines]["left"][:set_visible](false)
-        ax1[:spines]["right"][:set_visible](false)
-        ax1[:spines]["bottom"][:set_visible](false)
-        ax1[:spines]["top"][:set_visible](false)
+        ax1.spines["left"].set_visible(false)
+        ax1.spines["right"].set_visible(false)
+        ax1.spines["bottom"].set_visible(false)
+        ax1.spines["top"].set_visible(false)
         # Remove ticks
         xticks([])
         yticks([])
@@ -456,7 +456,7 @@ function phasorsine(mag = 1,
     subplot(122)
     # Plot sine if selected by showsine = true
     if showsine
-        yphi = mag*sin.(psi+phi)
+        yphi = mag*sin.(psi.+phi)
         plot(psi*180/pi, yphi,
             color=color, linewidth=linewidth, linestyle=linestyle)
     end
@@ -495,32 +495,32 @@ function phasorsine(mag = 1,
     if showdashline
         # Dotted line from phasor arrow to begin of sine wave, split in two
         # parts, to avoid overlay effects if multiple dashed lines are drawn
-        con = matplotlib[:patches][:ConnectionPatch](
+        con = matplotlib.patches."ConnectionPatch"(
             xyB=(360, mag*sin(phi)), xyA=(0, mag*sin(phi)),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth4, linestyle=":", clip_on=false)
-        ax2[:add_artist](con)
-        con = matplotlib[:patches][:ConnectionPatch](
+        ax2.add_artist(con)
+        con = matplotlib.patches."ConnectionPatch"(
             xyA=(0, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax1, color=colorDash,
             linewidth=lineWidth4, linestyle=":", clip_on=false)
-        ax2[:add_artist](con)
+        ax2.add_artist(con)
         # Dotted line of y-axis of right diagram to maximum of sine wave
-        con = matplotlib[:patches][:ConnectionPatch](
+        con = matplotlib.patches."ConnectionPatch"(
             xyB=(mod(90-phi*180/pi,360), mag), xyA=(0, mag),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth4, linestyle=":", clip_on=false)
-        ax2[:add_artist](con)
+        ax2.add_artist(con)
         # Dotted line of y-axis of right diagram to minimum of sine wave
-        con = matplotlib[:patches][:ConnectionPatch](
+        con = matplotlib.patches."ConnectionPatch"(
             xyB=(mod(270-phi*180/pi, 360),-mag), xyA=(0, -mag),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth4, linestyle=":", clip_on=false)
-        ax2[:add_artist](con)
+            ax2.add_artist(con)
     end
 end
 
