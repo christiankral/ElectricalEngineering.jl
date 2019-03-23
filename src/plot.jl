@@ -125,7 +125,7 @@ function arrowaxes(fig=gcf(), ax=gca();
     ymin=ax.get_ylim()[1], ymax=ax.get_xlim()[2],
     xa=0, ya=0, xlabel="", ylabel="",
     xneg = false, yneg = false,
-    color="black", backgroundcolor="none", axisoverhang = 0.18,
+    color="black", backgroundcolor="none", axisoverhang = 0.1,
     linewidth = 0.6, headwidth = 5, headlength = 10, overhang = 0,
     labelsep = 0.05,
     left=0.2, right=0.85, bottom=0.20, top=0.85)
@@ -172,6 +172,9 @@ function arrowaxes(fig=gcf(), ax=gca();
     ybeg = yneg ? ymax : ymin
     yend = yneg ? ymin-axisoverhang*dy : ymax+axisoverhang*dy
 
+    # Set new limits
+    xlim(xbeg,xend)
+    ylim(ybeg,yend)
     # Horizontal arrow created by annotate instead of axis.arrow
     annotate("", xy=(xend, ya),
         xytext=(xbeg, ya), xycoords="data",
@@ -221,7 +224,7 @@ Removes the axis of the actual plot
 `ax` Axes handle; by default the axes handle of a actual figure is used
 """
 function removeaxes(ax=gca())
-    # 
+    #
     setproperty!(ax,"set_axis_off",true)
     xticks([])
     yticks([])
