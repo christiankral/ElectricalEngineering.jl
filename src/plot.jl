@@ -151,9 +151,9 @@ function arrowaxes(fig=gcf(), ax=gca();
     ax.spines["left"].set_color("none")
 
     # Axis limits
-    (xMIN,xMAX) = ax[:get_xlim]() # Horizontal limits
+    (xMIN,xMAX) = ax.get_xlim() # Horizontal limits
     dx = xMAX-xMIN # Difference of horizontal limits
-    (yMIN,yMAX) = ax[:get_ylim]() # Vertical limits
+    (yMIN,yMAX) = ax.get_ylim() # Vertical limits
     dy = yMAX-yMIN # Difference of vertical limits
     # Get width and height of axes object to compute
     # matching arrowhead length and width
@@ -199,11 +199,11 @@ function arrowaxes(fig=gcf(), ax=gca();
     # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
     # Horizontal label
     ha = xneg ? "left" : "right"
-    ax[:text](xend, ya+dy*labelsep, xlabel,
+    ax.text(xend, ya+dy*labelsep, xlabel,
         ha=ha, va="bottom", backgroundcolor=backgroundcolor)
     # Vertical label
     va = yneg ? "bottom" : "top"
-    ax[:text](xa+dx*labelsep, yend, ylabel,
+    ax.text(xa+dx*labelsep, yend, ylabel,
         ha="left",va=va, backgroundcolor=backgroundcolor)
 end
 
