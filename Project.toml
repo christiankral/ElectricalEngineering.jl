@@ -1,10 +1,10 @@
-name = "EE"
-uuid = "a99b1616-44a5-11e9-1e56-19b93feb4686"
+name = "ElectricalEngineering.jl"
+uuid = "ab11b94a-4edd-11e9-29d4-ab4fb969a4dc"
 authors = ["Christian Kral <dr.christian.kral@gmail.com>"]
-version = "0.3.0"
+version = "0.4.0"
 
 [deps]
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+Test = "c0618396-43ca-5712-a56f-e3a518bd78a3"
 Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
