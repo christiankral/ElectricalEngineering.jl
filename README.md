@@ -1,24 +1,24 @@
-# EE.jl
+# ElectricalEngineering.jl
 
-This is a Julia package on electrical engineering (EE) based on [Unitful](docs/Unitful.md) and [PyPlot](https://github.com/JuliaPy/PyPlot.jl). The package EE.jl is tested with Julia 1.1.0. To install the package, start Julia and hit `]` to switch to the package manager.
+This is a Julia package on electrical engineering based on [Unitful](docs/Unitful.md) and [PyPlot](https://github.com/JuliaPy/PyPlot.jl). The package ElectricalEngineering.jl is tested with Julia 1.1.0. To install the package, start Julia and hit `]` to switch to the package manager.
 
 ```julia-repl
 add Pyplot
 add Unitful
-add git://github.com/christiankral/EE.jl.git
+add git://github.com/christiankral/ElectricalEngineering.jl.git
 ```
 In order to update to the actual version of GitHub in the package manager, use:
 
 ```julia-repl
-update EE
+update ElectricalEngineering
 ```
 
 To switch back to the Julia REPL and to start working hit `Backspace`.
 
-The module EE.jl has to be loaded by `using EE`. In order to use all the features of EE.jl, modules Unitful and PyPlot have to be loaded as well. It is thus recommended to appy:
+The module ElectricalEngineering.jl has to be loaded by `using ElectricalEngineering`. In order to use all the features of ElectricalEngineering.jl, modules Unitful and PyPlot have to be loaded as well. It is thus recommended to appy:
 
 ```julia
-using Unitful,Unitful.DefaultSymbols,PyPlot,EE
+using Unitful, Unitful.DefaultSymbols, PyPlot, ElectricalEngineering
 ```
 
 # Features
@@ -37,18 +37,18 @@ julia> U2 = pol(sqrt(2) * 1V, 45°)
     - Plot publication ready phasor diagrams
     - LaTeX labeling with absolute or relative rotation of text
 
-![Phasor diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordiagram.png?raw=true) ![Circuit diagram](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/RLcircuit.png?raw=true)
+![Phasor diagram](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/phasordiagram.png?raw=true) ![Circuit diagram](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/RLcircuit.png?raw=true)
 - Function `phasorsine`
     - Plot phasor in the left subplot of a figure
     - Plot sine wave corresponding to the phasor in the right subplot
-![Phasor and sine wave](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasorsine.png?raw=true)
+![Phasor and sine wave](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/phasorsine.png?raw=true)
 - Function `angulardimension`
     - Draw arc to indicate angle between phasors
     - Chose between different arrow shapes
     - Create dimension of phasor
 - Function `phasordimension`
     - Create auxiliary lines and parallel shifted dimensions
-![Length dimension](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/phasordimension.png?raw=true)    
+![Length dimension](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/phasordimension.png?raw=true)    
 
 ## Circuits and Physics
 
@@ -87,11 +87,11 @@ julia> printuln("U1", U1, V, label="(a)")
     ## Plotting
 
 - Assign two different color schemes (may be loaded alternatively)
-    - Color scheme `EE.Tab20bc` based on https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf
+    - Color scheme `ElectricalEngineering.Tab20bc` based on https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf
 
-    - Gray scale scheme `EE.Gray` based on four gray shades
+    - Gray scale scheme `ElectricalEngineering.Gray` based on four gray shades
      `colorBlack1`, `colorBlack2`, `colorBlack3`, `colorBlack4`
-![Curves](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/curves.png?raw=true)
+![Curves](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/curves.png?raw=true)
 - Additional light background color `colorBlack5`
 - Different line and marker types
     - `lineStyle1`, `lineStyle2`, `lineStyle3`,` lineStyle4`
@@ -99,15 +99,15 @@ julia> printuln("U1", U1, V, label="(a)")
     - `marker1`, `marker2` ,`marker3`, `marker4`
     - `markerSize1`, `markerSize2` ,`markerSize3` ,`markerSize4`
     - `legendFontSize`
-    - Type `?EE.Gray` or `?EE.Tab20bc` to see application examples
-- Assign color schemes to quantities, using either `using EE.Gray` of gray scale graphics or `using EE.Tab20bc`
+    - Type `?ElectricalEngineering.Gray` or `?ElectricalEngineering.Tab20bc` to see application examples
+- Assign color schemes to quantities, using either `using ElectricalEngineering.Gray` of gray scale graphics or `using ElectricalEngineering.Tab20bc`
 - Function `removeaxes`
     - Removes the axes of the active plot
 - Function `arrowaxes`
     - Plot graphs with arrowed axes
     - Add plot labels
-![Curves](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/arrowaxes.png?raw=true)    
+![Curves](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/arrowaxes.png?raw=true)    
 - Function `lengthdimension`
     - Create length dimension with arrows
     - Create auxiliary lines and parallel shifted dimensions
-![Length dimension](https://raw.githubusercontent.com/christiankral/EE.jl/master/resources/lengthdimension.png?raw=true)    
+![Length dimension](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/lengthdimension.png?raw=true)    
