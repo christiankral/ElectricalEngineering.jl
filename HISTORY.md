@@ -1,5 +1,11 @@
 # History.md
 
+## v0.4.1 2019-03-25
+- Change UUID from
+  ab11b94a-4edd-11e9-29d4-ab4fb969a4dc to
+  84e62fa8-74a0-5990-9214-c45bd74ae4d7
+  according to https://travis-ci.org/JuliaLang/METADATA.jl/jobs/510870012
+
 ## v0.4.0 2019-03-25
 - Renamed package from EE.jl to ElectricalEngineering.jl accoriding to
   https://github.com/JuliaLang/METADATA.jl/pull/22394

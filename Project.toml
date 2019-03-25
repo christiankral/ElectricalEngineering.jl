@@ -1,7 +1,7 @@
 name = "ElectricalEngineering.jl"
-uuid = "ab11b94a-4edd-11e9-29d4-ab4fb969a4dc"
+uuid = "84e62fa8-74a0-5990-9214-c45bd74ae4d7"
 authors = ["Christian Kral <dr.christian.kral@gmail.com>"]
-version = "0.4.0"
+version = "0.4.1"
 
 [deps]
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
