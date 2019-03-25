@@ -25,7 +25,7 @@ specified in degrees, by using unit `°`
 # Examples
 
 ```julia
-julia> using Unitful, Unitful.DefaultSymbols, EE
+julia> using Unitful, Unitful.DefaultSymbols, ElectricalEngineering
 julia> U1 = pol(2V,pi)
 -2 + 0im V
 julia> U2 = pol(sqrt(2)*1V,45°)
@@ -53,7 +53,7 @@ specified in degrees, by using unit `°`
 # Examples
 
 ```julia
-julia> using Unitful, Unitful.DefaultSymbols, EE
+julia> using Unitful, Unitful.DefaultSymbols, ElectricalEngineering
 julia> U1 = 2V*∠(90°)
 -0.0 + 2.0im V
 ```
@@ -151,7 +151,7 @@ background color "white" can be used; default value = "none"
 Copy and paste code:
 
 ```julia
-using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+using Unitful, Unitful.DefaultSymbols, PyPlot, ElectricalEngineering
 figure(figsize=(3.3, 2.5))
 rc("text", usetex=true); rc("font", family="serif")
 V1 = 100V + j*0V # Voltage
@@ -209,11 +209,11 @@ function phasor(c;
         xend = uconvert(Unitful.NoUnits, real(origin+c)./ref)
         yend = uconvert(Unitful.NoUnits, imag(origin+c)./ref)
     catch err
-        error("module EE: function phasor: Dimension mismatch of arguments `c`, `origin` and `ref`\n    The arguments `c`, `origin` and `ref` must have the same dimension (koherent SI unit)")
+        error("module ElectricalEngineering: function phasor: Dimension mismatch of arguments `c`, `origin` and `ref`\n    The arguments `c`, `origin` and `ref` must have the same dimension (koherent SI unit)")
     end
 
     # Draw phasor only if length of c is greater than zero, see
-    # https://github.com/christiankral/EE.jl/issues/1
+    # https://github.com/christiankral/ElectricalEngineering.jl/issues/1
     if upstrip(abs(c))>0
         # Length of phasor
         dr = sqrt((xend-xorigin)^2 + (yend-yorigin)^2)
@@ -381,7 +381,7 @@ lines between the left and right subplot; default value = colorBlack4
 Copy and paste code:
 
 ```julia
-using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+using Unitful, Unitful.DefaultSymbols, PyPlot, ElectricalEngineering
 rc("text", usetex=true); rc("font", family="serif")
 phasorsine(1, 45°, ylabel=L"$u,i$", maglabel=L"$\hat{U}$", labelrsep=0.3,
     color="gray", linestyle="--")
@@ -610,7 +610,7 @@ strings are:
 Copy and paste code:
 
 ```julia
-using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+using Unitful, Unitful.DefaultSymbols, PyPlot, ElectricalEngineering
 figure(figsize=(3.3, 2.5))
 rc("text", usetex=true); rc("font", family="serif")
 V1 = 100V + j*0V # Voltage
@@ -843,7 +843,7 @@ overhang `paroverhang`; default value = 0.02
 Copy and paste the following code:
 
 ```julia
-using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+using Unitful, Unitful.DefaultSymbols, PyPlot, ElectricalEngineering
 figure(figsize=(3.3, 2.5))
 rc("text", usetex=true); rc("font", family="serif")
 Z1 = pol(1,30°)

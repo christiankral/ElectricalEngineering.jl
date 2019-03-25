@@ -1,9 +1,9 @@
 """
-# EE.Tab20bc
+# ElectricalEngineering.Tab20bc
 
 Defines colors based on
 https://matplotlib.org/users/plotting/colormaps/grayscale_01_04.pdf. As an
-alternative `EE.Gray` can be used instead of `EE.Tab20bc` in order to create a
+alternative `ElectricalEngineering.Gray` can be used instead of `ElectricalEngineering.Tab20bc` in order to create a
 gray scale plot instead of a color plot.
 
 # Colors
@@ -25,7 +25,7 @@ The following colors are defined:
 Copy and paste code:
 
 ```julia
-using PyPlot,EE,EE.Tab20bc
+using PyPlot,ElectricalEngineering,ElectricalEngineering.Tab20bc
 x=collect(0:0.01:1);
 figure(figsize=(3.3,2.5))
 plot(x,x,color=colorRed1,linestyle=lineStyle1,linewidth=lineWidth1,
@@ -42,11 +42,11 @@ legend(loc="upper left",fontsize=legendFontSize)
 
 # See also
 
-`EE.Gray`
+`ElectricalEngineering.Gray`
 
 """
 module Tab20bc
-  using EE
+  using ElectricalEngineering
 
     export colorBrown1,colorBrown2,colorBrown3,colorBrown4,
         colorBlue1,colorBlue2,colorBlue3,colorBlue4,

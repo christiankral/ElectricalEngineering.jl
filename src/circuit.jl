@@ -23,7 +23,7 @@ with arguments to avoid miscalculations
 # Examples
 
 ```julia
-julia> using Unitful,Unitful.DefaultSymbols,EE
+julia> using Unitful,Unitful.DefaultSymbols,ElectricalEngineering
 julia> ∥(4,6)
 2.4
 julia> ∥(4Ω,6Ω)

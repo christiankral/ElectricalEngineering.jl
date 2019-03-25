@@ -1,10 +1,10 @@
 """
-# EE.Gray
+# ElectricalEngineering.Gray
 
 Defines colors based on the four base types of gray `colorBlack1`,
 `colorBlack2`, `colorBlack3` and `colorBlack4`. So independent of the picked
 color everything will always appear in gray scale. This way a gray scale and a
-color plot can alternatively be created. So either `EE.Gray` or `EE.Tab20bc` can
+color plot can alternatively be created. So either `ElectricalEngineering.Gray` or `ElectricalEngineering.Tab20bc` can
 be loaded (at a time) and be used.
 
 # Colors
@@ -27,7 +27,7 @@ The following colors are substitued by `colorBlack1`,
 Copy and paste code:
 
 ```julia
-using PyPlot,EE,EE.Gray
+using PyPlot,ElectricalEngineering,ElectricalEngineering.Gray
 x=collect(0:0.01:1);
 figure(figsize=(3.3,2.5))
 plot(x,x,color=colorRed1,linestyle=lineStyle1,linewidth=lineWidth1,
@@ -44,11 +44,11 @@ legend(loc="upper left",fontsize=legendFontSize)
 
 # See also
 
-`EE.Tab20bc`
+`ElectricalEngineering.Tab20bc`
 
 """
 module Gray
-    using EE
+    using ElectricalEngineering
     export colorBrown1,colorBrown2,colorBrown3,colorBrown4,
         colorBlue1,colorBlue2,colorBlue3,colorBlue4,
         colorRed1,colorRed2,colorRed3,colorRed4,

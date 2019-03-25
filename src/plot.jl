@@ -111,7 +111,7 @@ default value = 0.05 (5% of plot width)
 Copy and paste the following code:
 
 ```julia
-using Unitful,Unitful.DefaultSymbols,EE,PyPlot
+using Unitful,Unitful.DefaultSymbols,ElectricalEngineering,PyPlot
 figure(figsize=(3.3, 2.5))
 rc("text", usetex=true); rc("font", family="serif")
 x=collect(0.0:0.1:5.0); y=exp.(sin.(x));
@@ -333,7 +333,7 @@ overhang `paroverhang`; default value = 0.02
 Copy and paste code:
 
 ```julia
-using Unitful, Unitful.DefaultSymbols, PyPlot, EE
+using Unitful, Unitful.DefaultSymbols, PyPlot, ElectricalEngineering
 figure(figsize=(3.3, 2.5))
 rc("text", usetex=true); rc("font", family="serif")
 t1=0.2;t2=0.3;ymax=1

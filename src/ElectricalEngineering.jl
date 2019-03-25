@@ -1,7 +1,7 @@
 __precompile__(true)
-module EE
+module ElectricalEngineering
 
-    # Implementation of EE is based on
+    # Implementation of ElectricalEngineering is based on
     # - PyPlot              Plotting phasors
     # - Unitful             Handling of quantity units
     using PyPlot, Unitful, Printf
@@ -14,7 +14,7 @@ module EE
     # Complex phasor calculation and plotting
     include("phasor.jl")
 
-    # Calculations in EE circuits
+    # Calculations in ElectricalEngineering circuits
     include("circuit.jl")
 
     # Input and output functions to print phasors, figures, etc.
