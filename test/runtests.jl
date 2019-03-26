@@ -1,5 +1,5 @@
 # test/runtests.jl
-using EE, Unitful, PyPlot, Test
+using EE, Unitful, PyPlot, Compat.Test
 
 function tests()
   @testset "Subset of tests" begin
