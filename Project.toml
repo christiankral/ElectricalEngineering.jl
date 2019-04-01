@@ -1,7 +1,7 @@
 name = "ElectricalEngineering"
 uuid = "84e62fa8-74a0-5990-9214-c45bd74ae4d7"
 authors = ["Christian Kral <dr.christian.kral@gmail.com>"]
-version = "0.4.3"
+version = "0.4.4"
 
 [deps]
 Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
