@@ -3,11 +3,9 @@
 This is a Julia package on electrical engineering based on [Unitful](docs/Unitful.md) and [PyPlot](https://github.com/JuliaPy/PyPlot.jl). The package ElectricalEngineering.jl is tested with Julia 1.1.0. To install the package, start Julia and hit `]` to switch to the package manager.
 
 ```julia-repl
-add Pyplot
-add Unitful
-add git://github.com/christiankral/ElectricalEngineering.jl.git
+add Pyplot Unitful ElectricalEngineering
 ```
-In order to update to the actual version of GitHub in the package manager, use:
+In order to update to the actual version of GitHub in the package manager, hit `]` and apply:
 
 ```julia-repl
 update ElectricalEngineering
