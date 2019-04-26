@@ -42,7 +42,7 @@ julia> ∥(4Ω,6Ω,2.4Ω)
 Type `\Omega` and hit the `tab` key to autocomplete the parallel symbol Ω
 """
 function ∥(z...)
-    ypar = 0/unit(z[1])
+    ypar = 0.0/unit(z[1])
     for k=1:length(z)
         ypar = ypar + 1/z[k]
     end
