@@ -10,4 +10,4 @@ PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
 Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 
 [compat]
-julia = "1"
+julia = "≥ 1.0.0"
