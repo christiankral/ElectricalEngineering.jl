@@ -78,7 +78,7 @@ phasor(c;origin=0.0+0.0im, ref=1, par=0,
 This function draws a phasor from a starting point `origin` and end point
 `origin`+`c`. The phasor consists of a shaft and an arrow head.
 
-Each phasor c is plotted as a relative quantity, i.e., `c/ref` is actually
+Each phasor `c` is plotted as a relative quantity, i.e., `c/ref` is actually
 shown the plot figure. This concept of plotting a per unit phasor is used to
 be able to plot phasor with different quantities, e.g., voltage and current
 phasors. It is important that the variables `c`, `origin` and `ref` have the
