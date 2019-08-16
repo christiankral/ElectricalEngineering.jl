@@ -53,7 +53,8 @@ ElectricalEngineering.jl is tested with Julia 1.
 ## Complex Circuit Calculations
 
 - `∥` Calculates the parallel connection of impedances. Optionally, the
-calculation can be performed using units from the module Unitful.
+  calculation can be performed using units from the module Unitful.
+
 
 ## Input and Output
 
