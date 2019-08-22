@@ -176,9 +176,10 @@ end
 
 function mmf_plot(mmf; index = collect(1:size(mmf,1)),
     color = [colorOrange1, colorGreen2, colorDarkPurple3, colorBlack1],
-    plotsum = false, label = ["1", "2", "3", L"$\Sigma$"],
-    linestyle=["-","--",":"],
-    linewidth=[3, 2.5, 2, 1.5])
+    showsum = false, label = ["1", "2", "3", L"$\Sigma$"],
+    showlegend = true, loc = "best",
+    linestyle=[lineStyle1,lineStyle2,lineStyle3,lineStyle4],
+    linewidth=[lineWidth1,lineWidth2,lineWidth3,lineWidth4])
 
     # Number of phases
     m = size(mmf,1)
@@ -192,7 +193,7 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
             color = color[k], linestyle = linestyle[k],
             linewidth = linewidth[k], label = label[k]);
     end
-    if plotsum
+    if showsum
         # Determine sum of all MMF curves
         mmfsum = mmf_sum(mmf)
         # Determine the maximum
@@ -215,20 +216,22 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
     Nyt = size(yt,1)
     yticks(yt,fill("",Nyt))
     grid(true)
+    legend(loc=loc,fontsize=legendFontSize);
 end
 
 function winding_mmf_plot(w, i; r = 0.2,
     color = [colorOrange1, colorGreen2, colorDarkPurple3, colorBlack1],
     slot = 1, yoke = 1, fillcolor = colorGray4,
-    plotsum = false, label = ["1", "2", "3", L"$\Sigma$"],
-    linestyle=["-","--",":"],
-    linewidth=[3, 2.5, 2, 1.5],
+    showsum = false, label = ["1", "2", "3", L"$\Sigma$"],
+    linestyle=[lineStyle1,lineStyle2,lineStyle3,lineStyle4],
+    linewidth=[lineWidth1,lineWidth2,lineWidth3,lineWidth4],
+    showlegend = true, loc = "best",
     index = collect(1:size(winding_mmf(w,i),1)))
 
     # Plot winding layout
     subplot2grid((3, 1), (0, 0))
     winding_plot(w, r = 0.2,
-        color = [colorOrange1, colorGreen2, colorDarkPurple3],
+        color = color,
         slot = slot, yoke = yoke, fillcolor = fillcolor)
     # Determine exact extension of plot area
     ax = axis()
@@ -238,9 +241,10 @@ function winding_mmf_plot(w, i; r = 0.2,
     mmf = winding_mmf(w,i)
     mmf_plot(mmf, index = collect(1:size(mmf,1)),
         color = color,
-        plotsum = plotsum, label = label,
+        showsum = showsum, label = label,
         linestyle = linestyle,
-        linewidth = linewidth)
+        linewidth = linewidth,
+        showlegend = showlegend, loc = loc)
     xlim(ax[1],ax[2])
     tight_layout()
 end
