@@ -75,6 +75,10 @@ function winding_plot(w; r = 0.2,
     xticks(collect(1:Ns),fill("",Ns))
     # Do not use vertical ticks
     yticks([])
+    # gca().spines["left"].set_visible(false)
+    # gca().spines["top"].set_visible(false)
+    # gca().spines["right"].set_visible(false)
+    # gca().spines["bottom"].set_visible(false)
 end
 
 function count_coils(w; positive = true)
