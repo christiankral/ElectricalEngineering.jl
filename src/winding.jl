@@ -197,18 +197,22 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
             color = color[k], linestyle = linestyle[k],
             linewidth = linewidth[k], label = label[k]);
     end
+    # Local maximum and minimum of the largest phase MMF
+    mmf1_max = maximum(maximum(mmf,dims=2))
+    mmf1_min = minimum(minimum(mmf,dims=2))
+
     if showsum
         # Determine sum of all MMF curves
         mmfsum = mmf_sum(mmf)
-        # Determine the maximum
+        # Determine the maximum of the total MMF
         mmf_max = max(maximum(maximum(mmf,dims=2)),maximum(mmfsum))
         mmf_min = min(minimum(minimum(mmf,dims=2)),minimum(mmfsum))
         step([0.5; slots; Ns + 0.5], [mmfsum[end]; mmfsum[end]; mmfsum'],
             linewidth = linewidth[m+1], color = color[m+1] ,
             label = label[m+1])
     else
-        mmf_max = maximum(maximum(mmf,dims=2))
-        mmf_min = minimum(minimum(mmf,dims=2))
+        mmf_max = mmf1_max
+        mmf_min = mmf1_min
     end
     # Limit horizontal range
     xlim(0,Ns+1)
