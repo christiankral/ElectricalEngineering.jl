@@ -248,3 +248,14 @@ function winding_mmf_plot(w, i; r = 0.2,
     xlim(ax[1],ax[2])
     tight_layout()
 end
+
+function slot_label(Ns; start = 1, inc = 1)
+    xtick_label = fill("", Ns)
+    for k in start:Ns
+        if mod(k + start - 2, inc) == 0
+            xtick_label[k] = string(k)
+            println(k)
+        end
+    end
+    xticks(collect(1:Ns), xtick_label)
+end
