@@ -232,7 +232,7 @@ function winding_mmf_plot(w, i; r = 0.2,
     slot = 1, yoke = 1, fillcolor = "#D9D9D9",
     showsum = true, label = ["1", "2", "3", L"$\Sigma$"],
     linestyle=[lineStyle1,lineStyle3,lineStyle2,lineStyle4],
-    linewidth=[lineWidth1,lineWidth2,lineWidth3,lineWidth4],
+    linewidth=[lineWidth1,lineWidth3,lineWidth2,lineWidth4],
     showlegend = true, loc = "best",
     index = collect(1:size(winding_mmf(w,i),1)))
 

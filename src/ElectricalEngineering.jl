@@ -93,8 +93,9 @@ module ElectricalEngineering
     # Calculations in ElectricalEngineering circuits
     include("circuit.jl")
 
-    # Winding calculations and plot routines
+    # Winding calculations and winding plot routines
     include("winding.jl")
+
     # Input and output functions to print phasors, figures, etc.
     include("io.jl")
 
