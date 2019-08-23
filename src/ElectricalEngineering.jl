@@ -79,7 +79,8 @@ module ElectricalEngineering
     # Implementation of ElectricalEngineering is based on
     # - PyPlot              Plotting phasors
     # - Unitful             Handling of quantity units
-    using PyPlot, Unitful, Printf
+    using Printf, Base, Statistics, PyPlot, Unitful
+
 
     # Default colors for plotting (with PyPlot)
     include("plot.jl")
@@ -92,6 +93,8 @@ module ElectricalEngineering
     # Calculations in ElectricalEngineering circuits
     include("circuit.jl")
 
+    # Winding calculations and plot routines
+    include("winding.jl")
     # Input and output functions to print phasors, figures, etc.
     include("io.jl")
 

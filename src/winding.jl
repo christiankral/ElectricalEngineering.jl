@@ -1,6 +1,5 @@
-using ElectricalEngineering.Tab20bc
-using Base
-using Statistics
+export arrow_out, arrow_in, arrow_in_out, winding_plot,
+    count_coils, winding_mmf, mmf_sum, mmf_plot, winding_mmf_plot, slot_label
 
 function arrow_out(x, y; r = 0.2, color = "black", linewidth = 1, ri = 0.05)
     phi = collect(0:pi/36:2*pi)
@@ -39,8 +38,8 @@ function arrow_in_out(x, y; mag = 1, r = 0.2, color = "black", linewidth = 1,
 end
 
 function winding_plot(w; r = 0.2,
-    color = [colorOrange1, colorGreen2, colorDarkPurple3],
-    slot = 1, yoke = 1, fillcolor = colorGray4)
+    color = ["#E6550D", "#8CA252", "#6B6ECF"],
+    slot = 1, yoke = 1, fillcolor = "#D9D9D9")
     # Determine the number of layers per slot
     Nl = size(w,1)
     Ns = size(w,2)
@@ -179,11 +178,11 @@ function mmf_sum(mmf)
 end
 
 function mmf_plot(mmf; index = collect(1:size(mmf,1)),
-    color = [colorOrange1, colorGreen2, colorDarkPurple3, colorBlack1],
+    color = ["#E6550D", "#8CA252", "#6B6ECF", "black"],
     showsum = true, label = ["1", "2", "3", L"$\Sigma$"],
     showlegend = true, loc = "best",
     linestyle=[lineStyle1,lineStyle2,lineStyle3,lineStyle4],
-    linewidth=[lineWidth1,lineWidth2,lineWidth3,lineWidth4])
+    linewidth=[lineWidth1,lineWidth3,lineWidth2,lineWidth4])
 
     # Number of phases
     m = size(mmf,1)
@@ -219,6 +218,7 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
     # Add tickst at the slot locations
     xticks(collect(1:Ns),fill("",Ns))
     # Do not use vertical ticks
+
     yt = collect(mmf_min:0.5:mmf_max)
     ylim(mmf_min-0.2,mmf_max+0.2)
     Nyt = size(yt,1)
@@ -228,10 +228,10 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
 end
 
 function winding_mmf_plot(w, i; r = 0.2,
-    color = [colorOrange1, colorGreen2, colorDarkPurple3, colorBlack1],
-    slot = 1, yoke = 1, fillcolor = colorGray4,
+    color = ["#E6550D", "#8CA252", "#6B6ECF", "black"],
+    slot = 1, yoke = 1, fillcolor = "#D9D9D9",
     showsum = true, label = ["1", "2", "3", L"$\Sigma$"],
-    linestyle=[lineStyle1,lineStyle2,lineStyle3,lineStyle4],
+    linestyle=[lineStyle1,lineStyle3,lineStyle2,lineStyle4],
     linewidth=[lineWidth1,lineWidth2,lineWidth3,lineWidth4],
     showlegend = true, loc = "best",
     index = collect(1:size(winding_mmf(w,i),1)))
