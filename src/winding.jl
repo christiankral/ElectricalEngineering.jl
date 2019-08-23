@@ -262,7 +262,6 @@ function slot_label(Ns; start = 1, inc = 1)
     for k in start:Ns
         if mod(k + start - 2, inc) == 0
             xtick_label[k] = string(k)
-            println(k)
         end
     end
     xticks(collect(1:Ns), xtick_label)
