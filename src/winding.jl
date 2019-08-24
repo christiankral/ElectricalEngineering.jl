@@ -207,7 +207,7 @@ function mmf_label(mmf1_max = 0; mmf_max = 0, inc = 0.5, showmmf = true)
     # Add MMF labels only if showmmf = true
     if showmmf
         # Add ±mmf1_max if not zero
-        if mmf1_max != 0
+        if mmf1_max != 0 && mmf1_max != mmf_max
             ticks = vcat(ticks,[-mmf1_max],[+mmf1_max])
             ticks_label = vcat(ticks_label,
                 [L"$-\hat V_{m,1}$"],[L"$+\hat V_{m,1}$"])
@@ -305,7 +305,10 @@ function winding_mmf_plot(w, i; r = 0.2,
     if showslot
         slot_label(size(mmf,2), start = start, inc = inc)
     end
+    # Re-adjust by doing everything twice
     mmf_label(mmf1_max, mmf_max = mmf_max, showmmf = showmmf)
+    tight_layout()
+    xlim(ax.axis()[1],ax.axis()[2])
     tight_layout()
     xlim(ax.axis()[1],ax.axis()[2])
 end
