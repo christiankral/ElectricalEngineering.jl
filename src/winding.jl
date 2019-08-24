@@ -156,7 +156,12 @@ function winding_mmf(w, i)
     wp = zeros(m, Ns);
     for l = 1:Nl
         for k = 1:Ns
-            wp[abs(w[l, k]),k] += sign(w[l, k]);
+            phase = abs(w[l, k])
+            orientation = sign(w[l, k])
+            # Do not consider invalid phase indices
+            if phase > 0
+                wp[phase, k] += orientation
+            end
         end
     end
     # Initialize mmf
