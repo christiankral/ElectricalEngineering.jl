@@ -153,7 +153,7 @@ function winding_mmf(w, i)
     m = size(coils,1)
 
     # Create relative MMF curves
-    wp = zeros(3,Ns);
+    wp = zeros(m, Ns);
     for l = 1:Nl
         for k = 1:Ns
             wp[abs(w[l, k]),k] += sign(w[l, k]);
@@ -168,7 +168,7 @@ function winding_mmf(w, i)
         mmf[k,:] = mmf[k,:] .- Statistics.mean(mmf[k,:]);
     end
     # Scale with I and N
-    for k = 1:3
+    for k = 1:m
         mmf[k,:] = mmf[k,:] * i[k];
     end
     return mmf
