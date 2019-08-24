@@ -255,7 +255,7 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
         step([0.5; slots; Ns + 0.5], [mmfsum[end]; mmfsum[end]; mmfsum'],
             linewidth = linewidth[m+1], color = color[m+1] ,
             label = label[m+1])
-    else 
+    else
         mmf_max = mmf1_max
         mmf_min = mmf1_min
     end
