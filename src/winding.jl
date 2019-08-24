@@ -178,13 +178,13 @@ function mmf_sum(mmf)
 end
 
 function slot_label(Ns; start = 1, inc = 1)
-    xtick_label = fill("", Ns)
+    ticks_label = fill("", Ns)
     for k in start:Ns
         if mod(k + start - 2, inc) == 0
-            xtick_label[k] = string(k)
+            ticks_label[k] = string(k)
         end
     end
-    xticks(collect(1:Ns), xtick_label)
+    xticks(collect(1:Ns), ticks_label)
 end
 
 function mmf_plot(mmf; index = collect(1:size(mmf,1)),
