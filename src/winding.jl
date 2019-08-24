@@ -258,8 +258,6 @@ function winding_mmf_plot(w, i; r = 0.2,
     # Plot MMF
     subplot2grid((3, 1), (1, 0), rowspan = 2)
     mmf = winding_mmf(w,i)
-    # Numeber of slots
-    Ns = size(mmf,2)
     # Plot MMF distribution
     mmf_plot(mmf, index = collect(1:size(mmf,1)),
         color = color,
@@ -270,6 +268,6 @@ function winding_mmf_plot(w, i; r = 0.2,
     xlim(ax[1],ax[2])
     tight_layout()
     if showslot
-        slot_label(Ns, start = start, inc = inc)
+        slot_label(size(mmf,2), start = start, inc = inc)
     end
 end
