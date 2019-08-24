@@ -290,6 +290,7 @@ function winding_mmf_plot(w, i; r = 0.2,
     showslot = true, start = 1, inc = 1, showmmf = true)
 
     # Plot winding layout
+    # https://matplotlib.org/3.1.1/tutorials/intermediate/tight_layout_guide.html#sphx-glr-tutorials-intermediate-tight-layout-guide-py
     subplot2grid((3, 1), (0, 0))
     winding_plot(w, r = 0.2,
         color = color,
