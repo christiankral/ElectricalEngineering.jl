@@ -187,6 +187,42 @@ function slot_label(Ns; start = 1, inc = 1)
     xticks(collect(1:Ns), ticks_label)
 end
 
+function mmf_label(mmf1_max = 0; mmf_max = 0, inc = 0.5)
+
+    # if mmf_max = 0, select mmf1_max as tick limit
+    if mmf_max == 0
+        mmf_limit = mmf1_max
+    else
+        mmf_limit = mmf_max
+    end
+
+    # Create vector of positive ticks
+    ticks_pos = collect(+inc:+inc:+mmf_limit)
+    # Create vector of negative ticks
+    ticks_neg = collect(-mmf_limit:+inc:-inc)
+    # Create zero tick
+    ticks_zer = [0]
+    # Concatenate ticks
+    ticks = vcat(ticks_neg,ticks_zer,ticks_pos)
+    # Add only zero as label
+    ticks_label = vcat(fill("",length(ticks_neg)),
+        L"$0$", fill("",length(ticks_pos)))
+    # Add ±mmf1_max if not zero
+    if mmf1_max != 0
+        ticks = vcat(ticks,[-mmf1_max],[+mmf1_max])
+        ticks_label = vcat(ticks_label,
+            [L"$-\hat V_{m,1}$"],[L"$+\hat V_{m,1}$"])
+    end
+    # Add ±mmf_max if not zero
+    if mmf_max != 0
+        ticks = vcat(ticks,[-mmf_max],[+mmf_max])
+        ticks_label = vcat(ticks_label,
+            [L"$-\hat V_{m}$"],[L"$+\hat V_{m}$"])
+    end
+    # Plot ticks
+    yticks(ticks, ticks_label)
+end
+
 function mmf_plot(mmf; index = collect(1:size(mmf,1)),
     color = ["#E6550D", "#8CA252", "#6B6ECF", "black"],
     showsum = true, label = ["1", "2", "3", L"$\Sigma$"],
