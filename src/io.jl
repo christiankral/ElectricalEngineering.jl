@@ -1,4 +1,4 @@
-export printuln,usprint,save3fig
+export printuln, usprint, save2fig, save3fig
 
 @doc raw"""
 # Function call
@@ -133,6 +133,92 @@ end
 """
 # Function call
 
+`save2fig(fileName, subDir="."; dpi=300, tight=true, crop=false)`
+
+# Description
+
+Save the actual figure in the following three file formats
+- `png` Portable network graphics in subdirectory png/
+- `pdf` Encapsulated postscript in subdirectory pdf/
+These two graphics format are relevant when processing figures in LaTeX,
+LyX, LibreOffice or other word processors
+
+# Variables
+
+`fileName` String of the filename, extended by `.png`, and `.pdf`; the
+file names are stored in sub directories `png/`, and `pdf/`
+
+`subDir` String of sub directory in which the adjacent sub directories  `png/`,
+and `pdf/` are located; default = `.` (local work directory)
+
+`dpi` Resolution of the stored PNG file; default = 300 (dpi)
+
+`tight` Additional margin around the figure is removed, except for a 2% margin;
+default = `true`
+
+`crop` Crop all 'white' space around the figure; this feature requires the
+installation of the following software
+- imagemagick to be applied to `png` files,
+  see https://www.imagemagick.org/script/index.php on Windows
+  or apply `sudo apt install imagemagick` on Linux (Mint or Ubuntu)
+- pdfcrop to be applied to `pdf` files, see
+  https://www.ctan.org/pkg/pdfcrop on Windows
+  or apply `sudo apt install texlive-extra-utils` on Linux (Mint or Ubuntu)
+
+# Examples
+
+```julia
+julia> save2fig("phasordiagram")
+julia> save2fig("phasordiagram_crop", crop=true)
+```
+"""
+function save2fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
+    # Store PNG file
+    mkpath(subDir*"/png")
+    if tight == false
+        savefig(subDir*"/png/"*fileName*".png", dpi=dpi)
+    else
+        savefig(subDir*"/png/"*fileName*".png", dpi=dpi,
+            bbox_inches = "tight", pad_inches=0.02)
+    end
+    if crop==true
+        try
+            arg = `$subDir/png/$fileName.png`
+            status = readstring(`convert $arg -trim $arg`);
+        catch err
+            error("module ElectricalEngineering: function save3fig: Binary file not found: convert
+    The software convert (imagemagick) may not be installed or the path may not
+    be specified or the software may have caused a runtime error
+    To install imagemagick, see https://www.imagemagick.org/script/index.php on
+    Windows or apply `sudo apt install imagemagick` on Linux (Mint or Ubuntu)")
+        end
+    end
+
+    # Store PDF file
+    mkpath(subDir*"/pdf")
+    if tight == false
+        savefig(subDir*"/pdf/"*fileName*".pdf")
+    else
+        savefig(subDir*"/pdf/"*fileName*".pdf",
+            bbox_inches="tight", pad_inches=0.02)
+    end
+    if crop == true
+        try
+            arg = `$subDir/pdf/$fileName.pdf`
+            status=readstring(`pdfcrop $arg $arg`);
+        catch err
+            error("module ElectricalEngineering: function save3fig: Binary file not found: dpfcrop
+    The software pdfcrop may not be installed or the path may not be specified
+    or the software may have caused a runtime error
+    To install pdfcrop, see https://www.ctan.org/pkg/pdfcrop on Windows
+    or apply `sudo apt install texlive-extra-utils` on Linux (Mint or Ubuntu)")
+        end
+    end
+end
+
+"""
+# Function call
+
 `save3fig(fileName, subDir="."; dpi=300, tight=true, crop=false)`
 
 # Description
@@ -177,26 +263,7 @@ julia> save3fig("phasordiagram_crop", crop=true)
 ```
 """
 function save3fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
-    # Store PNG file
-    mkpath(subDir*"/png")
-    if tight == false
-        savefig(subDir*"/png/"*fileName*".png", dpi=dpi)
-    else
-        savefig(subDir*"/png/"*fileName*".png", dpi=dpi,
-            bbox_inches = "tight", pad_inches=0.02)
-    end
-    if crop==true
-        try
-            arg = `$subDir/png/$fileName.png`
-            status = readstring(`convert $arg -trim $arg`);
-        catch err
-            error("module ElectricalEngineering: function save3fig: Binary file not found: convert
-    The software convert (imagemagick) may not be installed or the path may not
-    be specified or the software may have caused a runtime error
-    To install imagemagick, see https://www.imagemagick.org/script/index.php on
-    Windows or apply `sudo apt install imagemagick` on Linux (Mint or Ubuntu)")
-        end
-    end
+    save2fig(fileName, subDir = subDir, dpi = dpi, tight = tight, crop = crop)
 
     # Store EPS file
     mkpath(subDir*"/eps")
@@ -220,27 +287,6 @@ function save3fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
     or the software may have caused a runtime error
     To install epstool, see http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm
     on Windows or apply `sudo apt install epstool` on Linux (Mint or Ubuntu)")
-        end
-    end
-
-    # Store PDF file
-    mkpath(subDir*"/pdf")
-    if tight == false
-        savefig(subDir*"/pdf/"*fileName*".pdf")
-    else
-        savefig(subDir*"/pdf/"*fileName*".pdf",
-            bbox_inches="tight", pad_inches=0.02)
-    end
-    if crop == true
-        try
-            arg = `$subDir/pdf/$fileName.pdf`
-            status=readstring(`pdfcrop $arg $arg`);
-        catch err
-            error("module ElectricalEngineering: function save3fig: Binary file not found: dpfcrop
-    The software pdfcrop may not be installed or the path may not be specified
-    or the software may have caused a runtime error
-    To install pdfcrop, see https://www.ctan.org/pkg/pdfcrop on Windows
-    or apply `sudo apt install texlive-extra-utils` on Linux (Mint or Ubuntu)")
         end
     end
 end
