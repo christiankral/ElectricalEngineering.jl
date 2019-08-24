@@ -177,6 +177,16 @@ function mmf_sum(mmf)
     return sum(mmf, dims = 1)
 end
 
+function slot_label(Ns; start = 1, inc = 1)
+    xtick_label = fill("", Ns)
+    for k in start:Ns
+        if mod(k + start - 2, inc) == 0
+            xtick_label[k] = string(k)
+        end
+    end
+    xticks(collect(1:Ns), xtick_label)
+end
+
 function mmf_plot(mmf; index = collect(1:size(mmf,1)),
     color = ["#E6550D", "#8CA252", "#6B6ECF", "black"],
     showsum = true, label = ["1", "2", "3", L"$\Sigma$"],
@@ -224,7 +234,7 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
     Nyt = size(yt,1)
     yticks(yt,fill("",Nyt))
     grid(true)
-    legend(loc=loc,fontsize=legendFontSize);
+    legend(loc =loc, fontsize = legendFontSize);
 end
 
 function winding_mmf_plot(w, i; r = 0.2,
@@ -234,7 +244,8 @@ function winding_mmf_plot(w, i; r = 0.2,
     linestyle=[lineStyle1,lineStyle3,lineStyle2,lineStyle4],
     linewidth=[lineWidth1,lineWidth3,lineWidth2,lineWidth4],
     showlegend = true, loc = "best",
-    index = collect(1:size(winding_mmf(w,i),1)))
+    index = collect(1:size(winding_mmf(w,i),1)),
+    showslot = true, start = 1, inc = 1)
 
     # Plot winding layout
     subplot2grid((3, 1), (0, 0))
@@ -247,6 +258,9 @@ function winding_mmf_plot(w, i; r = 0.2,
     # Plot MMF
     subplot2grid((3, 1), (1, 0), rowspan = 2)
     mmf = winding_mmf(w,i)
+    # Numeber of slots
+    Ns = size(mmf,2)
+    # Plot MMF distribution
     mmf_plot(mmf, index = collect(1:size(mmf,1)),
         color = color,
         showsum = showsum, label = label,
@@ -255,14 +269,7 @@ function winding_mmf_plot(w, i; r = 0.2,
         showlegend = showlegend, loc = loc)
     xlim(ax[1],ax[2])
     tight_layout()
-end
-
-function slot_label(Ns; start = 1, inc = 1)
-    xtick_label = fill("", Ns)
-    for k in start:Ns
-        if mod(k + start - 2, inc) == 0
-            xtick_label[k] = string(k)
-        end
+    if showslot
+        slot_label(Ns, start = start, inc = inc)
     end
-    xticks(collect(1:Ns), xtick_label)
 end
