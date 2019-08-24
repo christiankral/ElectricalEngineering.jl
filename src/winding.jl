@@ -1,5 +1,6 @@
 export arrow_out, arrow_in, arrow_in_out, winding_plot,
-    count_coils, winding_mmf, mmf_sum, mmf_plot, winding_mmf_plot, slot_label
+    count_coils, winding_mmf, mmf_sum, mmf_plot, winding_mmf_plot,
+    slot_label, mmf_label
 
 function arrow_out(x, y; r = 0.2, color = "black", linewidth = 1, ri = 0.05)
     phi = collect(0:pi/36:2*pi)
@@ -187,14 +188,10 @@ function slot_label(Ns; start = 1, inc = 1)
     xticks(collect(1:Ns), ticks_label)
 end
 
-function mmf_label(mmf1_max = 0; mmf_max = 0, inc = 0.5)
+function mmf_label(mmf1_max = 0; mmf_max = 0, inc = 0.5, showmmf = true)
 
-    # if mmf_max = 0, select mmf1_max as tick limit
-    if mmf_max == 0
-        mmf_limit = mmf1_max
-    else
-        mmf_limit = mmf_max
-    end
+    # Pick the greater of the two maxima
+    mmf_limit = max(mmf1_max, mmf_max)
 
     # Create vector of positive ticks
     ticks_pos = collect(+inc:+inc:+mmf_limit)
@@ -207,17 +204,20 @@ function mmf_label(mmf1_max = 0; mmf_max = 0, inc = 0.5)
     # Add only zero as label
     ticks_label = vcat(fill("",length(ticks_neg)),
         L"$0$", fill("",length(ticks_pos)))
-    # Add ±mmf1_max if not zero
-    if mmf1_max != 0
-        ticks = vcat(ticks,[-mmf1_max],[+mmf1_max])
-        ticks_label = vcat(ticks_label,
-            [L"$-\hat V_{m,1}$"],[L"$+\hat V_{m,1}$"])
-    end
-    # Add ±mmf_max if not zero
-    if mmf_max != 0
-        ticks = vcat(ticks,[-mmf_max],[+mmf_max])
-        ticks_label = vcat(ticks_label,
-            [L"$-\hat V_{m}$"],[L"$+\hat V_{m}$"])
+    # Add MMF labels only if showmmf = true
+    if showmmf
+        # Add ±mmf1_max if not zero
+        if mmf1_max != 0
+            ticks = vcat(ticks,[-mmf1_max],[+mmf1_max])
+            ticks_label = vcat(ticks_label,
+                [L"$-\hat V_{m,1}$"],[L"$+\hat V_{m,1}$"])
+        end
+        # Add ±mmf_max if not zero
+        if mmf_max != 0
+            ticks = vcat(ticks,[-mmf_max],[+mmf_max])
+            ticks_label = vcat(ticks_label,
+                [L"$-\hat V_{m}$"],[L"$+\hat V_{m}$"])
+        end
     end
     # Plot ticks
     yticks(ticks, ticks_label)
@@ -255,7 +255,7 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
         step([0.5; slots; Ns + 0.5], [mmfsum[end]; mmfsum[end]; mmfsum'],
             linewidth = linewidth[m+1], color = color[m+1] ,
             label = label[m+1])
-    else
+    else 
         mmf_max = mmf1_max
         mmf_min = mmf1_min
     end
@@ -271,6 +271,7 @@ function mmf_plot(mmf; index = collect(1:size(mmf,1)),
     yticks(yt,fill("",Nyt))
     grid(true)
     legend(loc =loc, fontsize = legendFontSize);
+    return (mmf1_max,mmf_max)
 end
 
 function winding_mmf_plot(w, i; r = 0.2,
@@ -281,7 +282,7 @@ function winding_mmf_plot(w, i; r = 0.2,
     linewidth=[lineWidth1,lineWidth3,lineWidth2,lineWidth4],
     showlegend = true, loc = "best",
     index = collect(1:size(winding_mmf(w,i),1)),
-    showslot = true, start = 1, inc = 1)
+    showslot = true, start = 1, inc = 1, showmmf = true)
 
     # Plot winding layout
     subplot2grid((3, 1), (0, 0))
@@ -289,21 +290,22 @@ function winding_mmf_plot(w, i; r = 0.2,
         color = color,
         slot = slot, yoke = yoke, fillcolor = fillcolor)
     # Determine exact extension of plot area
-    ax = axis()
+    ax = gca()
 
     # Plot MMF
     subplot2grid((3, 1), (1, 0), rowspan = 2)
     mmf = winding_mmf(w,i)
     # Plot MMF distribution
-    mmf_plot(mmf, index = collect(1:size(mmf,1)),
+    (mmf1_max, mmf_max) = mmf_plot(mmf, index = collect(1:size(mmf,1)),
         color = color,
         showsum = showsum, label = label,
         linestyle = linestyle,
         linewidth = linewidth,
         showlegend = showlegend, loc = loc)
-    xlim(ax[1],ax[2])
-    tight_layout()
     if showslot
         slot_label(size(mmf,2), start = start, inc = inc)
     end
+    mmf_label(mmf1_max, mmf_max = mmf_max, showmmf = showmmf)
+    tight_layout()
+    xlim(ax.axis()[1],ax.axis()[2])
 end
