@@ -193,7 +193,9 @@ function slot_label(Ns; start = 1, inc = 1)
     xticks(collect(1:Ns), ticks_label)
 end
 
-function mmf_label(mmf1_max = 0; mmf_max = 0, inc = 0.5, showmmf = true)
+function mmf_label(mmf1_max = 0; mmf_max = 0, inc = 0.5, showmmf = true,
+    mmf1_label_neg = L"$-\hat V_{m,1}$", mmf1_label_pos = L"$+\hat V_{m,1}$",
+    mmf_label_neg = L"$-\hat V_{m}$", mmf_label_pos = L"$+\hat V_{m}$")
 
     # Pick the greater of the two maxima
     mmf_limit = max(mmf1_max, mmf_max)
@@ -215,13 +217,13 @@ function mmf_label(mmf1_max = 0; mmf_max = 0, inc = 0.5, showmmf = true)
         if mmf1_max != 0 && mmf1_max != mmf_max
             ticks = vcat(ticks,[-mmf1_max],[+mmf1_max])
             ticks_label = vcat(ticks_label,
-                [L"$-\hat V_{m,1}$"],[L"$+\hat V_{m,1}$"])
+                [mmf1_label_neg],[mmf1_label_pos])
         end
         # Add ±mmf_max if not zero
         if mmf_max != 0
             ticks = vcat(ticks,[-mmf_max],[+mmf_max])
             ticks_label = vcat(ticks_label,
-                [L"$-\hat V_{m}$"],[L"$+\hat V_{m}$"])
+                [mmf_label_neg],[mmf_label_pos])
         end
     end
     # Plot ticks
@@ -287,7 +289,9 @@ function winding_mmf_plot(w, i; r = 0.2,
     linewidth=[lineWidth1,lineWidth3,lineWidth2,lineWidth4],
     showlegend = true, loc = "best",
     index = collect(1:size(winding_mmf(w,i),1)),
-    showslot = true, start = 1, inc = 1, showmmf = true)
+    showslot = true, start = 1, inc = 1, showmmf = true,
+    mmf1_label_neg = L"$-\hat V_{m,1}$", mmf1_label_pos = L"$+\hat V_{m,1}$",
+    mmf_label_neg = L"$-\hat V_{m}$", mmf_label_pos = L"$+\hat V_{m}$")
 
     # Plot winding layout
     # https://matplotlib.org/3.1.1/tutorials/intermediate/tight_layout_guide.html#sphx-glr-tutorials-intermediate-tight-layout-guide-py
@@ -312,7 +316,9 @@ function winding_mmf_plot(w, i; r = 0.2,
         slot_label(size(mmf,2), start = start, inc = inc)
     end
     # Re-adjust by doing everything twice
-    mmf_label(mmf1_max, mmf_max = mmf_max, showmmf = showmmf)
+    mmf_label(mmf1_max, mmf_max = mmf_max, showmmf = showmmf,
+        mmf1_label_neg = mmf1_label_neg, mmf1_label_pos = mmf1_label_pos,
+        mmf_label_neg = mmf_label_neg, mmf_label_pos = mmf_label_pos)
     tight_layout()
     xlim(ax.axis()[1],ax.axis()[2])
     tight_layout()
