@@ -184,7 +184,7 @@ function save2fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
     if crop==true
         try
             arg = `$subDir/png/$fileName.png`
-            status = readstring(`convert $arg -trim $arg`);
+            status = run(`convert $arg -trim $arg`);
         catch err
             error("module ElectricalEngineering: function save3fig: Binary file not found: convert
     The software convert (imagemagick) may not be installed or the path may not
@@ -205,7 +205,7 @@ function save2fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
     if crop == true
         try
             arg = `$subDir/pdf/$fileName.pdf`
-            status=readstring(`pdfcrop $arg $arg`);
+            status=run(`pdfcrop $arg $arg`);
         catch err
             error("module ElectricalEngineering: function save3fig: Binary file not found: dpfcrop
     The software pdfcrop may not be installed or the path may not be specified
@@ -277,7 +277,7 @@ function save3fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
         try
             arg = `$subDir/eps/$fileName.eps`
             argtemp = `$subDir/eps/$fileName.eps.temp`
-            status = readstring(`epstool --copy --bbox $arg $argtemp`);
+            status = run(`epstool --copy --bbox $arg $argtemp`);
             mv(subDir*"/eps/"*fileName*".eps.temp",
                 subDir*"/eps/"*fileName*".eps",
                 remove_destination=true)
