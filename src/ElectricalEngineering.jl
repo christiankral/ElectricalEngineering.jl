@@ -10,7 +10,7 @@ ElectricalEngineering.jl is tested with Julia 1.
 ## Plotting
 
 - `arrowaxes` Creates a plot with a horizontal and a vertical axis instead of a
-- frame
+  frame
 
 - `removeaxes` Removes the axis of the actual plot
 
