@@ -3,7 +3,7 @@
 This is a Julia package on electrical engineering based on [Unitful](docs/Unitful.md) and [PyPlot](https://github.com/JuliaPy/PyPlot.jl). The package ElectricalEngineering.jl is tested with Julia 1.1.0. To install the package, start Julia and hit `]` to switch to the package manager.
 
 ```julia-repl
-add Pyplot Unitful ElectricalEngineering
+add PyPlot Unitful ElectricalEngineering
 ```
 In order to update to the actual version of GitHub in the package manager, hit `]` and apply:
 
@@ -46,7 +46,7 @@ julia> U2 = pol(sqrt(2) * 1V, 45°)
     - Create dimension of phasor
 - Function `phasordimension`
     - Create auxiliary lines and parallel shifted dimensions
-![Length dimension](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/phasordimension.png?raw=true)    
+![Length dimension](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/phasordimension.png?raw=true)
 
 ## Circuits and Physics
 
@@ -58,7 +58,7 @@ julia> 4Ω∥6Ω
 2.4000000000000004 Ω
 julia> 4Ω∥(j*4Ω)
 2.0 + 2.0im Ω
-```  
+```
 
 ## Inputs and Outputs
 
@@ -104,8 +104,8 @@ julia> printuln("U1", U1, V, label="(a)")
 - Function `arrowaxes`
     - Plot graphs with arrowed axes
     - Add plot labels
-![Curves](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/arrowaxes.png?raw=true)    
+![Curves](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/arrowaxes.png?raw=true)
 - Function `lengthdimension`
     - Create length dimension with arrows
     - Create auxiliary lines and parallel shifted dimensions
-![Length dimension](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/lengthdimension.png?raw=true)    
+![Length dimension](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/lengthdimension.png?raw=true)
