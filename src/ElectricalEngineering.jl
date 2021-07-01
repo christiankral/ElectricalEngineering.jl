@@ -64,9 +64,13 @@ ElectricalEngineering.jl is tested with Julia 1.
   without space in between, such that the string output can be copied and
   pasted.
 
+- `save2fig` Save the actual figure in the file formats `png` and `pdf`
+    including subdirectories.  These two graphics format are relevant when
+    processing figures in LaTeX, LyX, LibreOffice or other word processors
+
 - `save3fig` Save the actual figure in the file formats `png`, `eps` and `pdf`
   including subdirectories.  These three graphics format are relevant when
-  processing figures in LaTeX, LyX, LibreOffice or other word processors
+  processing figures in LaTeX and LyX
 
 ## See also `?` on
 
