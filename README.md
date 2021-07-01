@@ -109,3 +109,8 @@ julia> printuln("U1", U1, V, label="(a)")
     - Create length dimension with arrows
     - Create auxiliary lines and parallel shifted dimensions
 ![Length dimension](https://raw.githubusercontent.com/christiankral/ElectricalEngineering.jl/master/resources/lengthdimension.png?raw=true)
+
+# Other Packages related with Electrical Engineering
+
+- [CircuitComponentRounding.jl](https://github.com/KronosTheLate/CircuitComponentRounding.jl) provides functions to round given values to the nearest standardized value for circuit components
+- [Modia.jl](https://github.com/ModiaSim/Modia.jl) is a package for modeling and simulation of multidomain engineering systems described by differential equations, algebraic equations, and (space-discretized) partial differential equations
