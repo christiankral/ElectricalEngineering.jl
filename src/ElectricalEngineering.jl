@@ -73,6 +73,13 @@ ElectricalEngineering.jl is tested with Julia 1.
 - `ElectricalEngineering.Gray`
 
 - `ElectricalEngineering.Tab20bc`
+
+# Other Packages related with Electrical Engineering
+
+- [CircuitComponentRounding.jl](https://github.com/KronosTheLate/CircuitComponentRounding.jl) provides functions to round given values to the nearest standardized value for circuit components
+
+- [Modia.jl](https://github.com/ModiaSim/Modia.jl) is a package for modeling and simulation of multidomain engineering systems described by differential equations, algebraic equations, and (space-discretized) partial differential equations
+
 """
 module ElectricalEngineering
 
