@@ -112,5 +112,5 @@ julia> printuln("U1", U1, V, label="(a)")
 
 # Other Packages related with Electrical Engineering
 
-- [CircuitComponentRounding.jl](https://github.com/KronosTheLate/CircuitComponentRounding.jl) provides functions to round given values to the nearest standardized value for circuit components
-- [Modia.jl](https://github.com/ModiaSim/Modia.jl) is a package for modeling and simulation of multidomain engineering systems described by differential equations, algebraic equations, and (space-discretized) partial differential equations
+- [ESeriesRounding.jl](https://github.com/KronosTheLate/ESeriesRounding.jl) provides functions to round given values to the nearest standardized value for circuit components, namely the E-series.
+- [Modia.jl](https://github.com/ModiaSim/Modia.jl) is a package for modeling and simulation of multidomain engineering systems described by differential equations, algebraic equations, and (space-discretized) partial differential equations.
