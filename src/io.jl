@@ -186,7 +186,7 @@ function save2fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
             arg = `$subDir/png/$fileName.png`
             status = run(`convert $arg -trim $arg`);
         catch err
-            error("module ElectricalEngineering: function save3fig: Binary file not found: convert
+            error("module ElectricalEngineering: function save2fig: Binary file not found: convert
     The software convert (imagemagick) may not be installed or the path may not
     be specified or the software may have caused a runtime error
     To install imagemagick, see https://www.imagemagick.org/script/index.php on
@@ -207,7 +207,7 @@ function save2fig(fileName, subDir="."; dpi=300, tight=true, crop=false)
             arg = `$subDir/pdf/$fileName.pdf`
             status=run(`pdfcrop $arg $arg`);
         catch err
-            error("module ElectricalEngineering: function save3fig: Binary file not found: dpfcrop
+            error("module ElectricalEngineering: function save2fig: Binary file not found: dpfcrop
     The software pdfcrop may not be installed or the path may not be specified
     or the software may have caused a runtime error
     To install pdfcrop, see https://www.ctan.org/pkg/pdfcrop on Windows
