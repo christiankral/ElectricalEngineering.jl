@@ -5,11 +5,11 @@ export colorBlack1, colorBlack2, colorBlack3, colorBlack4, colorBlack5,
     markerSize1, markerSize2, markerSize3, markerSize4,
     legendFontSize, arrowaxes, removeaxes, lengthdimension
 
-const colorBlack1 = "0"
-const colorBlack2 = "0.25"
-const colorBlack3 = "0.5"
-const colorBlack4 = "0.6"
-const colorBlack5 = "0.85"
+const colorBlack1 = "#000000"
+const colorBlack2 = "#404040"
+const colorBlack3 = "#808080"
+const colorBlack4 = "#999999"
+const colorBlack5 = "#d9d9d9"
 
 const lineStyle1 = "-"
 const lineStyle2 = linestyle = (0, (4, 1))
