@@ -1,5 +1,10 @@
 # History.md
 
+## v0.4.7 2022-10-18
+- Change lineWidth3 from 1.5 to 1
+- Change lineWidth4 from 1 to 1.5
+- Change lineStyle3 to dash dot
+
 ## v0.4.1 2019-03-25
 - Change UUID from
   ab11b94a-4edd-11e9-29d4-ab4fb969a4dc to
