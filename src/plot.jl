@@ -13,13 +13,13 @@ const colorBlack5 = "#d9d9d9"
 
 const lineStyle1 = "-"
 const lineStyle2 = linestyle = (0, (4, 1))
-const lineStyle3 = linestyle = (0, (2, 0.81))
+const lineStyle3 = linestyle = (0, (4, 1, 2, 1))
 const lineStyle4 = linestyle = (0, (8, 1))
 
 const lineWidth1 = 1
 const lineWidth2 = 1
-const lineWidth3 = 1.5
-const lineWidth4 = 1
+const lineWidth3 = 1
+const lineWidth4 = 1.5
 
 const marker1 = "D"
 const marker2 = "o"
