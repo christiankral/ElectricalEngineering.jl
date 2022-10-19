@@ -13,8 +13,8 @@ const colorBlack5 = "#d9d9d9"
 
 const lineStyle1 = "-"
 const lineStyle2 = linestyle = (0, (4, 1))
-const lineStyle3 = linestyle = (0, (4, 1, 2, 1))
-const lineStyle4 = linestyle = (0, (8, 1))
+const lineStyle3 = linestyle = (0, (2, 1))
+const lineStyle4 = linestyle = (0, (4, 1, 1, 1))
 
 const lineWidth1 = 1
 const lineWidth2 = 1
