@@ -5,6 +5,7 @@
 - Change lineWidth4 from 1 to 1.5
 - Change lineStyle3 to dash short
 - Change lineStyle4 to dash dot
+- Unify gray styles
 
 ## v0.4.1 2019-03-25
 - Change UUID from

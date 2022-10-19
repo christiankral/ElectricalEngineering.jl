@@ -6,10 +6,10 @@ export colorBlack1, colorBlack2, colorBlack3, colorBlack4, colorBlack5,
     legendFontSize, arrowaxes, removeaxes, lengthdimension
 
 const colorBlack1 = "#000000"
-const colorBlack2 = "#404040"
-const colorBlack3 = "#808080"
-const colorBlack4 = "#999999"
-const colorBlack5 = "#d9d9d9"
+const colorBlack2 = "#626262"
+const colorBlack3 = "#969696"
+const colorBlack4 = "#BDBDBD"
+const colorBlack5 = "#D9D9D9"
 
 const lineStyle1 = "-"
 const lineStyle2 = linestyle = (0, (4, 1))

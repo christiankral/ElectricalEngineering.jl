@@ -104,4 +104,5 @@ module Gray
     const colorGray2=colorBlack2
     const colorGray3=colorBlack3
     const colorGray4=colorBlack4
+    const colorGray5=colorBlack5
 end

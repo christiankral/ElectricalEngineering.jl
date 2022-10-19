@@ -100,8 +100,9 @@ module Tab20bc
     const colorMagenta3="#CE6DBD"
     const colorMagenta4="#DE9ED6"
 
-    const colorGray1="#636363"
-    const colorGray2="#969696"
-    const colorGray3="#BDBDBD"
-    const colorGray4="#D9D9D9"
+    const colorGray1=colorBlack1
+    const colorGray2=colorBlack2
+    const colorGray3=colorBlack3
+    const colorGray4=colorBlack4
+    const colorGray5=colorBlack5
 end
