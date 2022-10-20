@@ -1,5 +1,8 @@
 # History.md
 
+## v0.4.8 2022-10-20
+- Remove Compat package
+
 ## v0.4.7 2022-10-19
 - Change lineWidth3 from 1.5 to 1
 - Change lineWidth4 from 1 to 1.5
