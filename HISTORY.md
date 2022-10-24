@@ -1,5 +1,8 @@
 # History.md
 
+## v0.4.9 2022-10-24
+- Add dependency on Unitful 0.15.0 to improve compatibility
+
 ## v0.4.8 2022-10-20
 - Remove Compat package
 
