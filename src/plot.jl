@@ -3,7 +3,7 @@ export colorBlack1, colorBlack2, colorBlack3, colorBlack4, colorBlack5,
     lineWidth1, lineWidth2, lineWidth3, lineWidth4,
     marker1, marker2, marker3, marker4,
     markerSize1, markerSize2, markerSize3, markerSize4,
-    legendFontSize, arrowaxes, removeaxes, lengthdimension
+    legendFontSize, boxed, arrowaxes, removeaxes, lengthdimension
 
 const colorBlack1 = "#000000"
 const colorBlack2 = "#626262"
@@ -32,6 +32,12 @@ const markerSize3 = 4
 const markerSize4 = 5
 
 const legendFontSize  =  10
+
+function boxed(x,y,text;ha="center",va="center",boxstyle="circle",pad=0.2,linewidth=0.50,fc="w",edgecolor="k",color="k")
+  annotate(text, xy=(x,y),
+    bbox=Dict("boxstyle"=>boxstyle, "fc"=>fc, "edgecolor"=>edgecolor, "pad"=>pad, "linewidth"=>linewidth),
+    fontsize=8.5, color=color, ha=ha, va=va)
+end
 
 @doc raw"""
 # Function call
