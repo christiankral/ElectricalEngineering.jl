@@ -1,5 +1,8 @@
 # History.md
 
+## v0.5.0 2023-02-03
+- Add the redundant function `par` as equevalent implementation to `∥`
+
 ## v0.4.9 2022-10-24
 - Add dependency on Unitful 0.15.0 to improve compatibility
 
