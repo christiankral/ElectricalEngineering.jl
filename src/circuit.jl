@@ -1,4 +1,4 @@
-export ∥
+export ∥, par
 
 @doc raw"""
 # Function call
@@ -12,9 +12,11 @@ Type `\parallel` and hit the `tab` key to autocomplete the parallel symbol ∥
 This calculates the parallel connection of impedances. Optionally, the
 calculation can be performed using units from the module Unitful.
 
-**Important note:** Use the ∥ operator in parentheses, since its precedence
+**Important note:** Use the `∥` operator in parentheses, since its precedence
 is equal to the (low) precedence of relation operators or use the function call
 with arguments to avoid miscalculations
+
+The functions `par` and `∥` are redundant impementations.
 
 # Variables
 
@@ -46,5 +48,37 @@ function ∥(z...)
     for k=1:length(z)
         ypar = ypar + 1/z[k]
     end
-    return 1/ypar
+return 1/ypar
+
+@doc raw"""
+# Function call
+
+`par(z...)`
+
+# Description
+
+This calculates the parallel connection of impedances. Optionally, the
+calculation can be performed using units from the module Unitful.
+
+The functions `par` and `∥` are redundant impementations.
+
+# Variables
+
+`z` Vector of impedances
+
+# Examples
+
+```julia
+julia> using Unitful,Unitful.DefaultSymbols,ElectricalEngineering
+julia> par(4,6)
+2.4
+julia> par(4Ω,6Ω)
+2.4 Ω
+
+```
+
+Type `\Omega` and hit the `tab` key to autocomplete the parallel symbol Ω
+"""
+function par(z...)
+    return ∥(z)
 end
