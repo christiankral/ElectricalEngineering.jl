@@ -1,6 +1,6 @@
 # History.md
 
-## v0.6.1 2023-02-16
+## v0.6.0 2023-02-16
 - Add the redundant function `par` as simplified and equivalent
   implementation to `∥`
 
