@@ -48,7 +48,8 @@ function ∥(z...)
     for k=1:length(z)
         ypar = ypar + 1/z[k]
     end
-return 1/ypar
+    return 1/ypar
+end
 
 @doc raw"""
 # Function call
