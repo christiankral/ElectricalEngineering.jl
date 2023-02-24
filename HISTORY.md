@@ -1,5 +1,8 @@
 # History.md
 
+## v0.6.2 2023-02-24
+- Fix missing return value in function `par`
+
 ## v0.6.1 2023-02-24
 - Fix error in function `par`
 

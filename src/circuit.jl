@@ -85,4 +85,5 @@ function par(z...)
     for k=1:length(z)
         ypar = ypar + 1/z[k]
     end
+    return 1/ypar
 end
