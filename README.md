@@ -115,3 +115,4 @@ julia> printuln("U1", U1, V, label="(a)")
 - [ColorPalette.jl](https://github.com/christiankral/ColorPalette.jl) allows exchangable color palettes to be used in Julia, LaTeX and [Ipe](https://ipe.otfried.org/)
 - [ESeriesRounding.jl](https://github.com/KronosTheLate/ESeriesRounding.jl) provides functions to round given values to the nearest standardized value for circuit components, namely the E-series.
 - [Modia.jl](https://github.com/ModiaSim/Modia.jl) is a package for modeling and simulation of multidomain engineering systems described by differential equations, algebraic equations, and (space-discretized) partial differential equations.
+- [ModelingToolkit.jl](https://docs.sciml.ai/ModelingToolkit/stable/) is a modeling language for high-performance symbolic-numeric computation in scientific computing and scientific machine learning.
