@@ -175,7 +175,7 @@ angulardimension(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
     label=L"$\varphi_1$", labelrsep=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 removeaxes(); # Remove axis
-# save3fig("phasordiagram",crop=true);
+# save2fig("phasordiagram",crop=true);
 ```
 """
 function phasor(c;
@@ -387,7 +387,7 @@ rc("text", usetex=true); rc("font", family="serif")
 phasorsine(1, 45°, ylabel=L"$u,i$", maglabel=L"$\hat{U}$", labelrsep=0.3,
     color="gray", linestyle="--")
 phasorsine(0.55, 0, add=true, maglabel=L"$\hat{I}$")
-# save3fig("phasorsine",crop=true);
+# save2fig("phasorsine",crop=true);
 ```
 """
 function phasorsine(mag = 1,
@@ -880,7 +880,7 @@ angulardimension(0.3,phi1,phi2,arrowstyle1=".",arrowstyle2="-|>",ha="left",
     label=L"$\varphi_1$", labelrsep=0.05)
 axis("square"); xlim(-1,1); ylim(-1,1)
 removeaxes(); # Remove axis
-# save3fig("phasordiagram",crop=true);
+# save2fig("phasordiagram",crop=true);
 ```
 """
 function angulardimension(r = 1,
@@ -1103,7 +1103,7 @@ phasordimension(real(Z1), label=L"$R$", arrowstyle1="",
     labeltsep=0, color="gray", backgroundcolor="white")
 arrowaxes(xmin = real(Z1)+0.1, xlabel="Re", ylabel=L"j$\cdot$Im")
 xlim([-0.5,1]);ylim([-0.5,1]); axis("square"); removeaxes();
-# save3fig("phasordimension", crop=true)
+# save2fig("phasordimension", crop=true)
 ```
 """
 function phasordimension(c;
