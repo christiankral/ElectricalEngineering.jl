@@ -351,7 +351,7 @@ xlabel(L"$t$\,(s)"); ylabel(L"$y$")
 lengthdimension(0,0.2,t1,0.2,label=L"$t_1$",labeltsep=0,backgroundcolor="white")
 lengthdimension(t1,0.2,t1+t2,0.2,label=L"$t_2$",labeltsep=0,backgroundcolor="white")
 lengthdimension(t1,ymax,2*t1+t2,ymax,label=L"$T$",par=0.1,labeltsep=0.05,labelrsep=0.7)
-# save3fig("lengthdimension",crop=true)
+# save2fig("lengthdimension",crop=true)
 ```
 """
 function lengthdimension(
