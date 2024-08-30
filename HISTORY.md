@@ -1,5 +1,12 @@
 # History.md
 
+## v0.7.1 2024-08-30
+- Extende dependency range in Project.toml
+- Switch from save3fig to save2fig for default exporting images
+
+## v0.7.0 2024-08-29
+- Add function `pasorcosine`
+
 ## v0.6.2 2023-02-24
 - Fix missing return value in function `par`
 
