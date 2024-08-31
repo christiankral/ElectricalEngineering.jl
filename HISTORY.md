@@ -16,7 +16,7 @@
       location of `ylabel` and `xlabel`, respectively.
 - Functions `phasorsine` and `phasorcosine` now use a different scaling to be
   compatible with `arrowaxes`
-  
+
 ## v0.7.1 2024-08-30
 - Extende dependency range in Project.toml
 - Switch from save3fig to save2fig for default exporting images
