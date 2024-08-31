@@ -1,5 +1,9 @@
 # History.md
 
+## v0.8.1 2024-08-31
+- Switch line width of doted lines in function `phasorsine` and `phasorcosine`
+  from `lineWidth4` to `lineWidth1` in
+
 ## v0.8.0 2024-08-31
 - Switch to a different model of `arrowaxes`:
     - Function `arrowaxes` is re-written to allow more felxibility. However,

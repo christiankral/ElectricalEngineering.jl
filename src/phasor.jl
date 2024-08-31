@@ -502,27 +502,27 @@ function phasorsine(mag = 1,
             xyB=(360, mag*sin(phi)), xyA=(0, mag*sin(phi)),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
-            linewidth=lineWidth4, linestyle=":", clip_on=false)
+            linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         con = matplotlib.patches."ConnectionPatch"(
             xyA=(0, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax1, color=colorDash,
-            linewidth=lineWidth4, linestyle=":", clip_on=false)
+            linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         # Dotted line of y-axis of right diagram to maximum of sine wave
         con = matplotlib.patches."ConnectionPatch"(
             xyB=(mod(90-phi*180/pi,360), mag), xyA=(0, mag),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
-            linewidth=lineWidth4, linestyle=":", clip_on=false)
+            linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         # Dotted line of y-axis of right diagram to minimum of sine wave
         con = matplotlib.patches."ConnectionPatch"(
             xyB=(mod(270-phi*180/pi, 360),-mag), xyA=(0, -mag),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
-            linewidth=lineWidth4, linestyle=":", clip_on=false)
+            linewidth=lineWidth1, linestyle=":", clip_on=false)
             ax2.add_artist(con)
     end
 end
@@ -746,27 +746,27 @@ function phasorcosine(mag = 1,
             xyB=(360, mag*cos(phi)), xyA=(0, mag*cos(phi)),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
-            linewidth=lineWidth4, linestyle=":", clip_on=false)
+            linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         con = matplotlib.patches."ConnectionPatch"(
             xyA=(0, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax1, color=colorDash,
-            linewidth=lineWidth4, linestyle=":", clip_on=false)
+            linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         # Dotted line of y-axis of right diagram to maximum of cosine wave
         con = matplotlib.patches."ConnectionPatch"(
             xyB=(mod(0-phi*180/pi,360), mag), xyA=(0, mag),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
-            linewidth=lineWidth4, linestyle=":", clip_on=false)
+            linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         # Dotted line of y-axis of right diagram to minimum of cosine wave
         con = matplotlib.patches."ConnectionPatch"(
             xyB=(mod(180-phi*180/pi, 360),-mag), xyA=(0, -mag),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
-            linewidth=lineWidth4, linestyle=":", clip_on=false)
+            linewidth=lineWidth1, linestyle=":", clip_on=false)
             ax2.add_artist(con)
     end
 end
