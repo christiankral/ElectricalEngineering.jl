@@ -214,7 +214,7 @@ function arrowaxes(fig=gcf(), ax=gca();
     # Vertical label
     xsign = yleft ? -1 : 1
     yva = yneg ? "bottom" : "top"
-    yha = xleft ? "right" : "left"
+    yha = yleft ? "right" : "left"
     ax.text(xa+xsign*dx*labelsep, yend, ylabel,
         ha=yha,va=yva, backgroundcolor=backgroundcolor)
 end
