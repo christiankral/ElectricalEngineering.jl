@@ -318,7 +318,7 @@ and sine diagram to an existing figure, `add` has to be set `true`
 `figsize` Size of the new figure, if `add` is equal to `false`; default value
 = (7,2.5)
 
-`xlabel` Label of x-axis of right subplot; default value ="ωt(°)" in LaTeX
+`xlabel` Label of x-axis of right subplot; default value ="ωt/°" in LaTeX
 notation
 
 `ylabel` label of y-axis of right subplot; default value = "";  if more than one
