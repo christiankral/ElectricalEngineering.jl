@@ -532,7 +532,7 @@ end
 
 ```
 phasorcosine(mag = 1, phi = 0; add = false, figsize = (6.6,2.5),
-    xlabel = L"$\omega t$\,($^\circ $)", ylabel = "", maglabel = "",
+    xlabel = L"$\omega\!\cdot\!t/^\circ $", ylabel = "", maglabel = "",
     phasorlabel = maglabel, labeltsep = 0.1, labelrsep = 0.5,
     labelrelrot = true, labelrelangle = 0,
     color = "black", linewidth = 1, linestyle = "-",
@@ -560,9 +560,9 @@ dimensions specified in `figsize` is created. In order to add a second phasor
 and cosine diagram to an existing figure, `add` has to be set `true`
 
 `figsize` Size of the new figure, if `add` is equal to `false`; default value
-= (6.6,2.5)
+= (7,2.5)
 
-`xlabel` Label of x-axis of right subplot; default value ="ωt(°)" in LaTeX
+`xlabel` Label of x-axis of right subplot; default value ="ωt/°" in LaTeX
 notation
 
 `ylabel` label of y-axis of right subplot; default value = "";  if more than one
@@ -638,7 +638,7 @@ function phasorcosine(mag = 1,
     phi = 0;
     add = false,
     figsize = (6.6,2.5),
-    xlabel = L"$\omega\!\cdot\!t$\,($^\circ $)",
+    xlabel = L"$\omega\!\cdot\!t/^\circ $";
     ylabel = "",
     maglabel = "",
     phasorlabel = maglabel,
