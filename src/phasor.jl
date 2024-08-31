@@ -288,7 +288,7 @@ end
 
 ```
 phasorsine(mag = 1, phi = 0; add = false, figsize = (6.6,2.5),
-    xlabel = L"$\omega t$\,($^\circ $)", ylabel = "", maglabel = "",
+    xlabel = L"$\omega\!\cdot\!t/^\circ $", ylabel = "", maglabel = "",
     phasorlabel = maglabel, labeltsep = 0.1, labelrsep = 0.5,
     labelrelrot = true, labelrelangle = 0,
     color = "black", linewidth = 1, linestyle = "-",
@@ -316,7 +316,7 @@ dimensions specified in `figsize` is created. In order to add a second phasor
 and sine diagram to an existing figure, `add` has to be set `true`
 
 `figsize` Size of the new figure, if `add` is equal to `false`; default value
-= (6.6,2.5)
+= (7,2.5)
 
 `xlabel` Label of x-axis of right subplot; default value ="ωt(°)" in LaTeX
 notation
@@ -393,8 +393,8 @@ phasorsine(0.55, 0, add=true, maglabel=L"$\hat{I}$")
 function phasorsine(mag = 1,
     phi = 0;
     add = false,
-    figsize = (6.6,2.5),
-    xlabel = L"$\omega t$\,($^\circ $)",
+    figsize = (7,2.5),
+    xlabel = L"$\omega\!\cdot\!t/^\circ $",
     ylabel = "",
     maglabel = "",
     phasorlabel = maglabel,
