@@ -112,6 +112,10 @@ default value = 0.05 (5% of plot width)
 
 `top` Top side of the figure; default value = 0.85
 
+`yleft` Place ylabel left of y axis, if true
+
+`xbelow` Place xlabel below of x axis, if true
+
 # Examples
 
 Copy and paste the following code:
@@ -133,12 +137,22 @@ function arrowaxes(fig=gcf(), ax=gca();
     xneg = false, yneg = false,
     color="black", backgroundcolor="none", axisoverhang = 0.18,
     linewidth = 0.6, headwidth = 5, headlength = 10, overhang = 0,
-    labelsep = 0.05,
-    left=0.2, right=0.85, bottom=0.20, top=0.85)
+    labelsep = 0.06,
+    left=0.2, right=0.85, bottom=0.20, top=0.85,
+    yleft=true, xbelow=true)
     # The basic idea of this implementation is taken from:
     # http://www.yueshen.me/2015/1011.html
     # https://stackoverflow.com/questions/33737736/matplotlib-axis-arrow-tip/44138298#44138298
 
+    # Warn about parameters to be removed in the future
+    if axisoverhang != 0.18
+        @warn "ElectricalEngineering.arrowaxis: Deprecated argument `axisoverhang` is used.
+    This argument will be removed in a future version."
+    end
+    if overhang != 0
+        @warn "ElectricalEngineering.arrowaxis: Deprecated argument `overhang` is used.
+    This argument will be removed in a future version."
+    end
     # Create enough space around the plot area of fit in arrows
     fig.subplots_adjust(left=left, right=right, top=top, bottom=bottom)
     # fig[:subplots_adjust](left=left, right=right, top=top, bottom=bottom)
@@ -156,31 +170,16 @@ function arrowaxes(fig=gcf(), ax=gca();
     # Remove vertical axis since it will be overwritten by arrow
     ax.spines["left"].set_color("none")
 
-    # Axis limits
-    (xMIN,xMAX) = ax.get_xlim() # Horizontal limits
-    dx = xMAX-xMIN # Difference of horizontal limits
-    (yMIN,yMAX) = ax.get_ylim() # Vertical limits
-    dy = yMAX-yMIN # Difference of vertical limits
-    # Get width and height of axes object to compute
-    # matching arrowhead length and width
-    dps = fig.dpi_scale_trans.inverted()
-    bbox = ax.get_window_extent().transformed(dps)
-    width = bbox.width # width of bbox
-    height = bbox.height # height of bbox
-    # Physical arrow dimensions
-    hwx = headwidth*dy # Width of x-axis arrow head
-    hlx = headlength*dx # Length of x-axis arrow length
-    hwy = headwidth*dx * height/width # Width of y-axis arrow head
-    hly = headlength*dy * width/height # Length of y-axis arrow length
-
+    # Select begin and end coodinates of arrows dependent on xneg and yneg
     xbeg = xneg ? xmax : xmin
-    xend = xneg ? xmin-axisoverhang*dx : xmax+axisoverhang*dx
+    xend = xneg ? xmin : xmax
     ybeg = yneg ? ymax : ymin
-    yend = yneg ? ymin-axisoverhang*dy : ymax+axisoverhang*dy
+    yend = yneg ? ymin : ymax
 
-    # Set new limits
-    xlim(xbeg,xend)
-    ylim(ybeg,yend)
+    # Lenght of arrows
+    dx = xmax - xmin
+    dy = ymax - ymin
+
     # Horizontal arrow created by annotate instead of axis.arrow
     annotate("", xy=(xend, ya),
         xytext=(xbeg, ya), xycoords="data",
@@ -207,13 +206,17 @@ function arrowaxes(fig=gcf(), ax=gca();
         annotation_clip=false)
     # https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
     # Horizontal label
-    ha = xneg ? "left" : "right"
-    ax.text(xend, ya+dy*labelsep, xlabel,
-        ha=ha, va="bottom", backgroundcolor=backgroundcolor)
+    ysign = xbelow ? -1 : 1
+    xha = xneg ? "left" : "right"
+    xva = xbelow ? "top" : "bottom"
+    ax.text(xend, ya+ysign*dy*labelsep, xlabel,
+        ha=xha, va=xva, backgroundcolor=backgroundcolor)
     # Vertical label
-    va = yneg ? "bottom" : "top"
-    ax.text(xa+dx*labelsep, yend, ylabel,
-        ha="left",va=va, backgroundcolor=backgroundcolor)
+    xsign = yleft ? -1 : 1
+    yva = yneg ? "bottom" : "top"
+    yha = xleft ? "right" : "left"
+    ax.text(xa+xsign*dx*labelsep, yend, ylabel,
+        ha=yha,va=yva, backgroundcolor=backgroundcolor)
 end
 
 """

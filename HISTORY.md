@@ -1,5 +1,20 @@
 # History.md
 
+## v0.8.0 2024-08-31
+- Switch to a different model of `arrowaxes`:
+    - Function `arrowaxes` is re-written to allow more felxibility. However,
+      the applied changes are non-backwards compatible. Yet, user code develop
+      in previous versions of ElectricalEngineering may still work, depending
+      on the used function arguments.
+    - The function argument `axisoverhang` and `overhang` are obsolet
+      and a warning is triggered, to let the user know, that this arguments
+      will be removed in a future version
+    - The scaling of the figure, to which `arrowaxes` is applied, is not
+      changed any more. The user has to manually rescale the figure using `xlim`
+      and `ylim` in case this is required for a proper apperance of the axis.
+    - Two additional arguments `yleft` and `xbelow` are used to define the
+      location of `ylabel` and `xlabel`, respectively.
+
 ## v0.7.1 2024-08-30
 - Extende dependency range in Project.toml
 - Switch from save3fig to save2fig for default exporting images
