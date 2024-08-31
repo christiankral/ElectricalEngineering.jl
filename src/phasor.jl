@@ -661,8 +661,6 @@ function phasorcosine(mag = 1,
     # https://matplotlib.org/users/annotations.html
     # https://stackoverflow.com/questions/17543359/drawing-lines-between-two-plots-in-matplotlib
 
-    #######################################
-    close("all")
     # Create figure
     if !add
         # Create new figure
