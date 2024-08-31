@@ -441,9 +441,9 @@ function phasorsine(mag = 1,
         linestyle=linestyle, linewidth=linewidth)
     axis("square")
     ax1 = gca()
+    xlim(-1.1,1.5)
+    ylim(-1.1,1.43)
     if !add
-        xlim(-1.1,1.1)
-        ylim(-1.1,1.1)
         ax1.spines["left"].set_visible(false)
         ax1.spines["right"].set_visible(false)
         ax1.spines["bottom"].set_visible(false)
@@ -463,10 +463,10 @@ function phasorsine(mag = 1,
     end
     ax2 = gca()
     # First phasor and sine wave diagram must be drawn with add = false
+    xlim(0, 360*1.35)
+    ylim(-1.1, 1.43)
     if !add
         # Scale and tick x-axis
-        xlim(0, 360)
-        ylim(-1.1, 1.1)
         xticks(collect(90:90:360),
             backgroundcolor=backgroundcolor)
         if maglabel != ""
@@ -685,9 +685,9 @@ function phasorcosine(mag = 1,
         linestyle=linestyle, linewidth=linewidth)
     axis("square")
     ax1 = gca()
+    xlim(-1.5,1.1)
+    ylim(-1.1,1.43)
     if !add
-        xlim(-1.5,1.1)
-        ylim(-1.1,1.43)
         ax1.spines["left"].set_visible(false)
         ax1.spines["right"].set_visible(false)
         ax1.spines["bottom"].set_visible(false)
@@ -707,10 +707,10 @@ function phasorcosine(mag = 1,
     end
     ax2 = gca()
     # First phasor and cosine wave diagram must be drawn with add = false
+    xlim(0, 360*1.35)
+    ylim(-1.1, 1.43)
     if !add
         # Scale and tick x-axis
-        xlim(0, 360*1.35)
-        ylim(-1.1, 1.43)
         xticks(collect(90:90:360),
             backgroundcolor=backgroundcolor)
         if maglabel != ""
