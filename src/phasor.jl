@@ -127,7 +127,7 @@ otherwise the label is rotated relative to the phasor by the angle
 `labelrelangle`
 
 `labelrelangle` Relative angle of label  with respect to phasor orientation;
-this angle is only applied, it `labelrelrot == true`; this angle the indicates
+this angle is only applied, if `labelrelrot == true`; this angle the indicates
 the relative orientation of the label with respect to the orientation of the
 phasor; default value = 0
 
@@ -348,7 +348,7 @@ otherwise the label is rotated relative to the phasor by the angle
 `labelrelangle`
 
 `labelrelangle` Relative angle of label with respect to phasor
-orientation; this angle is only applied, it `labelrelrot == true`; this angle the
+orientation; this angle is only applied, if `labelrelrot == true`; this angle the
 indicates the relative orientation of the label with respect to the
 orientation of the phasor; default value = 0
 
@@ -592,7 +592,7 @@ otherwise the label is rotated relative to the phasor by the angle
 `labelrelangle`
 
 `labelrelangle` Relative angle of label with respect to phasor
-orientation; this angle is only applied, it `labelrelrot == true`; this angle the
+orientation; this angle is only applied, if `labelrelrot == true`; this angle the
 indicates the relative orientation of the label with respect to the
 orientation of the phasor; default value = 0
 
@@ -819,7 +819,7 @@ value) then the label is not rotated relative to the center of the arc;
 otherwise the label is rotated relative to the  angle `labelrelangle`
 
 `labelrelangle` Relative angle of label with respect to center of the arc; this
-angle is only applied, it `labelrelrot == true`; this angle indicates the
+angle is only applied, if `labelrelrot == true`; this angle indicates the
 relative orientation of the label with respect to the center of the arc;
 default value = 0
 
@@ -1039,7 +1039,7 @@ value) then the label is not rotated relative to the center of the arc;
 otherwise the label is rotated relative to the  angle `labelrelangle`
 
 `labelrelangle` Relative angle of label with respect to center of the arc; this
-angle is only applied, it `labelrelrot == true`; this angle indicates the
+angle is only applied, if `labelrelrot == true`; this angle indicates the
 relative orientation of the label with respect to the center of the arc;
 default value = 0
 
