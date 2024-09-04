@@ -308,13 +308,13 @@ of the label; default value = "center"
 `backgroundcolor` Background color of the label; if labelrsep is equal to 0, the
 background color "white" can be used; default value = "none"
 
-`arrowstyle1` Arrow style of the begin of the arc; default value = "."; valid
+`arrowstyle1` Arrow style of the begin of the line; default value = "<|-"; valid
 strings are:
 
 - `.` dot marker
 - `<|-` arrow
 
-`arrowstyle2` Arrow style of the end of the arc; default value = "-|>"; valid
+`arrowstyle2` Arrow style of the end of the line; default value = "-|>"; valid
 strings are:
 
 - `.` dot marker
