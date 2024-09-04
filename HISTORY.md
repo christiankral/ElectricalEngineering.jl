@@ -1,5 +1,9 @@
 # History.md
 
+## v0.8.2 2024-09-04
+- Fix documentation and plotting of `lengthdimension` due to problem with
+    non-relative coordinates
+
 ## v0.8.1 2024-08-31
 - Switch line width of doted lines in function `phasorsine` and `phasorcosine`
   from `lineWidth4` to `lineWidth1` in
