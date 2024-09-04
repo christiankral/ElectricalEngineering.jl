@@ -285,7 +285,6 @@ the phasor applying a displacement of 10% with respect to `ref`;
 phasor applying a displacement of 20% with respect to `ref`; default value
 = 0.1
 
-
 `labelrsep` Radial per unit location of label (in direction of the phasor):
 `labelrsep = 0` represents the shaft of the phasor and `labelrsep = 1` represents
 the arrow hear of the phasor; default value = 0.5, i.e., the radial center
@@ -427,7 +426,7 @@ function lengthdimension(
     if arrowstyle1 == "<|-"
         # Arrow head
         annotate("", xy=(x1+dpx, y1+dpy),
-            xytext=(x1+dpx+0.001*drx, y1+dpy+0.001*dry),
+            xytext=(x1+dpx+0.0001*drx*dr, y1+dpy+0.0001*dry*dr),
             xycoords="data",
             arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
                 "width"=>width, "linestyle"=>"-",
@@ -443,7 +442,7 @@ function lengthdimension(
     if arrowstyle2 == "-|>"
         # Arrow head
         annotate("", xy=(x2+dpx, y2+dpy),
-            xytext=(x2+dpx-0.001*drx, y2+dpy-0.001*dry),
+            xytext=(x2+dpx-0.0001*drx*dr, y2+dpy-0.0001*dry*dr),
             xycoords="data",
             arrowprops=Dict("edgecolor"=>color, "facecolor"=>color,
                 "width"=>width, "linestyle"=>"-",
