@@ -278,15 +278,18 @@ drawn.
 
 `label` Label of the angle; default value =""
 
-`labelphisep` Angular separation of the label with respect to the arc; if
-`labelphisep == 0`, the label is located at angle `phi1` and if `labelphisep ==
-1`, the label is located at angle `phi2`; default value = 0.5, right in the
-middle between `phi1` and `phi2`
+`labeltsep` Tangential per unit location of label: `labeltsep = 0` means that the
+label is plotted onto the phasor; `labeltsep = 0.1` plots the label on top of
+the phasor applying a displacement of 10% with respect to `ref`;
+`labeltsep = -0.2` Plots the label below the
+phasor applying a displacement of 20% with respect to `ref`; default value
+= 0.1
+
 
 `labelrsep` Radial per unit location of label (in direction of the phasor):
-`labelrsep = 0` locates the label right on the arc. A positive value locates the
-label outside the arc, a negative value locates the label inside the arc;
-default value = 0.1
+`labelrsep = 0` represents the shaft of the phasor and `labelrsep = 1` represents
+the arrow hear of the phasor; default value = 0.5, i.e., the radial center
+of the phasor
 
 `labelrelrot` Relative rotation of label; if `labelrelrot == false` (default
 value) then the label is not rotated relative to the center of the arc;
