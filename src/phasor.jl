@@ -1,5 +1,6 @@
 export j, pol, ∠, phasor,
-    phasorsine, phasorcosine, angulardimension, phasordimension
+    phasorsine, phasorcosine, angulardimension, phasordimension,
+    phasorsine_hline, phasorcosine_hline
 
 """
 `j = 1im` equals the imaginary unit
