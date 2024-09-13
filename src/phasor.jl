@@ -535,7 +535,7 @@ function phasorsine(mag = 1,
             subplot(122)
             plot(philim*180/pi, mag*sin(phi),
                 marker = marker, markersize=markerSize1,
-                color=color, markerfacecolor="w")
+                color=color, markerfacecolor="w", zorder=100, clip_on=false)
         end
     end
 end
