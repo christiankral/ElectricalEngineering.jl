@@ -669,7 +669,9 @@ function phasorcosine(mag = 1,
     bottom=0.20,
     top=0.80,
     showcosine = true,
-    showdashline = true)
+    showdashline = true,
+    shift = true,
+    marker = "")
     # https://matplotlib.org/tutorials/text/annotations.html#plotting-guide-annotation
     # https://matplotlib.org/users/annotations.html
     # https://stackoverflow.com/questions/17543359/drawing-lines-between-two-plots-in-matplotlib
@@ -712,9 +714,13 @@ function phasorcosine(mag = 1,
 
     # Create right subplot
     subplot(122)
+    # Consider optional phase shift
+    phishift = shift ? upstrip(phi) : 0
+    # Limit of dashed line
+    philim = shift ? 0 : upstrip(phi)
     # Plot cosine if selected by showcosine = true
     if showcosine
-        yphi = mag*cos.(psi.+phi)
+        yphi = mag*cos.(psi .+ phishift)
         plot(psi*180/pi, yphi,
             color=color, linewidth=linewidth, linestyle=linestyle)
     end
@@ -756,31 +762,37 @@ function phasorcosine(mag = 1,
         # Dotted line from phasor arrow to begin of cosine wave, split in two
         # parts, to avoid overlay effects if multiple dashed lines are drawn
         con = matplotlib.patches."ConnectionPatch"(
-            xyB=(360, mag*cos(phi)), xyA=(0, mag*cos(phi)),
+            xyB=(philim*180/pi, mag*cos(phi)), xyA=(0, mag*cos(phi)),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         con = matplotlib.patches."ConnectionPatch"(
-            xyA=(0, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
+            xyA=(philim*180/pi, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax1, color=colorDash,
             linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         # Dotted line of y-axis of right diagram to maximum of cosine wave
         con = matplotlib.patches."ConnectionPatch"(
-            xyB=(mod(0-phi*180/pi,360), mag), xyA=(0, mag),
+            xyB=(mod(0-phishift*180/pi,360), mag), xyA=(0, mag),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth1, linestyle=":", clip_on=false)
         ax2.add_artist(con)
         # Dotted line of y-axis of right diagram to minimum of cosine wave
         con = matplotlib.patches."ConnectionPatch"(
-            xyB=(mod(180-phi*180/pi, 360),-mag), xyA=(0, -mag),
+            xyB=(mod(180-phishift*180/pi, 360),-mag), xyA=(0, -mag),
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth1, linestyle=":", clip_on=false)
-            ax2.add_artist(con)
+        ax2.add_artist(con)
+        if marker != ""
+            subplot(122)
+            plot(philim*180/pi, mag*cos(phi),
+                marker = marker, markersize=markerSize1,
+                color=color, markerfacecolor="w", zorder=100, clip_on=false)
+        end
     end
 end
 
