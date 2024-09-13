@@ -1032,7 +1032,7 @@ default value = 0.0 + 0.0im
 1`, the label is located at angle `phi2`; default value = 0.5, right in the
 middle between `phi1` and `phi2`
 
-labelrsep` Radial per unit location of label (in direction of the phasor):
+`labelrsep` Radial per unit location of label (in direction of the phasor):
 `labelrsep = 0` locates the label right on the arc. A positive value locates the
 label outside the arc, a negative value locates the label inside the arc;
 default value = 0.1
