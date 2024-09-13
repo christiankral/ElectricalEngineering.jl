@@ -1,5 +1,9 @@
 # History.md
 
+## v0.9.0 2024-09-13
+- Add arguments `shift` and `marker` to functions `phasorsine` and
+  `phasorcosine`
+
 ## v0.8.2 2024-09-04
 - Fix documentation and plotting of `lengthdimension` due to problem with
     non-relative coordinates
