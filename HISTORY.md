@@ -1,5 +1,8 @@
 # History.md
 
+## v0.10.0 2024-09-13
+- Add new functions `phasorsine_hline` and `phasorcosine_hline`
+- 
 ## v0.9.0 2024-09-13
 - Add arguments `shift` and `marker` to functions `phasorsine` and
   `phasorcosine`
