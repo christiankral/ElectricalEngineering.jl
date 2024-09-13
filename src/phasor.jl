@@ -363,7 +363,7 @@ background color "white" can be used; default value = "none"
 `linestyle` Line style of the phasor; default value = "-"
 
 `colorDash` Color of the dashed circle (left subplot) and the horizontal dashed
-lines between the left and right subplot; default value = colorBlack4
+lines between the left and right subplot; default value = "gray"
 
 `left` Left side of the figure; default value = 0.2
 
@@ -515,7 +515,6 @@ function phasorsine(mag = 1,
             coordsA="data", coordsB="data",
             axesA=ax2, axesB=ax2, color=colorDash,
             linewidth=lineWidth1, linestyle=":", clip_on=false)
-
         ax2.add_artist(con)
         con = matplotlib.patches."ConnectionPatch"(
             xyA=(philim*180/pi, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
@@ -626,7 +625,7 @@ background color "white" can be used; default value = "none"
 `linestyle` Line style of the phasor; default value = "-"
 
 `colorDash` Color of the dashed circle (left subplot) and the horizontal dashed
-lines between the left and right subplot; default value = colorBlack4
+lines between the left and right subplot; default value = "gray"
 
 `left` Left side of the figure; default value = 0.2
 
