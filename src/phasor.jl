@@ -377,6 +377,12 @@ lines between the left and right subplot; default value = colorBlack4
 
 `showdashline` If `true`, the dashed lines are shown; default value = `true`
 
+`shift` If `true`, the sine curve on the right is plotted with phase shift
+`phi`; default value = `true`
+
+`marker` If unequal to `""`, a marker is used in the right plot;
+default value = `""`
+
 # Example
 
 Copy and paste code:
@@ -633,6 +639,12 @@ lines between the left and right subplot; default value = colorBlack4
 `showcosine` If `true`, the cosinewave is shown; default value = `true`
 
 `showdashline` If `true`, the dashed lines are shown; default value = `true`
+
+`shift` If `true`, the cosine curve on the right is plotted with phase shift
+`phi`; default value = `true`
+
+`marker` If unequal to `""`, a marker is used in the right plot;
+default value = `""`
 
 # Example
 
