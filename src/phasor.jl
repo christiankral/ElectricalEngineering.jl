@@ -882,13 +882,6 @@ function phasorsine_hline(
     # Dotted line from phasor arrow to begin of cosine wave, split in two
     subplot(122)
     ax2 = gca()
-    # parts, to avoid overlay effects if multiple dashed lines are drawn
-    con = matplotlib.patches."ConnectionPatch"(
-        xyB=(philim*180/pi, mag*sin(phishift)), xyA=(0, mag*sin(phishift)),
-        coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax2, color=colorDash,
-        linewidth=linewidth, linestyle=linestyle, clip_on=false)
-    ax2.add_artist(con)
     con = matplotlib.patches."ConnectionPatch"(
         xyA=(philim*180/pi, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
         coordsA="data", coordsB="data",
@@ -975,13 +968,6 @@ function phasorcosine_hline(
     # Dotted line from phasor arrow to begin of cosine wave, split in two
     subplot(122)
     ax2 = gca()
-    # parts, to avoid overlay effects if multiple dashed lines are drawn
-    con = matplotlib.patches."ConnectionPatch"(
-        xyB=(philim*180/pi, mag*cos(phi)), xyA=(0, mag*cos(phi)),
-        coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax2, color=colorDash,
-        linewidth=linewidth, linestyle=linestyle, clip_on=false)
-    ax2.add_artist(con)
     con = matplotlib.patches."ConnectionPatch"(
         xyA=(philim*180/pi, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
         coordsA="data", coordsB="data",

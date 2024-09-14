@@ -1,5 +1,8 @@
 # History.md
 
+## v0.10.4 2024-09-14
+- Remove obsoletely plotted lines
+
 ## v0.10.3 2024-09-14
 - Fix documentation
 
