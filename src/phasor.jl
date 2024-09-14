@@ -116,6 +116,8 @@ the phasor applying a displacement of 10% with respect to `ref`;
 phasor applying a displacement of 20% with respect to `ref`; default value
 = 0.1
 
+`label` String of label; default = ""
+
 `ha` Horizontal alignment of label; actually represents the tangential
 alignment of the label; default value = "center"
 
