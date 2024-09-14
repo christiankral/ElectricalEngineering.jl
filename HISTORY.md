@@ -1,5 +1,8 @@
 # History.md
 
+## v0.10.3 2024-09-14
+- Fix documentation
+
 ## v0.10.2 2024-09-14
 - Fix missing propagation of function arguments
 
