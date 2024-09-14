@@ -885,13 +885,13 @@ function phasorsine_hline(
         xyB=(philim*180/pi, mag*sin(phishift)), xyA=(0, mag*sin(phishift)),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax2, color=colorDash,
-        linewidth=lineWidth1, linestyle=":", clip_on=false)
+        linewidth=linewidth, linestyle=linestyle, clip_on=false)
     ax2.add_artist(con)
     con = matplotlib.patches."ConnectionPatch"(
         xyA=(philim*180/pi, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax1, color=colorDash,
-        linewidth=lineWidth1, linestyle=":", clip_on=false)
+        linewidth=linewidth, linestyle=linestyle, clip_on=false)
     ax2.add_artist(con)
     if marker != ""
         subplot(122)
@@ -978,13 +978,13 @@ function phasorcosine_hline(
         xyB=(philim*180/pi, mag*cos(phi)), xyA=(0, mag*cos(phi)),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax2, color=colorDash,
-        linewidth=lineWidth1, linestyle=":", clip_on=false)
+        linewidth=linewidth, linestyle=linestyle, clip_on=false)
     ax2.add_artist(con)
     con = matplotlib.patches."ConnectionPatch"(
         xyA=(philim*180/pi, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
         coordsA="data", coordsB="data",
         axesA=ax2, axesB=ax1, color=colorDash,
-        linewidth=lineWidth1, linestyle=":", clip_on=false)
+        linewidth=linewidth, linestyle=linestyle, clip_on=false)
     ax2.add_artist(con)
     if marker != ""
         subplot(122)

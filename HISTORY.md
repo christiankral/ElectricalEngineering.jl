@@ -1,5 +1,8 @@
 # History.md
 
+## v0.10.2 2024-09-14
+- Fix missing propagation of function arguments
+
 ## v0.10.1 2024-09-13
 - Export functions `phasorsine_hline` and `phasorcosine_hline`
 
