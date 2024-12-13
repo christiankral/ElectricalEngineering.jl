@@ -885,10 +885,18 @@ function phasorsine_hline(
     # Dotted line from phasor arrow to begin of cosine wave, split in two
     subplot(122)
     ax2 = gca()
+    if gapcolor != nothing
+        con = matplotlib.patches."ConnectionPatch"(
+            xyA=(philim*180/pi, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
+            coordsA="data", coordsB="data",
+            axesA=ax2, axesB=ax1, color=gapcolor,
+            linewidth=linewidth, linestyle="-", clip_on=false)
+        ax2.add_artist(con)
+    end
     con = matplotlib.patches."ConnectionPatch"(
         xyA=(philim*180/pi, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
         coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax1, color=colorDash, gapcolor=gapcolor,
+        axesA=ax2, axesB=ax1, color=colorDash,
         linewidth=linewidth, linestyle=linestyle, clip_on=false)
     ax2.add_artist(con)
     if marker != ""
@@ -974,10 +982,18 @@ function phasorcosine_hline(
     # Dotted line from phasor arrow to begin of cosine wave, split in two
     subplot(122)
     ax2 = gca()
+    if gapcolor != nothing
+        con = matplotlib.patches."ConnectionPatch"(
+            xyA=(philim*180/pi, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
+            coordsA="data", coordsB="data",
+            axesA=ax2, axesB=ax1, color=colorgap, 
+            linewidth=linewidth, linestyle="-", clip_on=false)
+        ax2.add_artist(con)
+    end
     con = matplotlib.patches."ConnectionPatch"(
         xyA=(philim*180/pi, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
         coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax1, color=colorDash, gapcolor=gapcolor,
+        axesA=ax2, axesB=ax1, color=colorDash,
         linewidth=linewidth, linestyle=linestyle, clip_on=false)
     ax2.add_artist(con)
     if marker != ""
