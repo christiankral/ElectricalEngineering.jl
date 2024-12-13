@@ -1,5 +1,8 @@
 # History.md
 
+## v0.11.0 2024-12-13
+- Add parameter gapcolor to `phasorsine_hline` and `phasorcosine_hline`
+
 ## v0.10.4 2024-09-14
 - Remove obsoletely plotted lines
 

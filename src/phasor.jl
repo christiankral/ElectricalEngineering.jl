@@ -840,6 +840,8 @@ value = "black"
 `colorDash` Color of the dashed circle (left subplot) and the horizontal dashed
 lines between the left and right subplot; default value = "gray"
 
+`gapcolor` Gap color of line gaps; default value = nothing
+
 `shift` If `true`, the sine curve on the right is plotted with phase shift
 `phi`; default value = `true`
 
@@ -863,12 +865,13 @@ phasorsine_hline(1, 30°, color=colorBlack2, shift=false, marker="o")
 function phasorsine_hline(
     mag = 1,
     phi = 0;
-    color="black",
+    color = "black",
     linewidth = 1,
     linestyle = ":",
-    colorDash="gray",
+    colorDash = "gray",
+    gapcolor = nothing,
     shift = true,
-    marker="")
+    marker = "")
 
     # Consider optional phase shift
     phishift = shift ? upstrip(phi) : 0
@@ -885,7 +888,7 @@ function phasorsine_hline(
     con = matplotlib.patches."ConnectionPatch"(
         xyA=(philim*180/pi, mag*sin(phi)), xyB=(mag*cos(phi), mag*sin(phi)),
         coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax1, color=colorDash,
+        axesA=ax2, axesB=ax1, color=colorDash, gapcolor=gapcolor,
         linewidth=linewidth, linestyle=linestyle, clip_on=false)
     ax2.add_artist(con)
     if marker != ""
@@ -926,6 +929,8 @@ value = "black"
 `colorDash` Color of the dashed circle (left subplot) and the horizontal dashed
 lines between the left and right subplot; default value = "gray"
 
+`gapcolor` Gap color of line gaps; default value = nothing
+
 `shift` If `true`, the cosine curve on the right is plotted with phase shift
 `phi`; default value = `true`
 
@@ -949,12 +954,13 @@ phasorcosine_hline(1, 30°, color=colorBlack2, shift=false, marker="o")
 function phasorcosine_hline(
     mag = 1,
     phi = 0;
-    color="black",
+    color = "black",
     linewidth = 1,
     linestyle = ":",
-    colorDash="gray",
+    colorDash = "gray",
+    gapcolor = nothing,
     shift = true,
-    marker="")
+    marker = "")
 
     # Consider optional phase shift
     phishift = shift ? upstrip(phi) : 0
@@ -971,7 +977,7 @@ function phasorcosine_hline(
     con = matplotlib.patches."ConnectionPatch"(
         xyA=(philim*180/pi, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
         coordsA="data", coordsB="data",
-        axesA=ax2, axesB=ax1, color=colorDash,
+        axesA=ax2, axesB=ax1, color=colorDash, gapcolor=gapcolor,
         linewidth=linewidth, linestyle=linestyle, clip_on=false)
     ax2.add_artist(con)
     if marker != ""
