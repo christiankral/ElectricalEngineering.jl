@@ -986,7 +986,7 @@ function phasorcosine_hline(
         con = matplotlib.patches."ConnectionPatch"(
             xyA=(philim*180/pi, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
             coordsA="data", coordsB="data",
-            axesA=ax2, axesB=ax1, color=colorgap, 
+            axesA=ax2, axesB=ax1, color=gapcolor, 
             linewidth=linewidth, linestyle="-", clip_on=false)
         ax2.add_artist(con)
     end
