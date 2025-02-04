@@ -307,6 +307,8 @@ of the label; default value = "center"
 
 `color` Color of the arc; default value = "black"
 
+`textcolor` Color of the label; default value = `color`
+
 `backgroundcolor` Background color of the label; if labelrsep is equal to 0, the
 background color "white" can be used; default value = "none"
 
@@ -372,6 +374,7 @@ function lengthdimension(
     ha = "center",
     va = "center",
     color="black",
+    textcolor=color,
     backgroundcolor = "none",
     arrowstyle1 = "<|-",
     arrowstyle2 = "-|>",
@@ -460,12 +463,12 @@ function lengthdimension(
         text(x1 + dr*drx*labelrsep - dtx*labeltsep + dpx,
             y1 + dr*dry*labelrsep - dty*labeltsep + dpy,
             label, ha=ha, va=va, rotation=labelrelangle*180/pi,
-            backgroundcolor=backgroundcolor)
+            color=textcolor,backgroundcolor=backgroundcolor)
     else
         # Applying relative rotation of label
         text(x1 + dr*drx*labelrsep - dtx*labeltsep + dpx,
             y1 + dr*dry*labelrsep - dty*labeltsep + dpy,
             label, ha=ha, va=va, rotation=(absangle+labelrelangle)*180/pi,
-            backgroundcolor=backgroundcolor)
+            color=textcolor,backgroundcolor=backgroundcolor)
     end
 end

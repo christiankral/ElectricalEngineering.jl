@@ -986,7 +986,7 @@ function phasorcosine_hline(
         con = matplotlib.patches."ConnectionPatch"(
             xyA=(philim*180/pi, mag*cos(phi)), xyB=(-mag*sin(phi), mag*cos(phi)),
             coordsA="data", coordsB="data",
-            axesA=ax2, axesB=ax1, color=gapcolor, 
+            axesA=ax2, axesB=ax1, color=gapcolor,
             linewidth=linewidth, linestyle="-", clip_on=false)
         ax2.add_artist(con)
     end
@@ -1064,6 +1064,8 @@ of the label; default value = "center"
 
 `color` Color of the arc; default value = "black"
 
+`textcolor` Color of the label; default value = `color`
+
 `backgroundcolor` Background color of the label; if labelrsep is equal to 0, the
 background color "white" can be used; default value = "none"
 
@@ -1126,6 +1128,7 @@ function angulardimension(r = 1,
     ha = "center",
     va = "center",
     color="black",
+    textcolor=color,
     backgroundcolor="none",
     arrowstyle1 = ".",
     arrowstyle2 = "-|>",
@@ -1201,16 +1204,16 @@ function angulardimension(r = 1,
         text(rlabel*cos(philabel) + real(origin),
             rlabel*sin(philabel) + imag(origin),
             label, ha=ha, va=va, rotation=labelrelangle*180/pi,
-            backgroundcolor=backgroundcolor)
+            color=textcolor, backgroundcolor=backgroundcolor)
     else
         # Applying relative rotation of label
         text(rlabel*cos(philabel) + real(origin),
             rlabel*sin(philabel) + imag(origin),
             label, ha=ha, va=va, rotation=(phim+labelrelangle)*180/pi,
-            backgroundcolor=backgroundcolor)
+            color=textcolor, backgroundcolor=backgroundcolor)
     end
-
     # Optionally create a dot in the center of the arc to indicate 90°
+
     if dot90
         plot(r/2*cos(phim) + real(origin),
             r/2*sin(phim) + imag(origin),
@@ -1284,6 +1287,8 @@ of the label; default value = "center"
 
 `color` Color of the arc; default value = "black"
 
+`textcolor` Color of the label; default value = `color`
+
 `backgroundcolor` Background color of the label; if labelrsep is equal to 0, the
 background color "white" can be used; default value = "none"
 
@@ -1348,6 +1353,7 @@ function phasordimension(c;
     ha = "center",
     va = "center",
     color="black",
+    textcolor=color,
     backgroundcolor = "none",
     arrowstyle1 = "<|-",
     arrowstyle2 = "-|>",
@@ -1366,7 +1372,7 @@ function phasordimension(c;
         real((c+origin)/ref), imag((c+origin)/ref),
         label=label, labeltsep = labeltsep, labelrsep=labelrsep,
         labelrelrot=labelrelrot, labelrelangle = labelrelangle, ha=ha, va=va,
-        color=color, backgroundcolor = backgroundcolor,
+        color=color, textcolor=textcolor, backgroundcolor = backgroundcolor,
         arrowstyle1=arrowstyle1, arrowstyle2=arrowstyle2,
         linewidth = linewidth, linestyle=linestyle, width=width,
         headlength=headlength, headwidth=headwidth,
